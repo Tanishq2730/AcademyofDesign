@@ -62,7 +62,7 @@ export default function Workshops() {
           <div className="col-lg-7">
             <div className={styles.sectionHeader}>
               <h2>Upcoming <span>Workshops.</span></h2>
-              <p>Join our interactive sessions to learn specific skills, network with peers, and get hands-on experience from the world's best designers.</p>
+              <p>Join our interactive sessions to learn specific skills, network with peers, and get hands-on experience from the world&apos;s best designers.</p>
             </div>
           </div>
           <div className="col-lg-auto mb-lg-5">
