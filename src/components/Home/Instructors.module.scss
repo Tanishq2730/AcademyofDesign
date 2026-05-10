@@ -1,0 +1,124 @@
+.instructorsSection {
+  padding: 10rem 0 3rem;
+  background-color: #030303;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+.header {
+  margin-bottom: 5rem;
+  z-index: 2;
+  position: relative;
+  text-align: center;
+  
+  h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.04em;
+    
+    @media (min-width: 768px) {
+      font-size: 4rem;
+    }
+    
+    span {
+      color: #914864;
+    }
+  }
+  
+  p {
+    color: #9ca3af;
+    font-size: 1.125rem;
+    max-width: 34rem;
+    margin: 1.5rem auto 0;
+  }
+}
+
+.marqueeContainer {
+  display: flex;
+  width: max-content;
+  gap: 3rem;
+  padding: 5rem 0;
+}
+
+.instructorCard {
+  min-width: 22rem;
+  height: 30rem;
+  position: relative;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  flex-shrink: 0;
+  
+  &.up {
+    transform: translateY(-3rem);
+  }
+  
+  &.down {
+    transform: translateY(3rem);
+  }
+  
+  &:hover {
+    border-color: rgba(145, 72, 100, 0.4);
+    
+    &.up { transform: translateY(-4rem); }
+    &.down { transform: translateY(2rem); }
+    
+    .overlay {
+      background: linear-gradient(to top, rgba(115, 47, 80, 0.9) 0%, transparent 60%);
+    }
+    
+    .imgWrapper img {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.imgWrapper {
+  width: 100%;
+  height: 100%;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2.5rem;
+  transition: all 0.5s ease;
+  
+  h3 {
+    color: white;
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+  }
+  
+  span {
+    color: #B67B80;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}

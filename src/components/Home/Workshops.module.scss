@@ -1,0 +1,151 @@
+.workshopsSection {
+  padding: 8rem 0;
+  background-color: #030303;
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.04;
+    pointer-events: none;
+  }
+}
+
+.sectionHeader {
+  margin-bottom: 4rem;
+  
+  h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.04em;
+    
+    @media (min-width: 768px) {
+      font-size: 4rem;
+    }
+    
+    span {
+      color: #914864;
+    }
+  }
+  
+  p {
+    color: #9ca3af;
+    font-size: 1.125rem;
+    max-width: 32rem;
+  }
+}
+
+.viewAllBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  text-decoration: none;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #914864;
+    transform: translateY(-2px);
+  }
+}
+
+.workshopCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2.5rem;
+  overflow: hidden;
+  height: 100%;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  backdrop-filter: blur(20px);
+  
+  &:hover {
+    transform: translateY(-10px);
+    border-color: rgba(129, 140, 248, 0.3);
+    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.5);
+    background: rgba(255, 255, 255, 0.04);
+  }
+  
+  .imageWrapper {
+    height: 16rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+    }
+  }
+  
+  &:hover .imageWrapper img {
+    transform: scale(1.1);
+  }
+  
+  .cardBody {
+    padding: 2rem;
+    
+    h3 {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+      transition: color 0.3s ease;
+    }
+    
+    .metaInfo {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      
+      .metaItem {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #9ca3af;
+        font-size: 0.875rem;
+        font-weight: 500;
+        
+        svg {
+          color: #B67B80;
+        }
+      }
+    }
+    
+    .reserveBtn {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 1.25rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: white;
+        color: black;
+        border-color: white;
+      }
+    }
+  }
+}
