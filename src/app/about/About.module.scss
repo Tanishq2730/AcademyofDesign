@@ -105,6 +105,20 @@
       text-transform: uppercase;
       margin-bottom: 1.5rem;
     }
+
+    .legacyImage {
+      width: 25em;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      
+      @media (max-width: 991px) {
+        height: 300px;
+        margin-top: 2rem;
+      }
+    }
   }
 }
 

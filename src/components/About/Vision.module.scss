@@ -1,0 +1,31 @@
+.visionSection {
+  padding: 150px 0;
+  text-align: center;
+  
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    
+    h2 {
+      font-size: 4rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
+    
+    p {
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    
+    .signature {
+      margin-top: 3rem;
+      font-weight: 700;
+      color: #B67B80;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+  }
+}

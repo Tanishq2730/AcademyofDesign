@@ -1,0 +1,57 @@
+.pillars {
+  padding: 100px 0;
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .pillarCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem;
+    border-radius: 30px;
+    transition: all 0.5s ease;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(145, 72, 100, 0.3);
+      transform: translateY(-10px);
+    }
+    
+    .icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #732F50, #914864);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      color: white;
+      font-size: 1.5rem;
+    }
+    
+    h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+    }
+  }
+}

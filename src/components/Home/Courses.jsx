@@ -1,45 +1,21 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import styles from "./Courses.module.scss";
 
-const categories = ["UI/UX Design", "Fashion Design", "Interior Design", "Graphic Design"];
-
-const coursesData = {
-  "UI/UX Design": [
-    { title: "Advanced Product Design", duration: "6 Months", desc: "Master end-to-end product design from research to prototyping." },
-    { title: "Interaction Design", duration: "3 Months", desc: "Learn to build micro-interactions and seamless user flows." },
-    { title: "UI Foundations", duration: "2 Months", desc: "Build a strong foundation in visual design and typography." }
-  ],
-  "Fashion Design": [
-    { title: "Haute Couture", duration: "1 Year", desc: "Explore the art of creating exclusive, custom-fitted clothing." },
-    { title: "Fashion Illustration", duration: "3 Months", desc: "Learn to sketch and communicate fashion ideas effectively." },
-    { title: "Textile Science", duration: "4 Months", desc: "Understand fabrics, materials, and sustainable fashion." }
-  ],
-  "Interior Design": [
-    { title: "Residential Spaces", duration: "6 Months", desc: "Design functional and beautiful living spaces." },
-    { title: "Commercial Interiors", duration: "6 Months", desc: "Create impactful environments for retail and offices." },
-    { title: "3D Rendering & Modeling", duration: "4 Months", desc: "Bring your designs to life using industry standard software." }
-  ],
-  "Graphic Design": [
-    { title: "Brand Identity", duration: "4 Months", desc: "Create cohesive brand systems and logos." },
-    { title: "Typography & Layout", duration: "2 Months", desc: "Master the art of organizing text and visual elements." },
-    { title: "Motion Graphics", duration: "5 Months", desc: "Add movement to your designs with After Effects." }
-  ]
-};
+import categories from "@/data/courses.json";
 
 export default function Courses() {
-  const [activeTab, setActiveTab] = useState(categories[0]);
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
-    // Initial scroll animation
+    // Header animation
     gsap.fromTo(
       `.${styles.header}`,
       { y: 50, opacity: 0 },
@@ -54,18 +30,54 @@ export default function Courses() {
         }
       }
     );
-  }, []);
 
-  useEffect(() => {
-    // Animate cards on tab change
-    if (cardsRef.current.length > 0) {
-      gsap.fromTo(
-        cardsRef.current,
-        { y: 30, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.6, stagger: 0.1, ease: "expo.out" }
-      );
-    }
-  }, [activeTab]);
+    // Stacking Cards Animation
+    cardsRef.current.forEach((card, index) => {
+      if (index === cardsRef.current.length - 1) return;
+
+      gsap.to(card, {
+        scale: 0.94, 
+        y: -60, 
+        filter: "brightness(0.3) blur(4px)", 
+        scrollTrigger: {
+          trigger: cardsRef.current[index + 1],
+          start: "top 85%",
+          end: "top 15%",
+          scrub: 2, // Smooth scroll
+        },
+      });
+    });
+
+    // Staggered entrance for course cards within each sticky card
+    cardsRef.current.forEach((card, idx) => {
+      if (!card) return;
+      
+      const courseCards = card.querySelectorAll(`.${styles.miniCourseCard}`);
+      if (courseCards.length > 0) {
+        gsap.fromTo(
+          courseCards,
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "expo.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 70%",
+            }
+          }
+        );
+      }
+    });
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, []);
 
   return (
     <section ref={containerRef} className={styles.coursesSection}>
@@ -73,53 +85,80 @@ export default function Courses() {
         
         {/* Header */}
         <div className={styles.header}>
-          <h2>Explore Our <span>Programs.</span></h2>
-          <p>Choose from a variety of specialized courses designed to take you from beginner to industry-ready professional.</p>
+          <h2>
+            Explore Our 
+            <span>Curated Programs.</span>
+          </h2>
+          <p>
+            An elite selection of design disciplines, crafted for those who 
+            aim to lead the industry with innovation and technical mastery.
+          </p>
         </div>
 
-        {/* Tabs */}
-        <div className={styles.tabContainer}>
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`${styles.tabBtn} ${activeTab === cat ? styles.active : ""}`}
+        {/* Stacking Cards Container */}
+        <div className={styles.stackContainer}>
+          {categories.map((category, idx) => (
+            <div 
+              key={category.name} 
+              ref={(el) => cardsRef.current[idx] = el}
+              className={`${styles.stickyCard} card_${idx}`}
+              style={{ 
+                top: "10vh", 
+                backgroundColor: category.color,
+                borderColor: `${category.accent}22`,
+                zIndex: idx + 1
+              }}
             >
-              {cat}
-            </button>
-          ))}
-        </div>
+              {/* Decorative Number */}
+              <div 
+                className="absolute right-[-5%] top-[-5%] text-[25rem] font-black opacity-[0.04] pointer-events-none select-none"
+                style={{ color: category.accent }}
+              >
+                0{idx + 1}
+              </div>
 
-        {/* Course Cards Grid */}
-        <div className="row g-4">
-          {coursesData[activeTab].map((course, index) => (
-            <div
-              key={index}
-              ref={(el) => cardsRef.current[index] = el}
-              className="col-md-6 col-lg-4"
-            >
-              <div className={styles.courseCard}>
-                <div>
-                  <span className={styles.durationTag}>
-                    {course.duration}
-                  </span>
-                  <h3>{course.title}</h3>
-                  <p>{course.desc}</p>
+              <div className={styles.cardContent}>
+                <div className={styles.cardHeader}>
+                  <div className={styles.categoryInfo}>
+                    <span className={styles.categoryBadge} style={{ color: category.accent }}>
+                      Specialization
+                    </span>
+                    <h3 className={styles.categoryTitle}>{category.name}</h3>
+                  </div>
+                  <Link href="/courses" className={styles.viewAllBtn}>
+                    Explore All <ArrowRight size={18} />
+                  </Link>
                 </div>
-                
-                <Link href="/course-detail" className={styles.detailsLink}>
-                  View Details <ArrowRight size={18} />
-                </Link>
+
+                <div className={styles.coursesGrid}>
+                  {category.courses.map((course, cIdx) => (
+                    <div key={cIdx} className={styles.miniCourseCard}>
+                      <div className={styles.miniImageWrapper}>
+                        <img src={course.image} alt={course.title} />
+                      </div>
+                      <div className={styles.miniCardInfo}>
+                        <div className={styles.courseHeader}>
+                          <span className={styles.duration}>{course.duration} Program</span>
+                          <h4>{course.title}</h4>
+                        </div>
+                        <p>{course.desc}</p>
+                        <Link href={`/courses/${course.title.toLowerCase().replace(/ /g, "-").replace(/&/g, "and")}`} className={styles.learnMore}>
+                          Learn More <ArrowRight size={14} />
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
         
         <div className={styles.footerLink}>
-          <Link href="/courses">View all courses</Link>
+          <p>The journey to excellence begins here.</p>
+          <Link href="/courses">View the full academy catalog</Link>
         </div>
       </div>
     </section>
   );
 }
-

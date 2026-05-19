@@ -1,0 +1,276 @@
+.presenceSection {
+  padding: 2rem 0;
+  background-color: #030303;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.glassCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 5rem;
+  overflow: hidden;
+  backdrop-filter: blur(30px);
+  position: relative;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 40%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(145, 72, 100, 0.05) 0%, transparent 70%);
+    z-index: 0;
+  }
+}
+
+.contentSide {
+  padding: 8rem;
+  position: relative;
+  z-index: 1;
+  
+  @media (max-width: 992px) {
+    padding: 4rem 3rem;
+  }
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 3rem;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  
+  span {
+    color: #914864;
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0.1em;
+      left: 0;
+      width: 100%;
+      height: 0.15em;
+      background: rgba(145, 72, 100, 0.3);
+      z-index: -1;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 3.5rem;
+  }
+}
+
+.desc {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.8;
+  margin-bottom: 5rem;
+  max-width: 540px;
+  font-weight: 300;
+}
+
+.officeInfo {
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: white;
+    margin-bottom: 2.5rem;
+    opacity: 0.4;
+  }
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  color: white;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateX(10px);
+    
+    svg {
+      transform: scale(1.2);
+    }
+  }
+  
+  span {
+    font-size: 1.1rem;
+    font-weight: 400;
+    opacity: 0.8;
+    max-width: 300px;
+  }
+  
+  svg {
+    color: #914864;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+}
+
+.visualSide {
+  position: relative;
+  height: 100%;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  z-index: 1;
+}
+
+.creativeCard {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3rem;
+  padding: 4rem;
+  width: 100%;
+  max-width: 450px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+  animation: float 6s ease-in-out infinite;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 3rem;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent, rgba(145, 72, 100, 0.2));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  
+  .dot {
+    width: 8px;
+    height: 8px;
+    background: #914864;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #914864;
+  }
+  
+  span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.cityText {
+  font-size: 4rem;
+  font-weight: 900;
+  color: white;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.stateText {
+  font-size: 1.2rem;
+  color: #914864;
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+.architecturalLine {
+  width: 60px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 3rem;
+}
+
+.statsRow {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  .statVal {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+  }
+  
+  .statLabel {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.cardFooter {
+  .badge {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background: rgba(145, 72, 100, 0.1);
+    border: 1px solid rgba(145, 72, 100, 0.2);
+    border-radius: 100px;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+.floatingCircle {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(145, 72, 100, 0.1) 0%, transparent 70%);
+  filter: blur(50px);
+  z-index: 0;
+  animation: move 10s ease-in-out infinite alternate;
+}
+
+@keyframes move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-30px, 40px); }
+}
+
+.glassBeam {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.1), transparent);
+  z-index: 0;
+}

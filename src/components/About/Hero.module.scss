@@ -1,0 +1,48 @@
+.hero {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  padding-top: 100px;
+  
+  .heroContent {
+    z-index: 2;
+    max-width: 900px;
+    
+    h1 {
+      font-size: clamp(3rem, 10vw, 6rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 2rem;
+      
+      span {
+        background: linear-gradient(to right, #732F50, #914864, #B67B80);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+    
+    p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+  
+  .bgGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(145, 72, 100, 0.15) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+  }
+}
