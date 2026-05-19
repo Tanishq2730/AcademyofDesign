@@ -31,21 +31,23 @@ export default function Courses() {
       }
     );
 
-    // Stacking Cards Animation
+    // Hardware-accelerated Sticky Stacking Animation
     cardsRef.current.forEach((card, index) => {
-      if (index === cardsRef.current.length - 1) return;
+      if (!card) return;
 
-      gsap.to(card, {
-        scale: 0.94, 
-        y: -60, 
-        filter: "brightness(0.3) blur(4px)", 
-        scrollTrigger: {
-          trigger: cardsRef.current[index + 1],
-          start: "top 85%",
-          end: "top 15%",
-          scrub: 2, // Smooth scroll
-        },
-      });
+      // Scale down and darken as the next card covers it
+      if (index < cardsRef.current.length - 1) {
+        gsap.to(card, {
+          scale: 0.95,
+          filter: "brightness(0.3)", // Darken instead of opacity to fix transparency
+          scrollTrigger: {
+            trigger: cardsRef.current[index + 1],
+            start: "top 85%",
+            end: "top 15%",
+            scrub: true,
+          }
+        });
+      }
     });
 
     // Staggered entrance for course cards within each sticky card
@@ -69,6 +71,24 @@ export default function Courses() {
             }
           }
         );
+
+        // Inner Image Parallax
+        const images = card.querySelectorAll(`.${styles.miniImageWrapper} img`);
+        images.forEach((img) => {
+          gsap.fromTo(img, 
+            { yPercent: -15 }, 
+            { 
+              yPercent: 15, 
+              ease: "none",
+              scrollTrigger: {
+                trigger: img,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+              }
+            }
+          );
+        });
       }
     });
 
@@ -103,7 +123,7 @@ export default function Courses() {
               ref={(el) => cardsRef.current[idx] = el}
               className={`${styles.stickyCard} card_${idx}`}
               style={{ 
-                top: "10vh", 
+                top: `calc(10vh + ${idx * 2}vh)`,
                 backgroundColor: category.color,
                 borderColor: `${category.accent}22`,
                 zIndex: idx + 1
@@ -132,7 +152,7 @@ export default function Courses() {
 
                 <div className={styles.coursesGrid}>
                   {category.courses.map((course, cIdx) => (
-                    <div key={cIdx} className={styles.miniCourseCard}>
+                    <Link href={`/courses/${course.id}`} key={cIdx} className={styles.miniCourseCard}>
                       <div className={styles.miniImageWrapper}>
                         <img src={course.image} alt={course.title} />
                       </div>
@@ -142,11 +162,11 @@ export default function Courses() {
                           <h4>{course.title}</h4>
                         </div>
                         <p>{course.desc}</p>
-                        <Link href={`/courses/${course.title.toLowerCase().replace(/ /g, "-").replace(/&/g, "and")}`} className={styles.learnMore}>
+                        <div className={styles.learnMore}>
                           Learn More <ArrowRight size={14} />
-                        </Link>
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>

@@ -7,14 +7,16 @@
     "accent": "#914864",
     "courses": [
       {
+        "id": "advanced-product-design",
         "title": "Advanced Product Design",
         "duration": "6 Months",
         "level": "Advanced",
         "desc": "Master end-to-end product design from user research to high-fidelity prototyping and usability testing.",
-        "image": "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800&auto=format&fit=crop",
+        "image": "/assets/uiux_course.jpg",
         "tags": ["Figma", "User Research", "Prototyping"]
       },
       {
+        "id": "interaction-design",
         "title": "Interaction Design",
         "duration": "3 Months",
         "level": "Intermediate",
@@ -23,6 +25,7 @@
         "tags": ["Motion", "Micro-interactions", "Flows"]
       },
       {
+        "id": "ui-foundations",
         "title": "UI Foundations",
         "duration": "2 Months",
         "level": "Beginner",
@@ -40,36 +43,22 @@
     "accent": "#C4896F",
     "courses": [
       {
+        "id": "haute-couture",
         "title": "Haute Couture",
         "duration": "1 Year",
         "level": "Advanced",
         "desc": "Explore the art of creating exclusive, custom-fitted clothing. Master draping, pattern making, and bespoke tailoring techniques.",
-        "image": "https://images.unsplash.com/photo-1539109132314-34a75adad141?q=80&w=800&auto=format&fit=crop",
+        "image": "/assets/fashiondesign1.jpg",
         "tags": ["Draping", "Pattern Making", "Tailoring"]
       },
       {
+        "id": "fashion-illustration",
         "title": "Fashion Illustration",
         "duration": "3 Months",
         "level": "Beginner",
         "desc": "Learn to sketch and communicate fashion ideas effectively through hand and digital illustration methods.",
         "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800&auto=format&fit=crop",
         "tags": ["Illustration", "Digital Art", "Sketching"]
-      },
-      {
-        "title": "Textile Science",
-        "duration": "4 Months",
-        "level": "Intermediate",
-        "desc": "Understand fabrics, materials, and sustainable fashion. Explore the science behind every thread.",
-        "image": "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800&auto=format&fit=crop",
-        "tags": ["Fabrics", "Sustainability", "Material Study"]
-      },
-      {
-        "title": "Fashion Business",
-        "duration": "6 Months",
-        "level": "Intermediate",
-        "desc": "Navigate the business side of fashion: branding, retail strategy, and the global fashion economy.",
-        "image": "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800&auto=format&fit=crop",
-        "tags": ["Branding", "Retail", "Strategy"]
       }
     ]
   },
@@ -81,6 +70,7 @@
     "accent": "#6F9AC4",
     "courses": [
       {
+        "id": "residential-spaces",
         "title": "Residential Spaces",
         "duration": "6 Months",
         "level": "Intermediate",
@@ -89,53 +79,31 @@
         "tags": ["Space Planning", "Color Theory", "Lighting"]
       },
       {
+        "id": "commercial-interiors",
         "title": "Commercial Interiors",
         "duration": "6 Months",
         "level": "Advanced",
         "desc": "Create impactful environments for retail, offices and hospitality spaces that drive business results.",
         "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
         "tags": ["Retail Design", "Office Spaces", "Hospitality"]
-      },
-      {
-        "title": "3D Rendering & Modeling",
-        "duration": "4 Months",
-        "level": "Beginner",
-        "desc": "Bring your designs to life using SketchUp, Revit, and V-Ray. Master photoreal visualization.",
-        "image": "https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=800&auto=format&fit=crop",
-        "tags": ["SketchUp", "Revit", "V-Ray"]
       }
     ]
   },
   {
-    "id": "graphic",
-    "name": "Graphic Design",
-    "tagline": "Communicate. Inspire. Impact.",
-    "color": "#0b0b0b",
-    "accent": "#C4B86F",
+    "id": "aec",
+    "name": "Architecture & Engineering",
+    "tagline": "Design. Build. Innovate.",
+    "color": "#050505",
+    "accent": "#3B82F6",
     "courses": [
       {
-        "title": "Brand Identity",
-        "duration": "4 Months",
-        "level": "Intermediate",
-        "desc": "Create cohesive brand systems, logos and visual languages that define how companies are perceived.",
-        "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=800&auto=format&fit=crop",
-        "tags": ["Logo Design", "Brand Systems", "Visual Identity"]
-      },
-      {
-        "title": "Typography & Layout",
-        "duration": "2 Months",
-        "level": "Beginner",
-        "desc": "Master the art of organizing text and visual elements into clear, beautiful and effective compositions.",
-        "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop",
-        "tags": ["Typography", "Grid Systems", "Composition"]
-      },
-      {
-        "title": "Motion Graphics",
-        "duration": "5 Months",
-        "level": "Advanced",
-        "desc": "Add movement to your designs with After Effects and Cinema 4D for broadcast and digital media.",
-        "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
-        "tags": ["After Effects", "Cinema 4D", "Animation"]
+        "id": "autocad-lt-2023",
+        "title": "Master AutoCAD LT 2023",
+        "duration": "3 Months",
+        "level": "Beginner to Advanced",
+        "desc": "Master the world's leading 2D drafting software. Learn complete beginners to advanced level AutoCAD LT 2023 for architecture and structural drawings.",
+        "image": "/assets/engineering.jpg",
+        "tags": ["2D Drafting", "Architecture", "Engineering"]
       }
     ]
   }

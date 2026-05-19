@@ -1,0 +1,378 @@
+.pageWrapper {
+  min-height: 100vh;
+  background-color: #030303;
+  color: #ffffff;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bgGlow1 {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(145, 72, 100, 0.07) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bgGlow2 {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(111, 154, 196, 0.04) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 78rem;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.4rem 1.1rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+
+    @media (min-width: 768px) {
+      font-size: 3.5rem;
+    }
+
+    span {
+      background: linear-gradient(135deg, #ffffff 30%, rgba(255, 255, 255, 0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.45);
+    max-width: 32rem;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+}
+
+/* ─── Split Screen Showcase Layout ─── */
+.showcaseLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+
+  @media (min-width: 992px) {
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ─── Left Sidebar / Selector ─── */
+.sidebarList {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: none; // hide scrollbar for Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // hide scrollbar for Chrome/Safari
+  }
+
+  @media (min-width: 992px) {
+    flex-direction: column;
+    overflow-x: visible;
+    padding-bottom: 0;
+    gap: 0.75rem;
+  }
+}
+
+.instructorItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 0.8rem 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  text-align: left;
+  flex-shrink: 0;
+  width: 260px;
+
+  @media (min-width: 992px) {
+    width: 100%;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &.active {
+    background: rgba(182, 123, 128, 0.08);
+    border-color: rgba(182, 123, 128, 0.4);
+    box-shadow: 0 10px 25px rgba(145, 72, 100, 0.15);
+
+    .avatarWrap {
+      border-color: #b67b80;
+      box-shadow: 0 0 12px rgba(182, 123, 128, 0.4);
+    }
+
+    .infoBlock {
+      .name {
+        color: #ffffff;
+      }
+      .title {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+  }
+}
+
+.avatarWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+
+  .name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .title {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* ─── Right Showcase card ─── */
+.showcaseCard {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 32px;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 450px;
+  height: auto;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 40% 60%;
+  }
+}
+
+.showcaseImage {
+  position: relative;
+  height: 250px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(3, 3, 3, 0.9) 0%, rgba(3, 3, 3, 0.1) 60%);
+
+    @media (min-width: 768px) {
+      background: linear-gradient(to right, rgba(3, 3, 3, 0.1) 0%, rgba(3, 3, 3, 0.6) 100%);
+    }
+  }
+}
+
+.showcaseContent {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
+}
+
+.pillRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+
+  .credPill {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(182, 123, 128, 0.08);
+    border: 1px solid rgba(182, 123, 128, 0.15);
+    color: #b67b80;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .membershipPill {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.5);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+  }
+}
+
+.showcaseName {
+  margin-bottom: 1.25rem;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+
+    @media (min-width: 768px) {
+      font-size: 2.2rem;
+    }
+  }
+
+  .designation {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.showcaseBio {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.75rem;
+}
+
+.showcaseCourses {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1.5rem;
+
+  h4 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+  }
+}
+
+.showcaseLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.courseBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  svg {
+    transition: transform 0.3s ease;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  &:hover {
+    background: rgba(182, 123, 128, 0.06);
+    border-color: rgba(182, 123, 128, 0.25);
+    color: #ffffff;
+    transform: translateY(-1px);
+
+    svg {
+      transform: translateX(2px);
+      color: #b67b80;
+    }
+  }
+}

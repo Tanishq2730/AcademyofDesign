@@ -1,205 +1,232 @@
-"use client";
-import { use, useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { Clock, BookOpen, Layers, Target, ArrowRight, CheckCircle2 } from "lucide-react";
-import Link from "next/link";
-import styles from "./CourseDetail.module.scss";
-import coursesData from "@/data/courses.json";
+'use client';
 
-export default function CourseDetailPage({ params }) {
-  const { slug } = use(params);
-  const containerRef = useRef(null);
+import { useParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Star, Target, Award, Zap, Mail, Phone, Play, CheckCircle2, Plus, Minus, Tv } from 'lucide-react';
+import Link from 'next/link';
+import styles from './CourseDetail.module.scss';
+import courseDetailsData from '@/data/courseDetails.json';
+import categories from '@/data/courses.json';
 
-  // Find course from dynamic slug
-  // Slug format: "haute-couture" or "residential-spaces"
-  const allCourses = coursesData.flatMap(cat => cat.courses.map(course => ({
-    ...course,
-    categoryAccent: cat.accent,
-    categoryId: cat.id
-  })));
-
-  const course = allCourses.find(c => 
-    c.title.toLowerCase().replace(/ /g, "-").replace(/&/g, "and") === slug
-  );
+export default function CourseDetail() {
+  const { slug } = useParams();
+  const [course, setCourse] = useState(null);
+  const [activePhase, setActivePhase] = useState(0);
 
   useEffect(() => {
-    if (!course) return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Hero reveals
-      gsap.from(`.${styles.eyebrow}, .${styles.title}, .${styles.desc}`, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power4.out"
-      });
-
-      gsap.from(`.${styles.statItem}`, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        delay: 0.5
-      });
-
-      gsap.from(`.${styles.imageWrapper}`, {
-        scale: 1.1,
-        opacity: 0,
-        duration: 1.5,
-        ease: "expo.out"
-      });
-
-      // Module reveals
-      gsap.from(`.${styles.moduleItem}`, {
-        x: -50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "power4.out",
-        scrollTrigger: {
-          trigger: `.${styles.curriculum}`,
-          start: "top 70%"
+    let found = courseDetailsData.find((c) => c.id === slug);
+    if (!found) {
+      for (const cat of categories) {
+        const basic = cat.courses.find(c => c.id === slug);
+        if (basic) {
+          found = {
+            id: basic.id,
+            title: basic.title,
+            subtitle: `${basic.level} Specialization`,
+            description: basic.desc,
+            videoUrl: "",
+            keyPoints: [
+              { title: "Expert Faculty", text: "Industry experts with years of practical experience." },
+              { title: "Live Projects", text: "Real-world client briefs to build a professional portfolio." },
+              { title: "Placement Support", text: "Dedicated career guidance and interview preparation." }
+            ],
+            curriculum: [
+              { title: "Foundations", content: "Master core principles and essential techniques." },
+              { title: "Application", content: "Complex industry-standard projects and workflows." },
+              { title: "Mastery", content: "Portfolio completion and professional career preparation." }
+            ],
+            instructors: [
+              { name: "Siddharth Sharma", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop" },
+              { name: "Shantanu Sharma", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop" },
+              { name: "Manan Agrawal", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop" },
+              { name: "Kritik Kothari", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300&auto=format&fit=crop" },
+              { name: "A.K. Sharma", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&auto=format&fit=crop" }
+            ],
+            contact: { email: "academy@nuvosid.design", phone: "+91 9929943246" }
+          };
+          break;
         }
-      });
-    }, containerRef);
+      }
+    }
+    if (found) setCourse(found);
+  }, [slug]);
 
-    return () => ctx.revert();
-  }, [course]);
-
-  if (!course) {
-    return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-6">Course Not Found</h1>
-          <Link href="/courses" className="text-purple-500 hover:underline">Back to Catalog</Link>
-        </div>
-      </div>
-    );
-  }
-
-  // Convert hex to RGB for boxShadow
-  const hexToRgb = (hex) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : "145, 72, 100";
-  };
+  if (!course) return <div className={styles.pageWrapper}></div>;
 
   return (
-    <div 
-      ref={containerRef} 
-      className={styles.courseDetail}
-      style={{ "--accent": course.categoryAccent, "--accent-rgb": hexToRgb(course.categoryAccent) }}
-    >
+    <div className={styles.pageWrapper}>
+      <div className={styles.bgGlow} />
+      
       {/* Hero Section */}
       <section className={styles.hero}>
-        <div className={styles.bgAccent} style={{ background: course.categoryAccent }} />
-        <div className={styles.container}>
-          <div className={styles.grid}>
-            <div className={styles.info}>
-              <div className={styles.eyebrow}>
-                <div className={styles.dot} />
-                <span>Premium Design Program</span>
-              </div>
-              <h1 className={styles.title}>
-                {course.title.split(' ').slice(0, -1).join(' ')} <br />
-                <em>{course.title.split(' ').slice(-1)}</em>
-              </h1>
-              <p className={styles.desc}>{course.desc}</p>
-              
-              <div className={styles.statsGrid}>
-                <div className={styles.statItem}>
-                  <Clock size={24} />
-                  <span className={styles.val}>{course.duration}</span>
-                  <span className={styles.label}>Duration</span>
-                </div>
-                <div className={styles.statItem}>
-                  <Layers size={24} />
-                  <span className={styles.val}>{course.level}</span>
-                  <span className={styles.label}>Skill Level</span>
-                </div>
-                <div className={styles.statItem}>
-                  <BookOpen size={24} />
-                  <span className={styles.val}>12+ Modules</span>
-                  <span className={styles.label}>Curriculum</span>
-                </div>
-                <div className={styles.statItem}>
-                  <Target size={24} />
-                  <span className={styles.val}>Career Track</span>
-                  <span className={styles.label}>Goal</span>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.imageWrapper}>
-              <img src={course.image} alt={course.title} />
-              <div className={styles.overlay} />
-            </div>
-          </div>
-        </div>
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={styles.badge}>
+          {course.subtitle}
+        </motion.div>
+        <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+          {course.title.split(' ').slice(0, -1).join(' ')} <span>{course.title.split(' ').slice(-1)}</span>
+        </motion.h1>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className={styles.subtitle}>
+          {course.description.substring(0, 150)}...
+        </motion.p>
       </section>
 
-      {/* Curriculum Section */}
-      <section className={styles.curriculum}>
-        <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Program <em>Syllabus</em></h2>
-          <div className={styles.moduleList}>
-            {(course.tags || ["Fundamentals", "Mastery", "Portfolio", "Industry Prep"]).map((tag, i) => (
-              <div key={i} className={styles.moduleItem}>
-                <span className={styles.num}>0{i + 1}</span>
-                <div className={styles.content}>
-                  <h4>{tag} Mastery</h4>
-                  <p>
-                    A deep dive into {tag.toLowerCase()} principles, covering both the creative 
-                    theory and technical application required in modern industry settings.
-                  </p>
-                </div>
-              </div>
+      {/* Video Preview */}
+      <section className={styles.videoSection}>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98 }} 
+          whileInView={{ opacity: 1, scale: 1 }} 
+          viewport={{ once: true }} 
+          className={styles.videoWrapper}
+        >
+          {course.videoUrl && course.videoUrl !== "https://www.youtube.com/embed/placeholder" ? (
+            <iframe src={course.videoUrl} title={course.title} allowFullScreen />
+          ) : (
+            <div className={styles.placeholder}>
+              <div className={styles.playBtn}><Play size={36} fill="currentColor" /></div>
+            </div>
+          )}
+        </motion.div>
+      </section>
+
+      <div className={styles.mainGrid}>
+        {/* Compact Key Points */}
+        <section className={styles.keyPointsSection}>
+          <div className={styles.sectionHeader}>
+            <h2>Our <span>Key Points</span></h2>
+            <div className={styles.line} />
+          </div>
+          <div className={styles.pointsGrid}>
+            {course.keyPoints.map((point, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.05 }}
+                viewport={{ once: true }}
+                className={styles.pointCard}
+              >
+                <div className={styles.icon}><CheckCircle2 size={18} /></div>
+                <h4>{point.text || point.title}</h4>
+              </motion.div>
             ))}
-            <div className={styles.moduleItem}>
-              <span className={styles.num}>0{course.tags ? course.tags.length + 1 : 5}</span>
-              <div className={styles.content}>
-                <h4>Capstone Portfolio Project</h4>
-                <p>
-                  Apply all learned skills to build a professional-grade project that 
-                  serves as the centerpiece of your career portfolio.
-                </p>
-              </div>
+          </div>
+        </section>
+
+        {/* Content Split: Roadmap Accordion & Demo CTA */}
+        <div className={styles.contentSplit}>
+          <section className={styles.roadmapSection}>
+            <h2>Program Roadmap</h2>
+            <div className={styles.accordion}>
+              {course.curriculum.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  className={`${styles.item} ${activePhase === idx ? styles.active : ''}`}
+                >
+                  <div 
+                    className={styles.header}
+                    onClick={() => setActivePhase(activePhase === idx ? null : idx)}
+                  >
+                    <div className={styles.numBox}>{idx + 1}</div>
+                    <h3>{item.title}</h3>
+                    <div className={styles.toggleIcon}>
+                      {activePhase === idx ? <Minus size={18} /> : <Plus size={18} />}
+                    </div>
+                  </div>
+                  <AnimatePresence>
+                    {activePhase === idx && (
+                      <motion.div 
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className={styles.body}
+                      >
+                        <div className={styles.content}>
+                          {item.content}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </div>
+          </section>
+
+          <aside className={styles.sidebar}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className={styles.demoCard}
+            >
+              <div className={styles.demoIcon}><Tv size={32} /></div>
+              <h3>Free Demo Class</h3>
+              <p>Experience our teaching methodology first-hand. Get a glimpse of the professional curriculum and industry insights.</p>
+              
+              <Link href={`/courses/${slug}/demo`} className={styles.demoBtn}>
+                Watch Demo Class
+              </Link>
+              
+              <div className={styles.demoFeatures}>
+                <div className={styles.feature}><CheckCircle2 size={14} /> <span>Instant Access</span></div>
+                <div className={styles.feature}><CheckCircle2 size={14} /> <span>Curriculum Overview</span></div>
+                <div className={styles.feature}><CheckCircle2 size={14} /> <span>Industry Insights</span></div>
+              </div>
+            </motion.div>
+          </aside>
+        </div>
+      </div>
+
+      {/* Faculty Section */}
+      <section className={styles.instructorsSection}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>Meet Your <span>Mentors</span></h2>
+          <div className={styles.instructorsGrid}>
+            {course.instructors && course.instructors.map((ins, idx) => (
+              <Link
+                key={idx}
+                href={`/instructors?name=${encodeURIComponent(ins.name)}`}
+                className={styles.instructorCard}
+              >
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className={styles.imgWrap}>
+                    <img src={ins.image} alt={ins.name} />
+                  </div>
+                  <h4>{ins.name}</h4>
+                  <span>Industry Expert</span>
+                </motion.div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Enrollment CTA */}
-      <section className={styles.enrollBox}>
-        <div className={styles.container}>
-          <h2 className="text-5xl font-bold mb-10">Start Your Professional Journey</h2>
-          <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-            Join the next cohort of designers and transform your creative passion into 
-            a world-class career with our expert-led mentorship.
-          </p>
-          <button className={styles.enrollBtn}>
-            Enroll Now <ArrowRight size={24} />
-          </button>
-          
-          <div className="flex justify-center gap-12 mt-16 opacity-40">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 size={18} />
-              <span>Certified Diploma</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 size={18} />
-              <span>Placement Support</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 size={18} />
-              <span>Industry Mentors</span>
-            </div>
+      {/* Brand CTA Section */}
+      <section className={styles.ctaSection}>
+        <h2>Master Your Craft.</h2>
+        <p>Our academic advisors are ready to help you navigate your career path in the design industry.</p>
+        <div className={styles.contact}>
+          <div className={styles.cItem}>
+            <Mail className={styles.cIcon} size={22} />
+            <span>{course.contact.email}</span>
+          </div>
+          <div className={styles.cItem}>
+            <Phone className={styles.cIcon} size={22} />
+            <span>{course.contact.phone}</span>
           </div>
         </div>
       </section>
+
+      <div style={{ padding: '3rem', textAlign: 'center', opacity: 0.2 }}>
+        <Link href="/" style={{ color: 'white', textDecoration: 'none', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
+          ← BACK TO ACADEMY
+        </Link>
+      </div>
     </div>
   );
 }

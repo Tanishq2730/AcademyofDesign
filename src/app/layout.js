@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./globals.scss";
+import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 
@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen flex flex-col bg-black text-white antialiased`}>
         <Navbar />
         <main className="flex-grow pt-20">

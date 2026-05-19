@@ -125,7 +125,7 @@ export default function CoursesCatalog() {
 
             <div ref={cardsWrapRef} className={styles.cardsGrid}>
               {active.courses.map((course, i) => (
-                <div key={i} className={styles.courseCard}>
+                <Link href={`/courses/${course.id}`} key={i} className={styles.courseCard}>
                   <div className={styles.cardImage}>
                     <img src={course.image} alt={course.title} />
                     <div
@@ -154,15 +154,14 @@ export default function CoursesCatalog() {
                       ))}
                     </div>
 
-                    <Link
-                      href={`/courses/${course.title.toLowerCase().replace(/ /g, "-").replace(/&/g, "and")}`}
+                    <div
                       className={styles.learnBtn}
                       style={{ "--accent": active.accent }}
                     >
                       Explore Program <ArrowRight size={14} />
-                    </Link>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

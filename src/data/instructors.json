@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Siddharth Sharma",
+    "role": "Structural Engineer",
+    "designation": "Structural Engineer & Interior Expert",
+    "credentials": ["B.Tech Civil", "M.Tech Structures", "M.Sc. Interior Design"],
+    "memberships": ["Member IIID", "Member FFSC"],
+    "bio": "With over 12+ years of professional engineering and interior design practice, Siddharth Sharma has pioneered the merging of civil structure dynamics with high-end interior form. He acts as the main program reviewer for AutoCAD structural standards, drafting analytics, and structural modeling at the Academy.",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
+    "img": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
+    "education": "B.Tech Civil, M.Tech Structures",
+    "courses": [
+      { "id": "autocad-lt-2023", "title": "Master AutoCAD LT 2023" },
+      { "id": "residential-spaces", "title": "Residential Spaces" }
+    ]
+  },
+  {
+    "name": "Shantanu Sharma",
+    "role": "Senior Architect",
+    "designation": "Senior Architect & Urban Planner",
+    "credentials": ["B.Arch", "M.Arch (Urban Planning)"],
+    "memberships": ["Member C.O.A", "IIID", "I.O.V"],
+    "bio": "An acclaimed academician and practicing architect registered under the Council of Architecture (C.O.A). Shantanu’s architectural design philosophy centers on context-driven urban form, architectural drafting compliance, and space layout optimization. He supervises drafting protocols and site drawing workshops.",
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
+    "img": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
+    "education": "B.Arch, M.Arch (Urban Planning)",
+    "courses": [
+      { "id": "autocad-lt-2023", "title": "Master AutoCAD LT 2023" },
+      { "id": "commercial-interiors", "title": "Commercial Interiors" }
+    ]
+  },
+  {
+    "name": "Manan Agrawal",
+    "role": "Business Architect & Consultant",
+    "designation": "Business Architect & Tech Consultant",
+    "credentials": ["B.Tech CS (IIT Delhi)", "M.B.A Wharton (USA)"],
+    "memberships": ["Founder & Director ML AGRO FOODS"],
+    "bio": "An expert in leveraging design-thinking for product scaling and software architecture. Manan brings direct corporate insights from top US management firms and high-scale technical systems to Nuvosid students. He leads UI foundations, design sprints, and product deployment strategies.",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop",
+    "img": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop",
+    "education": "B.Tech CS (IIT Delhi), MBA Wharton",
+    "courses": [
+      { "id": "advanced-product-design", "title": "Advanced Product Design" },
+      { "id": "ui-foundations", "title": "UI Foundations" }
+    ]
+  },
+  {
+    "name": "Kritik Kothari",
+    "role": "Product Growth Lead",
+    "designation": "Growth Partner & Product Management Lead",
+    "credentials": ["M.B.A (S.P. Jain)", "Growth Specialist"],
+    "memberships": ["Promoter at The Chemical Center"],
+    "bio": "Kritik leads interactive growth-hacking and product positioning classes for our digital design cohorts. He bridges the gap between creative visual designs and business outcomes, mentoring students on how to pitch their design deliverables and portfolio cases to corporate stakeholders.",
+    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
+    "img": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
+    "education": "MBA, S.P. Jain School of Management",
+    "courses": [
+      { "id": "interaction-design", "title": "Interaction Design" }
+    ]
+  },
+  {
+    "name": "A.K. Sharma",
+    "role": "Senior Civil Consultant",
+    "designation": "Senior Civil Consultant & Chartered Engineer",
+    "credentials": ["B.Tech Civil (IIT Delhi)", "M.B.A", "L.L.B", "M.I.E"],
+    "memberships": ["Chartered Engineer"],
+    "bio": "A veteran engineer with 30+ years of structural supervision, government project consultancy, and regulatory bylaws validation. A.K. Sharma provides expert advice on construction drawings, bid tenders, drafting guidelines, and construction law compliance to help students build legally sound structures.",
+    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop",
+    "img": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop",
+    "education": "B.Tech Civil (IIT Delhi), Chartered Eng.",
+    "courses": [
+      { "id": "autocad-lt-2023", "title": "Master AutoCAD LT 2023" }
+    ]
+  }
+]

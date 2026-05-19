@@ -1,0 +1,307 @@
+.pageWrapper {
+  min-height: 100vh;
+  background-color: #030303;
+  color: #ffffff;
+  padding: 8rem 2rem 6rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bgGlow1 {
+  position: absolute;
+  top: -10%;
+  left: 20%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(145, 72, 100, 0.08) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bgGlow2 {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(111, 154, 196, 0.05) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+  max-width: 78rem;
+  margin: 0 auto;
+}
+
+/* ─── Header ─── */
+.headerBlock {
+  text-align: center;
+  margin-bottom: 4rem;
+
+  .tagline {
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.5) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+    line-height: 1.2;
+
+    @media (min-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+}
+
+/* ─── Console Body Layout ─── */
+.contactCardWrapper {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 36px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+
+  @media (min-width: 992px) {
+    padding: 2.5rem;
+  }
+}
+
+/* ─── Left Panel: Contact Information ─── */
+.infoPanel {
+  background: linear-gradient(135deg, #732f50 0%, #914864 40%, #173863 100%);
+  border-radius: 28px;
+  padding: 2.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(145, 72, 100, 0.15);
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .panelHeader {
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 850;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 3.5rem;
+    }
+  }
+
+  .detailsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-bottom: 4rem;
+  }
+
+  .detailItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    svg {
+      color: #ffffff;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+      opacity: 0.9;
+    }
+
+    span {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    &:hover {
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+  }
+
+  .socialRow {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    z-index: 10;
+  }
+
+  .socialIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+
+    &:hover {
+      background: #ffffff;
+      color: #732f50;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+/* ─── Right Panel: Form ─── */
+.formPanel {
+  padding: 1.5rem 1rem;
+
+  @media (min-width: 992px) {
+    padding: 1.5rem 2rem;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+    padding-left: 0.25rem;
+  }
+
+  input, textarea {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 0.9rem 1.15rem;
+    color: #ffffff;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    outline: none;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:focus {
+      border-color: rgba(182, 123, 128, 0.5);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 0 12px rgba(182, 123, 128, 0.15);
+    }
+  }
+
+  textarea {
+    resize: none;
+  }
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #732f50, #914864, #b67b80);
+  border: none;
+  color: #ffffff;
+  font-weight: 750;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  padding: 1.1rem 2.5rem;
+  border-radius: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(145, 72, 100, 0.2);
+  width: auto;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px rgba(145, 72, 100, 0.3);
+    opacity: 0.95;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+/* ─── Success Box ─── */
+.successCard {
+  background: rgba(76, 217, 100, 0.05);
+  border: 1px solid rgba(76, 217, 100, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 1rem;
+
+  .successCircle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(76, 217, 100, 0.1);
+    border: 1px solid #4cd964;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4cd964;
+    margin: 0 auto 1.25rem;
+    box-shadow: 0 0 15px rgba(76, 217, 100, 0.25);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin: 0;
+  }
+}

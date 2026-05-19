@@ -1,0 +1,77 @@
+[
+  {
+    "id": "autocad-lt-2023",
+    "title": "AUTOCAD LT 2023",
+    "subtitle": "Learn Complete Beginners To Advanced Level",
+    "highlightTitle": "From Lines to Masterpieces: Excel in AEC Drafting with Autocad LT!",
+    "highlightDescription": "Unlock the potential of the AEC industry with our Autocad LT Skill Development Course. From basics to advanced drafting techniques, learn to create industry-standard drawings under the guidance of seasoned professionals. This course is essential for those pursuing a career in architecture, engineering, and construction, providing hands-on experience with Autocad LT software. Join us to build the foundations for success in the dynamic world of AEC.",
+    "description": "Autocad LT 2023 is a comprehensive course that will teach you how to use Autocad LT 2023 for architecture and structural drawings. You will also learn how to create, edit, annotate, layout, print, and manage 2D drawings using the tools and commands of Autocad LT 2023. You will also learn how to use blocks, layers, hatching, and other drawing elements to enhance your drawings. You will also work on a real project that will help you apply the skills learned in the course and gain practical insights of the industry.",
+    "videoUrl": "https://www.youtube.com/embed/5aCgh4GvU7M",
+    "keyPoints": [
+      { "title": "Comprehensive Training", "text": "Comprehensive Training with Latest Tools" },
+      { "title": "Top Mentorship", "text": "Mentorship by Top Industry Experts" },
+      { "title": "Doubt Sessions", "text": "Weekly Live Doubt Clearing Sessions" },
+      { "title": "Personalised Feedback", "text": "Personalised Feedbacks & Reports" },
+      { "title": "Live Projects", "text": "Multiple Live Projects From Different Industries" },
+      { "title": "Career Guidance", "text": "Career guidance Counselling Sessions" },
+      { "title": "Pro Learning Material", "text": "Pro Learning Material E-books and Excel Sheets" },
+      { "title": "Flexible Payment", "text": "Flexible Payment Options with Zero Intrest" },
+      { "title": "Small Groups", "text": "Personalised Learning Experience in small groups" }
+    ],
+    "curriculum": [
+      { 
+        "title": "Course Duration", 
+        "content": "Comprehensive 3-month program with intensive training sessions and practical workshops." 
+      },
+      { 
+        "title": "Course Content", 
+        "content": "• Introduction to Autocad LT 2023: Overview of Architecture and Structural Drawing.\n• Autocad LT Interface and Navigation: Menus, Toolbars, Windows, and Shortcuts\n• Autocad LT Drawing: Creating, Editing, and Viewing 2D Drawings\n• Autocad LT Annotation: Adding and Editing Text, Dimensions, Leaders, and Tables\n• Autocad LT Layout: Setting Up and Printing 2D Drawings\n• Autocad LT Blocks: Creating and Inserting Reusable Drawing Elements\n• Autocad LT Layers: Organizing and Managing Drawing Objects\n• Autocad LT Hatching: Applying and Editing Patterns and Gradients\n• Autocad LT Project: Working on a Real Architecture and Structural Drawing Problem\n• Autocad LT Tips and Tricks: Enhancing Productivity and Quality with Autocad LT" 
+      },
+      { 
+        "title": "Live Projects", 
+        "content": "Apply your skills on real-world architectural and structural engineering projects." 
+      }
+    ],
+    "instructors": [
+      {
+        "name": "Siddharth Sharma",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop",
+        "designation": "B.Tech Civil, M.Tech Structures Msc. Interior Design Member IIID, Member FFSC"
+      },
+      {
+        "name": "Shantanu Sharma",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop",
+        "designation": "Ar. Shantanu Sharma B.Arch., M. Arch (Urban Planning) Member C.O.A, IIID, I.O.V"
+      },
+      {
+        "name": "Manan Agrawal",
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop",
+        "designation": "Founder & Director ML AGRO FOODS B.Tech Computer Science ( IIT Delhi ) M.B.A Wharton, USA"
+      },
+      {
+        "name": "Kritik Kothari",
+        "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300&auto=format&fit=crop",
+        "designation": "Promotor & Growth Partner at The Chemical Center Director Shree Pesticides M.B.A S.P. Jain School Of Management"
+      },
+      {
+        "name": "A.K. Sharma",
+        "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=300&auto=format&fit=crop",
+        "designation": "B.Tech Civil (IIT Delhi) M.B.A, L.L.B, M.I.E Chartered Engineer"
+      }
+    ],
+    "price": {
+      "original": "₹15,000.00",
+      "current": "₹11,250.00",
+      "discount": "25% OFF"
+    },
+    "otherCourses": [
+      { "title": "Master Autocad LT 2023", "id": "autocad-lt-2023" },
+      { "title": "Accurate Estimation & Costing For Competitive Tendering Process", "id": "estimation-costing" },
+      { "title": "Master Practical Construction Techniques & Quality Control On Site", "id": "construction-techniques" }
+    ],
+    "contact": {
+      "email": "learn@surpass.co.in",
+      "phone": "+91 9929943246"
+    }
+  }
+]

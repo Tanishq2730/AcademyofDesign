@@ -1,7 +1,6 @@
 .aboutPage {
   background-color: #030303;
   color: #fff;
-  overflow-x: hidden;
 }
 
 .hero {
@@ -54,7 +53,7 @@
 }
 
 .legacySection {
-  padding: 100px 0;
+  padding: 50px 0;
   
   .container {
     max-width: 1200px;
@@ -123,7 +122,7 @@
 }
 
 .pillars {
-  padding: 100px 0;
+  padding: 50px 0;
   
   .grid {
     display: grid;
@@ -175,7 +174,7 @@
 }
 
 .statsBar {
-  padding: 80px 0;
+  padding: 40px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   background: rgba(145, 72, 100, 0.02);
@@ -217,7 +216,7 @@
 }
 
 .visionSection {
-  padding: 150px 0;
+  padding: 80px 0;
   text-align: center;
   
   .content {

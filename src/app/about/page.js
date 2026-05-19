@@ -54,7 +54,15 @@ export default function AboutPage() {
       });
     }, containerRef);
     
-    return () => ctx.revert();
+    // Fix for scroll issues: refresh after a small delay to ensure all components are sized correctly
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+    
+    return () => {
+      clearTimeout(timer);
+      ctx.revert();
+    };
   }, []);
 
   return (

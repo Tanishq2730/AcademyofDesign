@@ -1,66 +1,230 @@
-"use client";
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import Link from "next/link";
+'use client';
 
-export default function LoginPage() {
-  const containerRef = useRef(null);
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import styles from '@/styles/auth.module.scss';
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(".login-box", {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
+export default function AuthPage() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [loading, setLoading] = useState(false);
+  
+  const router = useRouter();
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError('');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    const endpoint = isLogin ? '/api/login' : '/api/signup';
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-    }, containerRef);
-    return () => ctx.revert();
-  }, []);
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+
+      if (isLogin) {
+        setSuccess('Authentication successful. Welcome back.');
+        setTimeout(() => {
+          let dest = '/';
+          if (typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            const redirectVal = params.get('redirect');
+            if (redirectVal) dest = redirectVal;
+          }
+          router.push(dest);
+          router.refresh();
+        }, 1000);
+      } else {
+        setSuccess('Account created successfully.');
+        setTimeout(() => {
+          setIsLogin(true);
+          setSuccess('');
+        }, 1500);
+      }
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black flex items-center justify-center px-6">
-      <div className="login-box w-full max-w-md bg-white/5 border border-white/10 rounded-[50px] p-10 md:p-16 backdrop-blur-xl">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tighter text-white mb-4">Welcome Back.</h1>
-          <p className="text-gray-400">Enter your credentials to access your dashboard.</p>
-        </div>
+    <div className={styles.authPageWrapper}>
+      {/* Illustration Side */}
+      <section className={styles.illustrationSide}>
+        <Image 
+          src="/assets/auth_illustration.png" 
+          alt="Design Illustration" 
+          fill
+          className={styles.illustrationImg}
+          priority
+        />
+        <div className={styles.overlay} />
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className={styles.floatingContent}
+        >
+          <h2>Design Your <br /> Future with Us.</h2>
+          <p>Join the community of world-class designers and architects at Nuvosid Academy.</p>
+        </motion.div>
+      </section>
 
-        <form className="space-y-6">
-          <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-gray-500 ml-2">Email Address</label>
-            <input 
-              type="email" 
-              placeholder="name@company.com" 
-              className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 text-white focus:outline-none focus:border-purple-500 transition-colors"
-            />
+      {/* Form Side */}
+      <section className={styles.formSide}>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className={styles.authCard}
+        >
+          <div className={styles.authToggle}>
+            <button 
+              className={isLogin ? styles.active : ''} 
+              onClick={() => { setIsLogin(true); setError(''); setSuccess(''); }}
+            >
+              Sign In
+            </button>
+            <button 
+              className={!isLogin ? styles.active : ''} 
+              onClick={() => { setIsLogin(false); setError(''); setSuccess(''); }}
+            >
+              Register
+            </button>
           </div>
-          <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-gray-500 ml-2">Password</label>
-            <input 
-              type="password" 
-              placeholder="••••••••" 
-              className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 text-white focus:outline-none focus:border-purple-500 transition-colors"
-            />
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={isLogin ? 'login-text' : 'signup-text'}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h1 className={styles.title}>{isLogin ? 'Welcome Back' : 'Create Account'}</h1>
+              <p className={styles.subtitle}>
+                {isLogin 
+                  ? 'Access your personal dashboard and courses.' 
+                  : 'Start your journey with our professional design courses.'}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <AnimatePresence mode="wait">
+            {(error || success) && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                style={{ overflow: 'hidden' }}
+              >
+                {error && <div className={styles.errorMsg}>{error}</div>}
+                {success && <div className={styles.successMsg}>{success}</div>}
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <form onSubmit={handleSubmit}>
+            <AnimatePresence mode="popLayout">
+              {!isLogin && (
+                <motion.div 
+                  key="name-field"
+                  initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                  animate={{ opacity: 1, height: 'auto', marginBottom: '1.5rem' }}
+                  exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                  style={{ overflow: 'hidden' }}
+                  className={styles.formGroup}
+                >
+                  <label className={styles.label} htmlFor="name">Full Name</label>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    required={!isLogin}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label} htmlFor="email">Email Address</label>
+              <input
+                className={styles.input}
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="name@email.com"
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label className={styles.label} htmlFor="password">Password</label>
+              <input
+                className={styles.input}
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="••••••••"
+                minLength={6}
+                required
+              />
+            </div>
+
+            <motion.button 
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit" 
+              className={styles.submitBtn}
+              disabled={loading}
+            >
+              {loading 
+                ? (isLogin ? 'Authenticating...' : 'Creating...') 
+                : (isLogin ? 'Sign In' : 'Create Account')}
+            </motion.button>
+          </form>
+
+          <div className={styles.redirectLink}>
+            <Link href="/">
+              ← Back to Nuvosid Academy
+            </Link>
           </div>
-
-          <div className="flex items-center justify-between text-sm px-2">
-            <label className="flex items-center gap-2 cursor-pointer text-gray-400 hover:text-white">
-              <input type="checkbox" className="accent-purple-500" />
-              Remember me
-            </label>
-            <a href="#" className="text-purple-500 hover:underline">Forgot Password?</a>
-          </div>
-
-          <button className="w-full py-5 rounded-full bg-white text-black font-bold text-lg hover:bg-gray-200 transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-            Sign In
-          </button>
-        </form>
-
-        <div className="mt-12 text-center text-gray-500">
-          Don&apos;t have an account? <Link href="/enroll" className="text-white font-bold hover:underline">Enroll Now</Link>
-        </div>
-      </div>
+        </motion.div>
+      </section>
     </div>
   );
 }
