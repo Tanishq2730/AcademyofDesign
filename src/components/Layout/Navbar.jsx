@@ -153,7 +153,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`text-lg font-bold transition-colors ${isActive ? "text-[#B67B80] drop-shadow-[0_0_8px_rgba(182,123,128,0.5)]" : "text-gray-300 hover:text-white"}`}
+                className={`text-lg font-bold transition-colors ${isActive ? "text-[#e56b85] drop-shadow-[0_0_8px_rgba(182,123,128,0.5)]" : "text-gray-300 hover:text-white"}`}
               >
                 {link.name}
               </Link>
@@ -163,7 +163,7 @@ export default function Navbar() {
           {isAuthenticated && user ? (
             <div className="flex flex-col gap-3 pt-3 border-t border-white/10">
               <div className="flex items-center gap-3 px-2 py-1">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#732F50] to-[#B67B80] flex items-center justify-center text-white font-extrabold text-lg uppercase border border-white/20">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#9e1030] to-[#e56b85] flex items-center justify-center text-white font-extrabold text-lg uppercase border border-white/20">
                   {user.name ? user.name.charAt(0) : 'U'}
                 </div>
                 <div className="flex flex-col">

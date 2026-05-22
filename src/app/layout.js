@@ -1,10 +1,15 @@
-import { Inter } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import Navbar from "@/components/Layout/Navbar";
 import Footer from "@/components/Layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
+const bebas = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-bebas",
+});
 
 export const metadata = {
   title: "Nuvosid Academy of Design",
@@ -14,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen flex flex-col bg-black text-white antialiased`}>
+      <body className={`${inter.className} ${bebas.variable} min-h-screen flex flex-col bg-black text-white antialiased`} suppressHydrationWarning>
         <Navbar />
         <main className="flex-grow pt-20">
           {children}

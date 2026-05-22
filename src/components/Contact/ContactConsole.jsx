@@ -115,7 +115,7 @@ export default function ContactConsole() {
           <div className={styles.infoPanel}>
             <div className={styles.panelHeader}>
               <h2>Contact Information</h2>
-              <p>We're excited to hear from you!</p>
+              <p>We&apos;re excited to hear from you!</p>
             </div>
 
             <div className={styles.detailsList}>

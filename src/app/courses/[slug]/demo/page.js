@@ -72,7 +72,6 @@ const childFadeIn = {
 export default function DemoClassPage() {
   const { slug } = useParams();
   const router = useRouter();
-  const [course, setCourse] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState(0);
@@ -97,7 +96,7 @@ export default function DemoClassPage() {
   }, []);
 
   // Load course data
-  useEffect(() => {
+  const course = useMemo(() => {
     let found = courseDetailsData.find((c) => c.id === slug);
     if (!found) {
       for (const cat of categories) {
@@ -149,7 +148,7 @@ export default function DemoClassPage() {
         price: found.price || { original: "₹15,000", current: "₹11,250", discount: "25% OFF" }
       };
     }
-    if (found) setCourse(found);
+    return found;
   }, [slug]);
 
   if (!authChecked) {

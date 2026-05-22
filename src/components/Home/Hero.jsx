@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { ArrowRight, ChevronLeft, ChevronRight, LayoutGrid, CreditCard, Wallet, BarChart3, Globe } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import styles from "./Hero.module.scss";
 
@@ -15,7 +16,7 @@ import "swiper/css/effect-fade";
 const heroSlides = [
   {
     category: "Digital Design Mastery",
-    title: "UI/UX Design Solution",
+    title: "UI/UX Design and Solutions",
     subtitle: "for Modern Disruptors",
     description: "Master the art of creating intuitive digital experiences. Built for designers & entrepreneurs.",
     instructor: "Marcus Thorne",
@@ -46,6 +47,7 @@ const heroSlides = [
 export default function Hero() {
   const containerRef = useRef(null);
   const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     // Initial entrance animations
@@ -76,68 +78,108 @@ export default function Hero() {
       <div className={styles.backgroundGradients}>
         <div className={styles.blob1} />
         <div className={styles.blob2} />
+        <div className={styles.blob3} />
       </div>
 
-      <div className="container-fluid px-0">
-        <Swiper
-          modules={[Autoplay, EffectFade]}
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          loop={true}
-          speed={1000}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          className="mySwiper"
-        >
-          {heroSlides.map((slide, idx) => (
-            <SwiperSlide key={idx}>
-              <div className="row align-items-center min-vh-100 g-0">
-                {/* Left Side: Content (50%) */}
-                <div className="col-md-6 d-flex justify-content-center align-items-center heroInner">
-                  <div className={styles.textContent}>
-                    <div className={styles.category}>{slide.category}</div>
-                    <h1>
-                      <span className={styles.gradientText}>{slide.title}</span>
-                      {slide.subtitle}
-                    </h1>
-                    <p>{slide.description}</p>
+      {/* Premium Animated Background Elements */}
+      <div className={styles.gridPattern} />
+      <div className={styles.floatingRing1} />
+      <div className={styles.floatingRing2} />
+      <div className={`${styles.plusShape} ${styles.plus1}`} />
+      <div className={`${styles.plusShape} ${styles.plus2}`} />
 
-                    <div className={styles.buttonGroup}>
-                      <Link href="/enroll" className={styles.primaryBtn}>
-                        Sign Up Now
-                      </Link>
-                      <Link href="/courses" className={styles.secondaryBtn}>
-                        Know More <ArrowRight size={20} />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+      <div className="container">
+        <div className="row align-items-center min-vh-100 g-0">
+          {/* Left Side: Content (50%) */}
+          <div className={`col-md-6 d-flex align-items-center ${styles.heroCol}`}>
+            <div className={styles.textContent}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.4 }}
+                  className={styles.category}
+                >
+                  {heroSlides[activeIndex].category}
+                </motion.div>
+              </AnimatePresence>
 
-                {/* Right Side: Image & Badges (50%) */}
-                <div className="col-md-6 d-flex justify-content-center align-items-center heroInner position-relative">
-                  <div className={styles.imageContent}>
-                    <div className={styles.imageWrapper}>
-                      <img src={slide.img} alt={slide.instructor} className={styles.instructorImg} />
-                    </div>
+              <h1>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={activeIndex}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className={styles.gradientText}
+                  >
+                    {heroSlides[activeIndex].title}
+                  </motion.span>
+                </AnimatePresence>
+                for Modern Disruptors <br /> & Creative Leaders
+              </h1>
 
-                    {slide.stats.map((stat, sIdx) => (
-                      <div key={sIdx} className={`${styles.floatingBadge} ${styles[`badge${sIdx + 1}`]}`}>
-                        <span className={styles.label}>{stat.label}</span>
-                        <span className={styles.value}>{stat.value}</span>
-                      </div>
-                    ))}
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {heroSlides[activeIndex].description}
+                </motion.p>
+              </AnimatePresence>
 
-                    <div className={styles.nameTag}>
-                      {slide.instructor} <span>{slide.role}</span>
-                    </div>
-                  </div>
-                </div>
+              <div className={styles.buttonGroup}>
+                <Link href="/enroll" className={styles.primaryBtn}>
+                  Sign Up Now
+                </Link>
+                <Link href="/courses" className={styles.secondaryBtn}>
+                  Know More <ArrowRight size={20} />
+                </Link>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            </div>
+          </div>
+
+          {/* Right Side: Image Swiper (50%) */}
+          <div className={`col-md-6 d-flex justify-content-center align-items-center position-relative ${styles.heroCol}`}>
+            <div style={{ width: "100%", height: "100%" }}>
+              <Swiper
+                modules={[Autoplay, EffectFade]}
+                effect="fade"
+                fadeEffect={{ crossFade: true }}
+                loop={true}
+                speed={1000}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                }}
+                onSlideChange={(swiper) => {
+                  setActiveIndex(swiper.realIndex);
+                }}
+                className="mySwiper"
+              >
+                {heroSlides.map((slide, idx) => (
+                  <SwiperSlide key={idx}>
+                    <div className={styles.imageContent}>
+                      <div className={styles.imageWrapper}>
+                        <img src={slide.img} alt={slide.instructor} className={styles.instructorImg} />
+                        <div className={styles.instructorMeta}>
+                          <h4 className={styles.metaName}>{slide.instructor}</h4>
+                          <p className={styles.metaRole}>{slide.role}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Premium Controls - Positioned Right */}

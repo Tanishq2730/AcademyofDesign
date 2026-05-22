@@ -33,7 +33,7 @@
     
     span {
       font-weight: 900;
-      color: #914864;
+      color: #db254f;
       display: block;
     }
   }
@@ -282,13 +282,13 @@
       left: 0;
       width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, #914864, transparent);
+      background: linear-gradient(90deg, transparent, #db254f, transparent);
       transition: all 0.4s ease;
     }
     
     &:hover {
       letter-spacing: 0.05em;
-      color: #914864;
+      color: #db254f;
       
       &::after {
         background: white;

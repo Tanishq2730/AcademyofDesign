@@ -87,7 +87,7 @@
 
 /* ─── Left Panel: Contact Information ─── */
 .infoPanel {
-  background: linear-gradient(135deg, #732f50 0%, #914864 40%, #173863 100%);
+  background: linear-gradient(135deg, #9e1030 0%, #db254f 40%, #173863 100%);
   border-radius: 28px;
   padding: 2.5rem;
   height: 100%;
@@ -181,7 +181,7 @@
 
     &:hover {
       background: #ffffff;
-      color: #732f50;
+      color: #9e1030;
       transform: translateY(-4px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
@@ -239,7 +239,7 @@
 }
 
 .submitBtn {
-  background: linear-gradient(135deg, #732f50, #914864, #b67b80);
+  background: linear-gradient(135deg, #9e1030, #db254f, #e56b85);
   border: none;
   color: #ffffff;
   font-weight: 750;

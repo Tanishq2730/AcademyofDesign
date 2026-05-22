@@ -50,7 +50,7 @@
   line-height: 1;
   
   span {
-    color: #914864;
+    color: #db254f;
     position: relative;
     display: inline-block;
     
@@ -116,7 +116,7 @@
   }
   
   svg {
-    color: #914864;
+    color: #db254f;
     flex-shrink: 0;
     transition: transform 0.3s ease;
   }
@@ -172,9 +172,9 @@
   .dot {
     width: 8px;
     height: 8px;
-    background: #914864;
+    background: #db254f;
     border-radius: 50%;
-    box-shadow: 0 0 15px #914864;
+    box-shadow: 0 0 15px #db254f;
   }
   
   span {
@@ -196,7 +196,7 @@
 
 .stateText {
   font-size: 1.2rem;
-  color: #914864;
+  color: #db254f;
   font-weight: 600;
   margin-bottom: 3rem;
 }

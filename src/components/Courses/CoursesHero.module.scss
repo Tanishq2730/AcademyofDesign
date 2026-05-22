@@ -71,9 +71,9 @@
 .dot {
   width: 6px !important;
   height: 6px !important;
-  background: #914864;
+  background: #db254f;
   border-radius: 50%;
-  box-shadow: 0 0 12px #914864;
+  box-shadow: 0 0 12px #db254f;
   display: inline-block;
   letter-spacing: 0 !important;
 }
@@ -94,7 +94,7 @@
   
   em {
     font-style: normal;
-    color: #914864;
+    color: #db254f;
     display: block;
   }
 }
@@ -124,7 +124,7 @@
 .scrollLine {
   width: 1px;
   height: 60px;
-  background: linear-gradient(to bottom, #914864, transparent);
+  background: linear-gradient(to bottom, #db254f, transparent);
   animation: scrollPulse 2s ease infinite;
 }
 

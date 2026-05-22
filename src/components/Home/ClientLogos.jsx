@@ -26,7 +26,7 @@ export default function ClientLogos() {
   return (
     <section className={styles.section} ref={marqueeRef}>
       <div className={styles.title}>
-        <p>Our students work at</p>
+        <p>Learn From Consultant Working with</p>
       </div>
       
       <div className={styles.marqueeWrapper}>

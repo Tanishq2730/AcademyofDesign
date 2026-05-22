@@ -20,7 +20,9 @@ export default function InstructorsShowcase() {
           (ins) => ins.name.toLowerCase() === decodedName
         );
         if (foundIndex !== -1) {
-          setActiveIdx(foundIndex);
+          setTimeout(() => {
+            setActiveIdx(foundIndex);
+          }, 0);
         }
       }
     }

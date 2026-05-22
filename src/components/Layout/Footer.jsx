@@ -123,7 +123,7 @@ export default function Footer() {
         .hover-white:hover { color: #fff !important; }
         .form-control:focus {
           background-color: rgba(255,255,255,0.08);
-          border-color: #914864;
+          border-color: #db254f;
           box-shadow: none;
           color: white;
         }

@@ -42,7 +42,7 @@
   line-height: 1.1;
   
   span {
-    color: #914864;
+    color: #db254f;
     display: block;
   }
 }
@@ -71,7 +71,7 @@
       display: block;
       width: 2rem;
       height: 2px;
-      background: #914864;
+      background: #db254f;
       margin-top: 0.5rem;
     }
   }
@@ -129,7 +129,7 @@
   
   &:hover {
     transform: translate(-50%, -50%) scale(1.1);
-    background: #914864;
+    background: #db254f;
     
     .playIcon {
       border-left-color: white;
@@ -226,7 +226,7 @@
   line-height: 1.1;
   
   span {
-    color: #914864;
+    color: #db254f;
   }
 }
 
@@ -268,7 +268,7 @@
         content: "";
         width: 1rem;
         height: 1px;
-        background: #914864;
+        background: #db254f;
       }
     }
   }

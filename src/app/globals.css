@@ -35,9 +35,9 @@ body {
 }
 
 :root {
-  --primary: #914864;
-  --secondary: #B67B80;
-  --accent: #732F50;
+  --primary: #db254f;
+  --secondary: #e56b85;
+  --accent: #9e1030;
   --bg-dark: #030303;
 }
 
@@ -61,4 +61,15 @@ a {
 
 .heroInner{
   padding: 4em 8em;
+}
+
+h1, h2, h3, h4, h5, h6, .display-font {
+  font-family: var(--font-bebas), 'Sohne Schmal', Impact-fallback, Helvetica, Arial, sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em !important;
+}
+
+/* Global high-readability body & description text color */
+p, .desc, .description, .subtitle, [class*="desc"], [class*="description"], [class*="subtitle"], [class*="duration"] {
+  color: rgba(255, 255, 255, 0.85) !important;
 }

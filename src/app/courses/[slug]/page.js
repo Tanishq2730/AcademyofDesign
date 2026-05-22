@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Target, Award, Zap, Mail, Phone, Play, CheckCircle2, Plus, Minus, Tv } from 'lucide-react';
 import Link from 'next/link';
@@ -11,10 +11,9 @@ import categories from '@/data/courses.json';
 
 export default function CourseDetail() {
   const { slug } = useParams();
-  const [course, setCourse] = useState(null);
   const [activePhase, setActivePhase] = useState(0);
 
-  useEffect(() => {
+  const course = useMemo(() => {
     let found = courseDetailsData.find((c) => c.id === slug);
     if (!found) {
       for (const cat of categories) {
@@ -49,7 +48,7 @@ export default function CourseDetail() {
         }
       }
     }
-    if (found) setCourse(found);
+    return found;
   }, [slug]);
 
   if (!course) return <div className={styles.pageWrapper}></div>;
