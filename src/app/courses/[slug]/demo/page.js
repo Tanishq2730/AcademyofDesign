@@ -1,8 +1,9 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from '@/context/AuthContext';
 import {
   Play, CheckCircle2, Plus, Minus, X,
   Award, Download, Lock, ArrowRight, FileText
@@ -72,28 +73,51 @@ const childFadeIn = {
 export default function DemoClassPage() {
   const { slug } = useParams();
   const router = useRouter();
+  const { openModal, isOpen } = useAuth();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authChecked, setAuthChecked] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState(0);
   const [showCertModal, setShowCertModal] = useState(false);
+  const prevIsOpenRef = useRef(false);
 
-  // Check authentication
+  // Initial auth check — auto-opens modal if not authenticated
   useEffect(() => {
-    const checkAuth = async () => {
+    let cancelled = false;
+    const run = async () => {
       try {
         const res = await fetch('/api/auth/check', { method: 'GET' });
         const data = await res.json();
-        if (res.ok && data.authenticated) {
-          setIsAuthenticated(true);
+        if (!cancelled) {
+          if (res.ok && data.authenticated) {
+            setIsAuthenticated(true);
+          } else {
+            setIsAuthenticated(false);
+            openModal('login');
+          }
+          setAuthChecked(true);
         }
       } catch {
-        setIsAuthenticated(false);
-      } finally {
-        setAuthChecked(true);
+        if (!cancelled) {
+          setIsAuthenticated(false);
+          setAuthChecked(true);
+          openModal('login');
+        }
       }
     };
-    checkAuth();
-  }, []);
+    run();
+    return () => { cancelled = true; };
+  }, [openModal]);
+
+  // Re-check auth whenever the modal closes (login may have succeeded)
+  useEffect(() => {
+    if (prevIsOpenRef.current && !isOpen) {
+      fetch('/api/auth/check')
+        .then(r => r.json())
+        .then(data => { if (data.authenticated) setIsAuthenticated(true); })
+        .catch(() => {});
+    }
+    prevIsOpenRef.current = isOpen;
+  }, [isOpen]);
 
   // Load course data
   const course = useMemo(() => {
@@ -172,9 +196,9 @@ export default function DemoClassPage() {
             </div>
             <h2>Login Required</h2>
             <p>Please sign in to your account to access the free demo class and explore our premium course content.</p>
-            <Link href={`/login?redirect=/courses/${slug}/demo`} className={styles.loginBtn}>
+            <button onClick={() => openModal('login')} className={styles.loginBtn}>
               Sign In to Continue <ArrowRight size={18} />
-            </Link>
+            </button>
             <Link href={`/courses/${slug}`} className={styles.backText}>
               ← Back to Course Details
             </Link>
@@ -188,39 +212,55 @@ export default function DemoClassPage() {
 
   return (
     <div className={styles.pageWrapper}>
-      <div className={styles.bgGlow} />
-      <div className={styles.bgGlow2} />
 
-      {/* Hero */}
+      {/* ── Hero ── */}
       <section className={styles.hero}>
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className={styles.badge}
-        >
-          <Play size={12} fill="currentColor" /> Free Demo Class
-        </motion.div>
-        <motion.h1
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {course.title.split(' ').slice(0, -1).join(' ')}{' '}
-          <span>{course.title.split(' ').slice(-1)}</span>
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className={styles.subtitle}
-        >
-          {course.subtitle || 'Experience our teaching methodology first-hand'}
-        </motion.p>
+        <div
+          className={styles.heroBgImage}
+          style={{ backgroundImage: `url(${course.heroImage || '/assets/courseBG.jpg'})` }}
+          aria-hidden="true"
+        />
+        <div className={styles.heroBgOverlay} aria-hidden="true" />
+
+        <div className={styles.heroContent}>
+          <motion.div
+            initial={{ opacity: 0, y: -15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.badge}
+          >
+            <Play size={12} fill="currentColor" /> Free Demo Class
+          </motion.div>
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {course.title.split(' ').slice(0, -1).join(' ')}{' '}
+            <span>{course.title.split(' ').slice(-1)}</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className={styles.heroSubtitle}
+          >
+            {course.subtitle || 'Experience our teaching methodology first-hand'}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.32, duration: 0.7 }}
+            className={styles.heroScroll}
+          >
+            <span />
+          </motion.div>
+        </div>
       </section>
 
-      {/* Video */}
+      {/* ── Video ── */}
       <section className={styles.videoSection}>
+        <div className={styles.videoGlow} aria-hidden="true" />
         <motion.div
           variants={fadeInScale}
           initial="hidden"
@@ -228,13 +268,24 @@ export default function DemoClassPage() {
           viewport={{ once: true, amount: 0.15 }}
           className={styles.videoWrapper}
         >
-          {course.videoUrl && course.videoUrl !== "" && course.videoUrl !== "https://www.youtube.com/embed/placeholder" ? (
-            <iframe src={course.videoUrl} title={course.title} allowFullScreen />
-          ) : (
-            <div className={styles.placeholder}>
-              <div className={styles.playBtn}><Play size={36} fill="currentColor" /></div>
-            </div>
-          )}
+          {(() => {
+            const vid = (course.videoUrl && course.videoUrl !== "" && course.videoUrl !== "https://www.youtube.com/embed/placeholder")
+              ? course.videoUrl
+              : "https://www.youtube.com/embed/79vZT-2rMLg";
+            return (
+              <iframe
+                src={vid}
+                title={course.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            );
+          })()}
+          <span className={styles.cTL} aria-hidden="true" />
+          <span className={styles.cTR} aria-hidden="true" />
+          <span className={styles.cBL} aria-hidden="true" />
+          <span className={styles.cBR} aria-hidden="true" />
         </motion.div>
       </section>
 
@@ -280,6 +331,7 @@ export default function DemoClassPage() {
                     variants={childFadeIn}
                     className={styles.pointCard}
                   >
+                    <span className={styles.cardGhost}>{String(idx + 1).padStart(2, '0')}</span>
                     <div className={styles.icon}><CheckCircle2 size={16} /></div>
                     <h4>{point.text || point.title}</h4>
                   </motion.div>
@@ -405,6 +457,8 @@ export default function DemoClassPage() {
           viewport={{ once: true, amount: 0.15 }}
           className={styles.enrollCard}
         >
+          <div className={styles.ctaOrb1} aria-hidden="true" />
+          <div className={styles.ctaOrb2} aria-hidden="true" />
           <h2>Enroll Now & <span>Get Started</span></h2>
           <p className={styles.enrollSubtitle}>
             Take the next step towards mastering your craft. Enroll today and get exclusive access to industry-grade training.

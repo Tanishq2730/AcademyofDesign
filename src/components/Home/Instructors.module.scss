@@ -1,17 +1,39 @@
 .instructorsSection {
   padding: 10rem 0 3rem;
-  background-color: #030303;
+  background: linear-gradient(165deg, #020c14 0%, #030f18 40%, #020a10 70%, #030303 100%);
   position: relative;
   overflow: hidden;
-  
+
+  /* Blue/teal glow — top-centre */
   &::before {
     content: "";
     position: absolute;
-    inset: 0;
-    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.04;
+    top: -5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80rem;
+    height: 50rem;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(6, 182, 212, 0.13) 0%,
+      rgba(14, 165, 233, 0.07) 40%,
+      transparent 70%
+    );
+    filter: blur(80px);
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
+  }
+
+  /* Teal blob bottom-left + indigo blob right */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 45rem 45rem at -5% 100%, rgba(20, 184, 166, 0.12) 0%, transparent 65%),
+      radial-gradient(ellipse 35rem 35rem at 105% 50%, rgba(99, 102, 241, 0.10) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
   }
 }
 

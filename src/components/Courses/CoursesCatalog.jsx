@@ -1,171 +1,132 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import Link from "next/link";
-import { ArrowRight, Clock, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import styles from "./CoursesCatalog.module.scss";
-
 import categories from "@/data/courses.json";
+import CourseCard from "@/components/Cards/CourseCard";
 
-const levelColors = {
-  Beginner: "rgba(72, 145, 130, 0.15)",
-  Intermediate: "rgba(145, 130, 72, 0.15)",
-  Advanced: "rgba(145, 72, 100, 0.15)",
-};
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CoursesCatalog() {
-  const [activeCategory, setActiveCategory] = useState(categories[0].id);
-  const sectionRef = useRef(null);
-  const cardsWrapRef = useRef(null);
+  const [activeId, setActiveId] = useState(categories[0].id);
+  const sectionRef   = useRef(null);
+  const headerRef    = useRef(null);
+  const tabsRef      = useRef(null);
+  const cardsRef     = useRef(null);
 
-  const active = categories.find((c) => c.id === activeCategory);
+  const active = categories.find((c) => c.id === activeId);
 
+  /* Section entrance */
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Section fade-in
-    gsap.fromTo(
-      sectionRef.current,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
+    const ctx = gsap.context(() => {
+      gsap.from(headerRef.current.children, {
+        y: 44, opacity: 0, stagger: 0.12, duration: 1.1,
+        ease: "power4.out",
+        scrollTrigger: { trigger: headerRef.current, start: "top 82%", once: true },
+      });
+      gsap.from(tabsRef.current, {
+        y: 28, opacity: 0, duration: 1,
         ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
-        },
-      }
-    );
-
-    // Tabs parallax on scroll
-    gsap.to(`.${styles.tabsPanel}`, {
-      yPercent: -8,
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1,
-      },
-    });
+        scrollTrigger: { trigger: tabsRef.current, start: "top 88%", once: true },
+      });
+    }, sectionRef);
+    return () => ctx.revert();
   }, []);
 
-  // Animate cards when category switches
+  /* Card stagger on category change */
   useEffect(() => {
-    if (!cardsWrapRef.current) return;
-    const cards = cardsWrapRef.current.querySelectorAll(`.${styles.courseCard}`);
+    if (!cardsRef.current) return;
+    const cards = cardsRef.current.querySelectorAll("[data-course-card]");
     gsap.fromTo(
       cards,
-      { y: 50, opacity: 0, scale: 0.96 },
-      {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "expo.out",
-      }
+      { y: 44, opacity: 0, scale: 0.96 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.72, stagger: 0.1, ease: "expo.out" }
     );
-  }, [activeCategory]);
+  }, [activeId]);
 
   return (
-    <section ref={sectionRef} className={styles.catalogSection}>
-      <div className={styles.inner}>
-        {/* Section Header */}
-        <div className={styles.sectionHead}>
-          <p className={styles.sectionEyebrow}>Our Programs</p>
-          <h2 className={styles.sectionTitle}>
+    <section ref={sectionRef} className={styles.section}>
+      <div className={styles.wrapper}>
+
+        {/* ── Section header ── */}
+        <div ref={headerRef} className={styles.header}>
+          <span className={styles.eyebrow}>Our Programs</span>
+          <h2 className={styles.title}>
             Category <em>Catalog</em>
           </h2>
         </div>
 
-        <div className={styles.layout}>
-          {/* ── Left: Category Tabs ── */}
-          <aside className={styles.tabsPanel}>
-            <p className={styles.tabsLabel}>Specializations</p>
-            <div className={styles.tabs}>
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  className={`${styles.tab} ${activeCategory === cat.id ? styles.tabActive : ""}`}
-                  style={activeCategory === cat.id ? { "--accent": cat.accent } : {}}
-                  onClick={() => setActiveCategory(cat.id)}
-                >
-                  <span className={styles.tabDot} style={{ background: cat.accent }} />
-                  <span className={styles.tabName}>{cat.name}</span>
-                  <ChevronRight size={14} className={styles.tabArrow} />
-                </button>
-              ))}
-            </div>
-
-            {/* Active category info card */}
-            <div
-              className={styles.activeCatCard}
-              style={{ borderColor: `${active.accent}33` }}
+        {/* ── Horizontal tab nav ── */}
+        <div ref={tabsRef} className={styles.tabNav}>
+          {categories.map((c) => (
+            <button
+              key={c.id}
+              type="button"
+              onClick={() => setActiveId(c.id)}
+              className={`${styles.tab} ${activeId === c.id ? styles.tabActive : ""}`}
             >
-              <h3 style={{ color: active.accent }}>{active.name}</h3>
-              <p>{active.tagline}</p>
-              <div className={styles.courseCount}>
-                <span className={styles.countNum}>{active.courses.length}</span>
-                <span className={styles.countLabel}>Programs Available</span>
+              {/* Sliding pill background */}
+              {activeId === c.id && (
+                <motion.div
+                  layoutId="catalog-tab-bg"
+                  className={styles.tabBg}
+                  style={{ background: `${c.accent}16`, borderColor: `${c.accent}40` }}
+                  transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                />
+              )}
+
+              {/* Color dot */}
+              <span className={styles.tabDot} style={{ background: c.accent }} />
+
+              {/* Name */}
+              <span className={styles.tabName}>{c.name}</span>
+
+              {/* Count badge */}
+              <span
+                className={styles.tabBadge}
+                style={activeId === c.id ? { color: c.accent, background: `${c.accent}18`, borderColor: `${c.accent}38` } : {}}
+              >
+                {c.courses.length}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* ── Category sub-header ── */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeId}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.38, ease: [0.23, 1, 0.32, 1] } }}
+            exit={{ opacity: 0, y: -8, transition: { duration: 0.2 } }}
+          >
+            <div className={styles.catHead}>
+              <div>
+                <span className={styles.catTag} style={{ color: active.accent, background: `${active.accent}12`, borderColor: `${active.accent}30` }}>
+                  {active.tagline}
+                </span>
+                <h3 className={styles.catTitle}>{active.name}</h3>
               </div>
-            </div>
-          </aside>
-
-          {/* ── Right: Course Cards ── */}
-          <div className={styles.cardsArea}>
-            {/* Category heading */}
-            <div className={styles.catHeading}>
-              <h3 style={{ color: active.accent }}>{active.name}</h3>
-              <span className={styles.catTagline}>{active.tagline}</span>
+              <span className={styles.catCount}>{active.courses.length}&nbsp;Programs Available</span>
             </div>
 
-            <div ref={cardsWrapRef} className={styles.cardsGrid}>
-              {active.courses.map((course, i) => (
-                <Link href={`/courses/${course.id}`} key={i} className={styles.courseCard}>
-                  <div className={styles.cardImage}>
-                    <img src={course.image} alt={course.title} />
-                    <div
-                      className={styles.imageOverlay}
-                      style={{ background: `linear-gradient(to top, ${active.accent}55, transparent)` }}
-                    />
-                    <span
-                      className={styles.levelBadge}
-                      style={{ background: levelColors[course.level], color: "white" }}
-                    >
-                      {course.level}
-                    </span>
-                  </div>
-
-                  <div className={styles.cardBody}>
-                    <div className={styles.durationRow}>
-                      <Clock size={12} />
-                      <span>{course.duration} Program</span>
-                    </div>
-                    <h4 className={styles.courseTitle}>{course.title}</h4>
-                    <p className={styles.courseDesc}>{course.desc}</p>
-
-                    <div className={styles.tags}>
-                      {course.tags.map((tag, ti) => (
-                        <span key={ti} className={styles.tag}>{tag}</span>
-                      ))}
-                    </div>
-
-                    <div
-                      className={styles.learnBtn}
-                      style={{ "--accent": active.accent }}
-                    >
-                      Explore Program <ArrowRight size={14} />
-                    </div>
-                  </div>
-                </Link>
+            {/* ── Cards grid ── */}
+            <div ref={cardsRef} className={styles.grid}>
+              {active.courses.map((course) => (
+                <CourseCard
+                  key={course.id}
+                  course={course}
+                  accent={active.accent}
+                  category={active.name}
+                />
               ))}
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </AnimatePresence>
+
       </div>
     </section>
   );

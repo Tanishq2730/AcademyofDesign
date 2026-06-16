@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Aryan Mehta",
+    "role": "Product Designer",
+    "company": "Flipkart",
+    "initials": "AM",
+    "avatarColor": "#db254f",
+    "rating": 5,
+    "quote": "The UI/UX Design program at Academy of Design completely transformed my career. The mentors bring real industry experience, and the hands-on projects gave me a portfolio that landed me my role at Flipkart within 3 months of graduating.",
+    "course": "UI/UX Design",
+    "batch": "2023"
+  },
+  {
+    "id": 2,
+    "name": "Shreya Kapoor",
+    "role": "Fashion Designer",
+    "company": "Myntra",
+    "initials": "SK",
+    "avatarColor": "#C4896F",
+    "rating": 5,
+    "quote": "I had zero background in fashion when I joined. The structured curriculum and personal attention from every instructor helped me build both technical skills and a distinct design identity. Now I design collections for Myntra's in-house brand.",
+    "course": "Fashion Design",
+    "batch": "2023"
+  },
+  {
+    "id": 3,
+    "name": "Vikram Nair",
+    "role": "Interior Designer",
+    "company": "Studio Lotus",
+    "initials": "VN",
+    "avatarColor": "#6F9AC4",
+    "rating": 5,
+    "quote": "The Interior Design program is far ahead of any traditional institute. Real-world project briefs, industry visits, and a faculty that actually practices what they teach — this is what sets Academy of Design apart from everyone else.",
+    "course": "Interior Design",
+    "batch": "2022"
+  },
+  {
+    "id": 4,
+    "name": "Meera Iyer",
+    "role": "UX Lead",
+    "company": "Razorpay",
+    "initials": "MI",
+    "avatarColor": "#3B82F6",
+    "rating": 5,
+    "quote": "What I love most is the emphasis on both aesthetics and function. You don't just learn to make things look beautiful — you learn why they should be designed a certain way. That mindset shift is what put me ahead in every interview I walked into.",
+    "course": "UI/UX Design",
+    "batch": "2022"
+  },
+  {
+    "id": 5,
+    "name": "Rahul Sharma",
+    "role": "Architect",
+    "company": "Morphogenesis",
+    "initials": "RS",
+    "avatarColor": "#10B981",
+    "rating": 5,
+    "quote": "The AEC program is comprehensive and rigorous. From parametric design to sustainable architecture, every module pushed me to think bigger. I was placed at Morphogenesis, one of India's leading architecture firms, straight out of the program.",
+    "course": "Architecture & Engineering",
+    "batch": "2023"
+  },
+  {
+    "id": 6,
+    "name": "Priya Verma",
+    "role": "Design Consultant",
+    "company": "McKinsey Design",
+    "initials": "PV",
+    "avatarColor": "#F59E0B",
+    "rating": 5,
+    "quote": "I came from a management background wanting to transition into design. The mentorship here is unlike anything else — they didn't just teach me tools, they changed how I think about every problem. That shift opened doors I didn't even know existed.",
+    "course": "UI/UX Design",
+    "batch": "2024"
+  },
+  {
+    "id": 7,
+    "name": "Tanvi Desai",
+    "role": "Textile & Surface Designer",
+    "company": "NIFT Collaborator",
+    "initials": "TD",
+    "avatarColor": "#8B5CF6",
+    "rating": 5,
+    "quote": "The fashion curriculum here is deeply rooted in craft but always forward-looking. I discovered my niche in textile design because of the breadth of exploration the program encourages. I've since collaborated with NIFT on two exhibitions.",
+    "course": "Fashion Design",
+    "batch": "2024"
+  },
+  {
+    "id": 8,
+    "name": "Karan Bhatia",
+    "role": "Senior UX Researcher",
+    "company": "Microsoft India",
+    "initials": "KB",
+    "avatarColor": "#EC4899",
+    "rating": 5,
+    "quote": "The research modules and user testing frameworks taught here are exactly what companies like Microsoft look for. I went in as a junior designer and came out with a senior-level skillset. Best investment I've made in my career by far.",
+    "course": "UI/UX Design",
+    "batch": "2022"
+  }
+]

@@ -13,6 +13,7 @@
         "level": "Advanced",
         "desc": "Master end-to-end product design from user research to high-fidelity prototyping and usability testing.",
         "image": "/assets/uiux_course.jpg",
+        "video": "https://videos.pexels.com/video-files/5752729/5752729-uhd_2560_1440_30fps.mp4",
         "tags": ["Figma", "User Research", "Prototyping"]
       },
       {
@@ -22,6 +23,7 @@
         "level": "Intermediate",
         "desc": "Learn to build micro-interactions, seamless user flows and craft delightful experiences.",
         "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop",
+        "video": "https://videos.pexels.com/video-files/5752729/5752729-uhd_2560_1440_30fps.mp4",
         "tags": ["Motion", "Micro-interactions", "Flows"]
       },
       {
@@ -31,6 +33,7 @@
         "level": "Beginner",
         "desc": "Build a strong foundation in visual design, color theory, typography and component systems.",
         "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop",
+        "video": "https://videos.pexels.com/video-files/5752729/5752729-uhd_2560_1440_30fps.mp4",
         "tags": ["Visual Design", "Color", "Components"]
       }
     ]
@@ -49,6 +52,7 @@
         "level": "Advanced",
         "desc": "Explore the art of creating exclusive, custom-fitted clothing. Master draping, pattern making, and bespoke tailoring techniques.",
         "image": "/assets/fashiondesign1.jpg",
+        "video": "https://videos.pexels.com/video-files/6981411/6981411-uhd_2560_1440_25fps.mp4",
         "tags": ["Draping", "Pattern Making", "Tailoring"]
       },
       {
@@ -58,6 +62,7 @@
         "level": "Beginner",
         "desc": "Learn to sketch and communicate fashion ideas effectively through hand and digital illustration methods.",
         "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=800&auto=format&fit=crop",
+        "video": "https://videos.pexels.com/video-files/6981411/6981411-uhd_2560_1440_25fps.mp4",
         "tags": ["Illustration", "Digital Art", "Sketching"]
       }
     ]
@@ -76,6 +81,7 @@
         "level": "Intermediate",
         "desc": "Design functional and beautiful living spaces that balance aesthetics with practical living needs.",
         "image": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
+        "video": "https://videos.pexels.com/video-files/7578554/7578554-uhd_2560_1440_30fps.mp4",
         "tags": ["Space Planning", "Color Theory", "Lighting"]
       },
       {
@@ -85,6 +91,7 @@
         "level": "Advanced",
         "desc": "Create impactful environments for retail, offices and hospitality spaces that drive business results.",
         "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+        "video": "https://videos.pexels.com/video-files/7578554/7578554-uhd_2560_1440_30fps.mp4",
         "tags": ["Retail Design", "Office Spaces", "Hospitality"]
       }
     ]
@@ -103,6 +110,7 @@
         "level": "Beginner to Advanced",
         "desc": "Master the world's leading 2D drafting software. Learn complete beginners to advanced level AutoCAD LT 2023 for architecture and structural drawings.",
         "image": "/assets/engineering.jpg",
+        "video": "https://videos.pexels.com/video-files/7710243/7710243-uhd_2560_1440_30fps.mp4",
         "tags": ["2D Drafting", "Architecture", "Engineering"]
       }
     ]

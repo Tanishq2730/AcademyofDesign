@@ -1,183 +1,157 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import styles from "./Courses.module.scss";
-
 import categories from "@/data/courses.json";
+import CourseCard from "@/components/Cards/CourseCard";
 
+gsap.registerPlugin(ScrollTrigger);
+
+/* ═══════════════════════════════════════════
+   Main Section
+═══════════════════════════════════════════ */
 export default function Courses() {
-  const containerRef = useRef(null);
-  const cardsRef = useRef([]);
+  const sectionRef = useRef(null);
+  const headerRef  = useRef(null);
+  const tabsRef    = useRef(null);
+  const [activeIdx, setActiveIdx] = useState(0);
 
+  /* Entrance animations — header + tab bar */
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    // Header animation
-    gsap.fromTo(
-      `.${styles.header}`,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
+    const ctx = gsap.context(() => {
+      gsap.from(headerRef.current.children, {
+        y: 48, opacity: 0, stagger: 0.14, duration: 1.1,
         ease: "power4.out",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        }
-      }
-    );
-
-    // Hardware-accelerated Sticky Stacking Animation
-    cardsRef.current.forEach((card, index) => {
-      if (!card) return;
-
-      // Scale down and darken as the next card covers it
-      if (index < cardsRef.current.length - 1) {
-        gsap.to(card, {
-          scale: 0.95,
-          filter: "brightness(0.3)", // Darken instead of opacity to fix transparency
-          scrollTrigger: {
-            trigger: cardsRef.current[index + 1],
-            start: "top 85%",
-            end: "top 15%",
-            scrub: true,
-          }
-        });
-      }
-    });
-
-    // Staggered entrance for course cards within each sticky card
-    cardsRef.current.forEach((card, idx) => {
-      if (!card) return;
-      
-      const courseCards = card.querySelectorAll(`.${styles.miniCourseCard}`);
-      if (courseCards.length > 0) {
-        gsap.fromTo(
-          courseCards,
-          { y: 60, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.2,
-            stagger: 0.15,
-            ease: "expo.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 70%",
-            }
-          }
-        );
-
-        // Inner Image Parallax
-        const images = card.querySelectorAll(`.${styles.miniImageWrapper} img`);
-        images.forEach((img) => {
-          gsap.fromTo(img, 
-            { yPercent: -15 }, 
-            { 
-              yPercent: 15, 
-              ease: "none",
-              scrollTrigger: {
-                trigger: img,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
-              }
-            }
-          );
-        });
-      }
-    });
-
-    ScrollTrigger.refresh();
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
+        scrollTrigger: { trigger: headerRef.current, start: "top 82%", once: true },
+      });
+      gsap.from(tabsRef.current, {
+        y: 30, opacity: 0, duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: tabsRef.current, start: "top 88%", once: true },
+      });
+    }, sectionRef);
+    return () => ctx.revert();
   }, []);
 
+  const cat = categories[activeIdx];
+
+  const cardVariants = {
+    hidden:  { opacity: 0, y: 56, scale: 0.87 },
+    visible: (i) => ({
+      opacity: 1, y: 0, scale: 1,
+      transition: { delay: i * 0.12, duration: 0.75, ease: [0.16, 1, 0.3, 1] },
+    }),
+    exit: { opacity: 0, y: -18, scale: 0.95, transition: { duration: 0.22 } },
+  };
+
   return (
-    <section ref={containerRef} className={styles.coursesSection}>
-      <div className="container-fluid px-md-5">
-        
-        {/* Header */}
-        <div className={styles.header}>
+    <section ref={sectionRef} className={styles.section} id="programs">
+
+      {/* Ambient glow — changes per category */}
+      <div className={styles.glow} style={{ background: cat.accent }} />
+
+      <div className={styles.wrapper}>
+
+        {/* ── Section header ── */}
+        <div ref={headerRef} className={styles.header}>
+          <span className={styles.eyebrow}>Academy Programs</span>
           <h2>
-            Explore Our 
-            <span>Curated Programs.</span>
+            <span className={styles.thin}>Explore Our</span>
+            <span className={styles.bold}>Curated Programs</span>
           </h2>
           <p>
-            An elite selection of design disciplines, crafted for those who 
+            An elite selection of design disciplines, crafted for those who
             aim to lead the industry with innovation and technical mastery.
           </p>
         </div>
 
-        {/* Stacking Cards Container */}
-        <div className={styles.stackContainer}>
-          {categories.map((category, idx) => (
-            <div 
-              key={category.name} 
-              ref={(el) => cardsRef.current[idx] = el}
-              className={`${styles.stickyCard} card_${idx}`}
-              style={{ 
-                top: `calc(10vh + ${idx * 2}vh)`,
-                backgroundColor: category.color,
-                borderColor: `${category.accent}22`,
-                zIndex: idx + 1
-              }}
-            >
-              {/* Decorative Number */}
-              <div 
-                className="absolute right-[-5%] top-[-5%] text-[25rem] font-black opacity-[0.04] pointer-events-none select-none"
-                style={{ color: category.accent }}
+        {/* ── Tab Navigation ── */}
+        <div ref={tabsRef} className={styles.tabNav}>
+          <div className={styles.tabsRow}>
+            {categories.map((c, i) => (
+              <button
+                key={c.id}
+                type="button"
+                onClick={() => setActiveIdx(i)}
+                className={`${styles.tab} ${i === activeIdx ? styles.tabActive : ""}`}
               >
-                0{idx + 1}
-              </div>
+                {/* Sliding active background */}
+                {i === activeIdx && (
+                  <motion.div
+                    layoutId="tab-bg"
+                    className={styles.tabBg}
+                    style={{
+                      background: `${c.accent}16`,
+                      borderColor: `${c.accent}40`,
+                    }}
+                    transition={{ type: "spring", stiffness: 420, damping: 36 }}
+                  />
+                )}
 
-              <div className={styles.cardContent}>
-                <div className={styles.cardHeader}>
-                  <div className={styles.categoryInfo}>
-                    <span className={styles.categoryBadge} style={{ color: category.accent }}>
-                      Specialization
-                    </span>
-                    <h3 className={styles.categoryTitle}>{category.name}</h3>
-                  </div>
-                  <Link href="/courses" className={styles.viewAllBtn}>
-                    Explore All <ArrowRight size={18} />
-                  </Link>
-                </div>
+                {/* Category name */}
+                <span className={styles.tabName}>{c.name}</span>
 
-                <div className={styles.coursesGrid}>
-                  {category.courses.map((course, cIdx) => (
-                    <Link href={`/courses/${course.id}`} key={cIdx} className={styles.miniCourseCard}>
-                      <div className={styles.miniImageWrapper}>
-                        <img src={course.image} alt={course.title} />
-                      </div>
-                      <div className={styles.miniCardInfo}>
-                        <div className={styles.courseHeader}>
-                          <span className={styles.duration}>{course.duration} Program</span>
-                          <h4>{course.title}</h4>
-                        </div>
-                        <p>{course.desc}</p>
-                        <div className={styles.learnMore}>
-                          Learn More <ArrowRight size={14} />
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                {/* Course count badge */}
+                <span
+                  className={styles.tabBadge}
+                  style={i === activeIdx ? { color: c.accent, background: `${c.accent}18`, borderColor: `${c.accent}38` } : {}}
+                >
+                  {c.courses.length}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Explore all link */}
+          <Link href="/courses" className={styles.exploreBtn}>
+            All Programs <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        {/* ── Animated panel ── */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIdx}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.23, 1, 0.32, 1] } }}
+            exit={{ opacity: 0, y: -10, transition: { duration: 0.22 } }}
+          >
+            {/* Category sub-header */}
+            <div className={styles.catHead}>
+              <div className={styles.catLeft}>
+                <span
+                  className={styles.catTag}
+                  style={{ color: cat.accent, background: `${cat.accent}14`, borderColor: `${cat.accent}32` }}
+                >
+                  {cat.tagline}
+                </span>
+                <h3 className={styles.catTitle}>{cat.name}</h3>
               </div>
+              <span className={styles.catCount}>{cat.courses.length}&nbsp;Courses Available</span>
             </div>
-          ))}
-        </div>
-        
-        <div className={styles.footerLink}>
-          <p>The journey to excellence begins here.</p>
-          <Link href="/courses">View the full academy catalog</Link>
-        </div>
+
+            {/* Cards grid */}
+            <div className={styles.grid}>
+              {cat.courses.map((course, i) => (
+                <motion.div
+                  key={course.id}
+                  custom={i}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  <CourseCard course={course} accent={cat.accent} category={cat.name} />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
       </div>
     </section>
   );

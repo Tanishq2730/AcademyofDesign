@@ -59,9 +59,15 @@ export default function Instructors() {
 
   return (
     <section ref={containerRef} className={styles.instructorsSection}>
-      <div className={styles.header}>
-        <h2>Learn from the <span>Best.</span></h2>
-        <p>Our instructors are industry veterans, leading designers, and award-winning artists from around the globe.</p>
+      <div className="container">
+        <div className="row justify-content-center text-center">
+          <div className="col-12 col-md-10 col-lg-8">
+            <div className={styles.header}>
+              <h2>Learn from the <span>Best.</span></h2>
+              <p>Our instructors are industry veterans, leading designers, and award-winning artists from around the globe.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div 

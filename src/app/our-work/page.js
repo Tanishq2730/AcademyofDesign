@@ -30,12 +30,14 @@ export default function OurWorkPage() {
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black text-white py-20 px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div ref={containerRef} className="min-h-screen bg-black text-white py-5">
+      <div className="container py-5">
         <WorkHeader />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="row g-4 mt-4">
           {projects.map((p, i) => (
-            <WorkCard key={i} project={p} />
+            <div key={i} className="col-12 col-md-6 col-lg-4">
+              <WorkCard project={p} />
+            </div>
           ))}
         </div>
       </div>

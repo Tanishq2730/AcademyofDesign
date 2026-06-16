@@ -39,18 +39,22 @@ export default function CTA() {
       <div className={styles.backgroundGlow} />
 
       <div className="container position-relative">
-        <div className={styles.content}>
-          <div ref={textRef}>
-            <h2>
-              Ready to 
-              <span className={styles.gradientText}>Transform?</span>
-            </h2>
-            <p>
-              Enroll now and join a community of passionate designers. Turn your creative potential into professional success.
-            </p>
-            <Link href="/enroll" className={styles.enrollBtn}>
-              Let&apos;s Enroll Now
-            </Link>
+        <div className="row justify-content-center text-center">
+          <div className="col-12 col-md-10 col-lg-8">
+            <div className={styles.content}>
+              <div ref={textRef}>
+                <h2>
+                  Ready to 
+                  <span className={styles.gradientText}>Transform?</span>
+                </h2>
+                <p>
+                  Enroll now and join a community of passionate designers. Turn your creative potential into professional success.
+                </p>
+                <Link href="/enroll" className={styles.enrollBtn}>
+                  Let&apos;s Enroll Now
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

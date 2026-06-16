@@ -1,0 +1,635 @@
+// ═══════════════════════
+// TOKENS
+// ═══════════════════════
+$red:      #db254f;
+$red-soft: #e56b85;
+$red-grad: linear-gradient(180deg, #9e1030 0%, #db254f 55%, #e56b85 100%);
+$border:   rgba(255,255,255,0.07);
+$muted:    rgba(255,255,255,0.42);
+$bg:       #0a0a0a;
+$node-sz:  48px;
+
+// ═══════════════════════
+// SECTION
+// ═══════════════════════
+.section {
+  height:         100vh;
+  min-height:     720px;
+  position:       relative;
+  background:     $bg;
+  overflow:       hidden;
+  display:        flex;
+  flex-direction: column;
+  width:          100%;
+}
+
+// ═══════════════════════
+// BACKGROUND
+// ═══════════════════════
+.bg {
+  position:       absolute;
+  inset:          0;
+  pointer-events: none;
+  z-index:        0;
+}
+
+.bgOrb1 {
+  position:      absolute;
+  top:           -12%;
+  right:         -18%;
+  width:         60vw;
+  height:        60vw;
+  border-radius: 50%;
+  background:    radial-gradient(circle, rgba(219,37,79,0.09) 0%, transparent 65%);
+  will-change:   transform;
+}
+
+.bgOrb2 {
+  position:      absolute;
+  bottom:        -10%;
+  left:          -14%;
+  width:         50vw;
+  height:        50vw;
+  border-radius: 50%;
+  background:    radial-gradient(circle, rgba(219,37,79,0.06) 0%, transparent 65%);
+  will-change:   transform;
+}
+
+.bgGrid {
+  position:         absolute;
+  inset:            0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:  72px 72px;
+  mask-image:       radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+}
+
+// ═══════════════════════
+// CONTAINER
+// ═══════════════════════
+.container {
+  position:       relative;
+  z-index:        2;
+  width:          100%;
+  height:         100%;
+  padding:        0 clamp(2rem, 5vw, 5rem);
+  display:        flex;
+  flex-direction: column;
+  box-sizing:     border-box;
+}
+
+// ── Header ──────────────────────────
+.header {
+  padding-top:    3rem;
+  padding-bottom: 1.25rem;
+  flex-shrink:    0;
+}
+
+.eyebrow {
+  display:        flex;
+  align-items:    center;
+  gap:            0.5rem;
+  font-size:      0.6rem;
+  font-weight:    700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color:          $red-soft;
+  margin-bottom:  0.65rem;
+}
+
+.eyebrowDot {
+  width:         5px;
+  height:        5px;
+  border-radius: 50%;
+  background:    $red;
+  flex-shrink:   0;
+}
+
+.header h2 {
+  font-size:      clamp(2rem, 4vw, 3.2rem);
+  font-weight:    900;
+  letter-spacing: -0.04em;
+  color:          #fff;
+  line-height:    1.05;
+  margin-bottom:  0.5rem;
+
+  span { color: $red; }
+}
+
+.headerSub {
+  font-size:  0.84rem;
+  color:      $muted;
+  line-height: 1.65;
+}
+
+.divider {
+  height:        1px;
+  background:    $border;
+  flex-shrink:   0;
+  transform-origin: left center;
+}
+
+// ── Body: FLEX (not grid) ─────────
+// Using flex instead of grid avoids 1fr
+// width-computation bugs.
+.body {
+  flex:       1;
+  min-height: 0;
+  display:    flex;
+  align-items: stretch;
+  gap:        clamp(2.5rem, 4vw, 5rem);
+  overflow:   hidden;
+  padding:    1.75rem 0 2.5rem;
+}
+
+// ═══════════════════════
+// LEFT: timeline rail
+// ═══════════════════════
+.left {
+  width:      260px;
+  flex-shrink: 0;
+  position:   relative;
+  overflow:   visible;
+}
+
+// Thin dim background line (top/height set by JS)
+.railLine {
+  position:   absolute;
+  left:       23.5px; // centre of 48px node
+  width:      1px;
+  background: rgba(255,255,255,0.08);
+  z-index:    0;
+}
+
+// Red fill that grows downward (scaleY animated by JS)
+.railFill {
+  position:        absolute;
+  left:            22.5px;
+  width:           3px;
+  border-radius:   9999px;
+  background:      $red-grad;
+  z-index:         1;
+  transform:       scaleY(0);
+  transform-origin: top center;
+  will-change:     transform;
+}
+
+// Moving indicator — hidden until GSAP positions it
+.indicator {
+  position:       absolute;
+  left:           0;
+  width:          $node-sz;
+  height:         $node-sz;
+  z-index:        4;
+  display:        flex;
+  align-items:    center;
+  justify-content: center;
+  pointer-events: none;
+  opacity:        0;
+  will-change:    transform, opacity;
+}
+
+.indicatorRing {
+  position:      absolute;
+  inset:         -7px;
+  border-radius: 50%;
+  border:        1.5px solid rgba(219,37,79,0.4);
+  animation:     ringPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.12); }
+}
+
+.indicatorArrow {
+  width:         34px;
+  height:        34px;
+  border-radius: 50%;
+  background:    $red;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+  color:         #fff;
+  box-shadow:    0 0 0 5px rgba(219,37,79,0.18), 0 6px 22px rgba(219,37,79,0.45);
+  position:      relative;
+  z-index:       1;
+  will-change:   transform;
+}
+
+// Phase list — flex column, space-between
+.phaseList {
+  display:        flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height:         100%;
+  position:       relative;
+  z-index:        2;
+}
+
+.phaseRow {
+  display:     flex;
+  align-items: center;
+  gap:         1rem;
+}
+
+.phaseNode {
+  width:          $node-sz;
+  height:         $node-sz;
+  border-radius:  50%;
+  border:         1px solid rgba(255,255,255,0.1);
+  background:     rgba(255,255,255,0.04);
+  display:        flex;
+  align-items:    center;
+  justify-content: center;
+  flex-shrink:    0;
+  position:       relative;
+  z-index:        2;
+  will-change:    background-color, box-shadow, transform;
+}
+
+.nodeNum {
+  font-size:      0.7rem;
+  font-weight:    800;
+  color:          rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+}
+
+.phaseLabel {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.18rem;
+}
+
+.labelTitle {
+  font-size:   0.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  // color driven by GSAP
+}
+
+.labelWeek {
+  font-size:   0.6rem;
+  color:       rgba(255,255,255,0.25);
+  font-weight: 500;
+}
+
+// ═══════════════════════
+// RIGHT: content area
+// ═══════════════════════
+.right {
+  flex:           1;
+  min-width:      0;  /* ← critical: prevents flex blowout */
+  display:        flex;
+  flex-direction: column;
+  overflow:       hidden;
+  min-height:     0;
+}
+
+// Red progress bar
+.progressTrack {
+  height:        2px;
+  background:    rgba(255,255,255,0.06);
+  border-radius: 9999px;
+  overflow:      hidden;
+  flex-shrink:   0;
+  margin-bottom: 1.5rem;
+}
+
+.progressFill {
+  height:           100%;
+  background:       $red-grad;
+  border-radius:    9999px;
+  transform:        scaleX(0.2);
+  transform-origin: left center;
+  will-change:      transform;
+}
+
+// Card that wraps all stacked panels
+.contentCard {
+  flex:          1;
+  min-height:    0;
+  min-width:     0;
+  width:         100%;
+  position:      relative;
+  background:    rgba(255,255,255,0.025);
+  border:        1px solid $border;
+  border-radius: 20px;
+  overflow:      hidden;
+  box-sizing:    border-box;
+
+  // red top accent line
+  &::before {
+    content:    "";
+    position:   absolute;
+    top:        0;
+    left:       2.5rem;
+    right:      2.5rem;
+    height:     1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(219,37,79,0.45) 30%,
+      rgba(219,37,79,0.45) 70%,
+      transparent 100%);
+    z-index:    2;
+  }
+}
+
+// Individual phase panel — ALL hidden by default, GSAP reveals active one
+.panel {
+  position:       absolute;
+  inset:          0;
+  display:        flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:        2.5rem 3rem;
+  overflow:       hidden;
+  will-change:    opacity, transform;
+  opacity:        0;
+
+  // first panel visible before GSAP boots
+  &:first-child { opacity: 1; }
+}
+
+// Ghost number watermark
+.ghost {
+  position:       absolute;
+  right:          -1rem;
+  bottom:         -2.5rem;
+  font-size:      clamp(8rem, 15vw, 16rem);
+  font-weight:    900;
+  line-height:    1;
+  letter-spacing: -0.07em;
+  color:          rgba(255,255,255,0.028);
+  pointer-events: none;
+  user-select:    none;
+  z-index:        0;
+  will-change:    transform;
+}
+
+// Panel content — sits above ghost (z-index: 1)
+.panelMeta {
+  display:       flex;
+  align-items:   center;
+  gap:           0.65rem;
+  margin-bottom: 0.85rem;
+  position:      relative;
+  z-index:       1;
+}
+
+.panelTag {
+  padding:        0.2rem 0.68rem;
+  background:     rgba(219,37,79,0.12);
+  border:         1px solid rgba(219,37,79,0.28);
+  border-radius:  9999px;
+  font-size:      0.57rem;
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color:          $red-soft;
+}
+
+.panelWeek {
+  display:     inline-flex;
+  align-items: center;
+  gap:         0.3rem;
+  font-size:   0.67rem;
+  color:       $muted;
+  font-weight: 500;
+}
+
+.panelPhaseNum {
+  font-size:      0.57rem;
+  font-weight:    800;
+  color:          $red;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom:  0.28rem;
+  position:       relative;
+  z-index:        1;
+}
+
+.panelTitle {
+  font-size:      clamp(1.6rem, 2.6vw, 2.4rem);
+  font-weight:    900;
+  letter-spacing: -0.04em;
+  color:          #fff;
+  line-height:    1.07;
+  margin-bottom:  0.65rem;
+  position:       relative;
+  z-index:        1;
+}
+
+.panelDesc {
+  font-size:     0.86rem;
+  color:         rgba(255,255,255,0.56);
+  line-height:   1.78;
+  margin-bottom: 1.5rem;
+  position:      relative;
+  z-index:       1;
+  max-width:     52ch;
+}
+
+// Two-column: skills + outcome
+.panelGrid {
+  display:  flex;
+  gap:      2rem;
+  position: relative;
+  z-index:  1;
+  min-width: 0;
+}
+
+.skillsCol {
+  flex:           1;
+  min-width:      0;
+  display:        flex;
+  flex-direction: column;
+  gap:            0.55rem;
+}
+
+.colLabel {
+  font-size:      0.57rem;
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color:          $muted;
+  margin-bottom:  0.3rem;
+}
+
+.skillsList {
+  display:        flex;
+  flex-direction: column;
+  gap:            0.42rem;
+}
+
+.skillItem {
+  display:       flex;
+  align-items:   center;
+  gap:           0.58rem;
+  padding:       0.5rem 0.85rem;
+  background:    rgba(255,255,255,0.025);
+  border:        1px solid rgba(255,255,255,0.065);
+  border-radius: 10px;
+  transition:    border-color 0.28s, background 0.28s, transform 0.28s;
+
+  &:hover {
+    border-color: rgba(219,37,79,0.28);
+    background:   rgba(219,37,79,0.06);
+    transform:    translateX(5px);
+  }
+
+  span {
+    font-size:   0.79rem;
+    color:       rgba(255,255,255,0.72);
+    font-weight: 500;
+  }
+}
+
+.skillIcon {
+  color:       $red;
+  flex-shrink: 0;
+}
+
+// Outcome column
+.outcomeCol {
+  width:          210px;
+  flex-shrink:    0;
+  display:        flex;
+  flex-direction: column;
+  gap:            0.65rem;
+}
+
+.outcomeBox {
+  flex:           1;
+  display:        flex;
+  flex-direction: column;
+  gap:            0.55rem;
+  padding:        1rem 1.1rem;
+  background:     rgba(219,37,79,0.07);
+  border:         1px solid rgba(219,37,79,0.18);
+  border-radius:  14px;
+  position:       relative;
+  overflow:       hidden;
+
+  &::after {
+    content:       "";
+    position:      absolute;
+    top:           -20px;
+    right:         -20px;
+    width:         60px;
+    height:        60px;
+    border-radius: 50%;
+    background:    radial-gradient(circle, rgba(219,37,79,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  p {
+    font-size:   0.77rem;
+    color:       rgba(255,255,255,0.65);
+    line-height: 1.62;
+    margin:      0;
+  }
+}
+
+.outcomeIcon {
+  color:       $red;
+  flex-shrink: 0;
+  align-self:  flex-start;
+}
+
+.phaseCounter {
+  display:     flex;
+  align-items: baseline;
+  gap:         0.2rem;
+  padding-top: 0.5rem;
+  border-top:  1px solid rgba(255,255,255,0.06);
+}
+
+.counterNum {
+  font-size:      2.2rem;
+  font-weight:    900;
+  letter-spacing: -0.05em;
+  color:          rgba(219,37,79,0.65);
+  line-height:    1;
+}
+
+.counterOf {
+  font-size:   0.78rem;
+  color:       $muted;
+  font-weight: 600;
+}
+
+// ═══════════════════════
+// RESPONSIVE
+// ═══════════════════════
+@media (max-width: 1100px) {
+  .outcomeCol { width: 180px; }
+  .panel      { padding: 2rem 2.25rem; }
+}
+
+@media (max-width: 860px) {
+  .section    { height: auto; min-height: unset; overflow: visible; }
+
+  .body {
+    flex-direction: column;
+    overflow:       visible;
+    padding:        1.25rem 0 2rem;
+    gap:            1.5rem;
+  }
+
+  .left  { width: 100%; overflow: visible; }
+  .right { min-height: 520px; overflow: visible; }
+
+  .railLine,
+  .railFill,
+  .indicator { display: none; }
+
+  .phaseList {
+    flex-direction: row;
+    height:         auto;
+    justify-content: flex-start;
+    gap:            0.5rem;
+    overflow-x:     auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  .phaseRow {
+    flex-direction: column;
+    align-items:    center;
+    gap:            0.4rem;
+    min-width:      64px;
+  }
+
+  .labelWeek { display: none; }
+  .labelTitle { font-size: 0.62rem; text-align: center; }
+
+  .contentCard { min-height: 480px; }
+
+  .panel {
+    position: relative;
+    justify-content: flex-start;
+    padding:  1.75rem 1.5rem;
+    opacity:  1 !important;
+  }
+
+  .panelGrid {
+    flex-direction: column;
+    gap:            1rem;
+  }
+
+  .outcomeCol {
+    width:    100%;
+    order:    -1;
+  }
+
+  .ghost { font-size: 6rem; right: 0; bottom: -1rem; }
+}
+
+@media (max-width: 520px) {
+  .header h2  { font-size: 1.75rem; }
+  .panelTitle { font-size: 1.45rem; }
+  .panel      { padding: 1.5rem 1.25rem; }
+}

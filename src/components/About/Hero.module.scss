@@ -1,48 +1,280 @@
+/* ════════════════════════════════════════════
+   KEYFRAMES
+════════════════════════════════════════════ */
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0)      scale(1);    opacity: 0.6; }
+  35%       { transform: translate(50px, -70px) scale(1.14); opacity: 0.85; }
+  70%       { transform: translate(-30px, 35px) scale(0.9);  opacity: 0.45; }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0)       scale(1);    opacity: 0.45; }
+  30%       { transform: translate(-60px, 50px) scale(1.1);  opacity: 0.7; }
+  65%       { transform: translate(40px, -25px) scale(0.88); opacity: 0.35; }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0)       scale(1);    opacity: 0.35; }
+  45%       { transform: translate(35px, 60px) scale(1.1);  opacity: 0.55; }
+  75%       { transform: translate(-45px, -35px) scale(0.92); opacity: 0.25; }
+}
+
+@keyframes auroraBreath {
+  0%, 100% { opacity: 0.55; transform: translateX(-50%) scaleX(1); }
+  50%       { opacity: 0.9;  transform: translateX(-50%) scaleX(1.25); }
+}
+
+@keyframes ringRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes ringRotateReverse {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes beamPulse {
+  0%, 100% { opacity: 0;   transform: translateX(-50%) scaleX(0.5); }
+  50%       { opacity: 1;   transform: translateX(-50%) scaleX(1); }
+}
+
+/* ════════════════════════════════════════════
+   HERO SHELL
+════════════════════════════════════════════ */
 .hero {
-  height: 80vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   text-align: center;
-  padding-top: 100px;
-  
-  .heroContent {
-    z-index: 2;
-    max-width: 900px;
-    
-    h1 {
-      font-size: clamp(3rem, 10vw, 6rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      margin-bottom: 2rem;
-      
-      span {
-        background: linear-gradient(to right, #9e1030, #db254f, #e56b85);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-    }
-    
-    p {
-      font-size: 1.25rem;
-      color: rgba(255, 255, 255, 0.6);
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto;
+  overflow: hidden;
+  background: #030303;
+  /* Cancel the global pt-16 (4rem) on <main> so the hero truly starts from top */
+  margin-top: -4rem;
+}
+
+/* ════════════════════════════════════════════
+   BACKGROUND LAYERS
+════════════════════════════════════════════ */
+
+/* 0a — Background image */
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2671&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center center;
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 0b — Dark gradient overlay over the image */
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(3, 3, 3, 0.55) 0%,
+      rgba(3, 3, 3, 0.2)  45%,
+      rgba(3, 3, 3, 0.7)  100%
+    ),
+    radial-gradient(ellipse at center, transparent 25%, rgba(3, 3, 3, 0.55) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 1 — Dot grid */
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 38px 38px;
+  z-index: 2;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* 2 — Large orb, top-left */
+.bgOrb1 {
+  position: absolute;
+  top: -5%;
+  left: 5%;
+  width: 560px;
+  height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(219, 37, 79, 0.3) 0%, transparent 68%);
+  filter: blur(90px);
+  animation: orbFloat1 14s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* 3 — Medium orb, bottom-right */
+.bgOrb2 {
+  position: absolute;
+  bottom: 0;
+  right: 8%;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(180, 20, 55, 0.22) 0%, transparent 68%);
+  filter: blur(110px);
+  animation: orbFloat2 18s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* 4 — Small orb, center-right */
+.bgOrb3 {
+  position: absolute;
+  top: 38%;
+  right: 22%;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(100, 8, 28, 0.45) 0%, transparent 65%);
+  filter: blur(120px);
+  animation: orbFloat3 22s ease-in-out infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* 5 — Aurora top sweep */
+.bgAurora {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80vw;
+  height: 52vh;
+  background: radial-gradient(ellipse at 50% 0%, rgba(219, 37, 79, 0.16) 0%, transparent 68%);
+  animation: auroraBreath 9s ease-in-out infinite;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* 6 — Inner rotating ring with glowing dot */
+.bgRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 580px;
+  height: 580px;
+  border-radius: 50%;
+  border: 1px solid rgba(219, 37, 79, 0.1);
+  animation: ringRotate 35s linear infinite;
+  z-index: 5;
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #db254f;
+    box-shadow: 0 0 14px 4px rgba(219, 37, 79, 0.7);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(219, 37, 79, 0.45);
+    box-shadow: 0 0 8px 2px rgba(219, 37, 79, 0.35);
+  }
+}
+
+/* 7 — Outer ring, counter-rotating */
+.bgRingOuter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 820px;
+  height: 820px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.035);
+  animation: ringRotateReverse 55s linear infinite;
+  z-index: 5;
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    right: 20%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(219, 37, 79, 0.35);
+    box-shadow: 0 0 10px 3px rgba(219, 37, 79, 0.25);
+  }
+}
+
+/* 8 — Top beam line */
+.bgBeam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(219, 37, 79, 0.65), transparent);
+  animation: beamPulse 5s ease-in-out infinite;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════════
+   HERO CONTENT
+════════════════════════════════════════════ */
+.heroContent {
+  position: relative;
+  z-index: 10;
+
+  h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 2rem;
+    color: #fff;
+
+    span {
+      background: linear-gradient(to right, #9e1030, #db254f, #e56b85);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
-  
-  .bgGlow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60vw;
-    height: 60vw;
-    background: radial-gradient(circle, rgba(145, 72, 100, 0.15) 0%, transparent 70%);
-    z-index: 1;
-    pointer-events: none;
+
+  p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .bgOrb1, .bgOrb2, .bgOrb3,
+  .bgAurora, .bgRing, .bgRingOuter, .bgBeam {
+    animation: none !important;
   }
 }

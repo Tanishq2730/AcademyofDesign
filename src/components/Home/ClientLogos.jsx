@@ -1,53 +1,71 @@
 "use client";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import Image from "next/image";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styles from "./ClientLogos.module.scss";
 
-const logoImages = Array.from({ length: 20 }, (_, i) => `/assets/clientLogo/${i + 1}.png`);
-// Total 20 images: 1.png to 20.png
-
 export default function ClientLogos() {
-  const marqueeRef = useRef(null);
+  const sectionRef  = useRef(null);
+  const titleRef    = useRef(null);
+  const lineRef     = useRef(null);
+  const marqueeRef  = useRef(null);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
     const ctx = gsap.context(() => {
-      gsap.to(".marqueeContent", {
-        xPercent: -50,
-        ease: "none",
-        duration: 30,
-        repeat: -1,
+
+      /* Title — slides up from below */
+      gsap.from(titleRef.current, {
+        y: 36,
+        opacity: 0,
+        duration: 1,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 82%",
+          once: true,
+        },
       });
-    }, marqueeRef);
+
+      /* Divider line — draws from centre */
+      gsap.from(lineRef.current, {
+        scaleX: 0,
+        transformOrigin: "center",
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 78%",
+          once: true,
+        },
+      });
+
+      /* Marquee wrapper — clip reveal left→right */
+      gsap.from(marqueeRef.current, {
+        clipPath: "inset(0 100% 0 0)",
+        duration: 1.4,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: marqueeRef.current,
+          start: "top 88%",
+          once: true,
+        },
+      });
+
+    }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section className={styles.section} ref={marqueeRef}>
-      <div className={styles.title}>
-        <p>Learn From Consultant Working with</p>
+    <section ref={sectionRef} className={styles.section}>
+      <div ref={titleRef} className={styles.title}>
+        <p>Trusted by leading brands & institutions</p>
       </div>
-      
-      <div className={styles.marqueeWrapper}>
-        <div className={styles.gradientLeft} />
-        <div className={styles.gradientRight} />
-        
-        <div className={`${styles.marqueeContent} marqueeContent`}>
-          {[...logoImages, ...logoImages].map((src, index) => (
-            <div key={index} className={styles.logoBox}>
-              <div style={{ position: 'relative', height: '100%', width: '120px' }}>
-                <Image 
-                  src={src} 
-                  alt={`Client Logo ${index + 1}`} 
-                  fill
-                  style={{ objectFit: 'contain' }}
-                  unoptimized
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+      <div ref={lineRef} className={styles.divider} />
+      <div ref={marqueeRef} className={styles.marqueeWrapper}>
+        <div className={styles.clientLogo} />
       </div>
     </section>
   );

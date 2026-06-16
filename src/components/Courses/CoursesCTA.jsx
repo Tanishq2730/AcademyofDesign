@@ -73,13 +73,15 @@ export default function CoursesCTA() {
       {/* Parallax background */}
       <div ref={parallaxRef} className={styles.bgParallax} />
 
-      <div className={styles.inner}>
+      <div className="container position-relative" style={{ zIndex: 10 }}>
         {/* Stats Row */}
-        <div className={styles.statsRow}>
+        <div className="row g-4 mb-5">
           {stats.map((s, i) => (
-            <div key={i} className={styles.stat}>
-              <span className={styles.statValue}>{s.value}</span>
-              <span className={styles.statLabel}>{s.label}</span>
+            <div key={i} className="col-6 col-md-3">
+              <div className={styles.stat}>
+                <span className={styles.statValue}>{s.value}</span>
+                <span className={styles.statLabel}>{s.label}</span>
+              </div>
             </div>
           ))}
         </div>
@@ -88,22 +90,26 @@ export default function CoursesCTA() {
         <div className={styles.divider} />
 
         {/* CTA */}
-        <div className={styles.ctaBlock}>
-          <h2 className={styles.heading}>
-            Ready to Begin<br />
-            Your <em>Design Journey?</em>
-          </h2>
-          <p className={styles.subText}>
-            Join thousands of designers who built their careers at Academy of Design.
-            Our admissions team is here to guide you every step of the way.
-          </p>
-          <div className={styles.btnGroup}>
-            <Link href="/contact" className={styles.primaryBtn}>
-              Apply Now <ArrowRight size={18} />
-            </Link>
-            <Link href="/about" className={styles.secondaryBtn}>
-              Learn About Us
-            </Link>
+        <div className="row align-items-center g-5">
+          <div className="col-12 col-lg-6">
+            <h2 className={styles.heading}>
+              Ready to Begin<br />
+              Your <em>Design Journey?</em>
+            </h2>
+          </div>
+          <div className="col-12 col-lg-6">
+            <p className={styles.subText}>
+              Join thousands of designers who built their careers at Academy of Design.
+              Our admissions team is here to guide you every step of the way.
+            </p>
+            <div className={styles.btnGroup}>
+              <Link href="/contact" className={styles.primaryBtn}>
+                Apply Now <ArrowRight size={18} />
+              </Link>
+              <Link href="/about" className={styles.secondaryBtn}>
+                Learn About Us
+              </Link>
+            </div>
           </div>
         </div>
       </div>

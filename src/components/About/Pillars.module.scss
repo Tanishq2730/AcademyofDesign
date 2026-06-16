@@ -1,57 +1,186 @@
+/* ════════════════════════════════════════════
+   PILLARS SECTION
+════════════════════════════════════════════ */
 .pillars {
-  padding: 100px 0;
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+  background: #030303;
+
+  /* Dot grid background */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    
-    @media (max-width: 991px) {
-      grid-template-columns: 1fr;
-    }
+  /* Bottom center glow */
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10%; left: 50%;
+    transform: translateX(-50%);
+    width: 60vw; height: 50%;
+    background: radial-gradient(ellipse at bottom,
+      rgba(219, 37, 79, 0.1) 0%, transparent 65%);
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
   }
-  
-  .pillarCard {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 3rem;
-    border-radius: 30px;
-    transition: all 0.5s ease;
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(145, 72, 100, 0.3);
-      transform: translateY(-10px);
-    }
-    
-    .icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #9e1030, #db254f);
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2rem;
-      color: white;
-      font-size: 1.5rem;
-    }
-    
-    h3 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    
-    p {
-      color: rgba(255, 255, 255, 0.6);
-      line-height: 1.6;
-    }
+}
+
+/* ── Section header ── */
+.sectionHeader {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+
+  h2 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin: 0;
   }
+
+  p {
+    color: rgba(255, 255, 255, 0.38);
+    font-size: 1.05rem;
+    margin-top: 1rem;
+    font-weight: 300;
+  }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(219, 37, 79, 0.07);
+  border: 1px solid rgba(219, 37, 79, 0.28);
+  color: #db254f;
+  border-radius: 9999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+
+  &::before {
+    content: "";
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #db254f;
+    box-shadow: 0 0 6px rgba(219, 37, 79, 0.9);
+  }
+}
+
+/* ── Cards grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  position: relative;
+  z-index: 1;
+  counter-reset: pillar-counter;
+
+  @media (max-width: 991px) { grid-template-columns: 1fr; }
+}
+
+/* ── Pillar card ── */
+.pillarCard {
+  position: relative;
+  padding: 3rem 2.8rem;
+  border-radius: 28px;
+  overflow: hidden;
+  counter-increment: pillar-counter;
+  background: rgba(255, 255, 255, 0.022);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.4s ease, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.4s ease;
+
+  /* Large ghost number in background */
+  &::before {
+    content: "0" counter(pillar-counter);
+    position: absolute;
+    top: -0.5rem; right: 1.5rem;
+    font-size: 8rem;
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    color: rgba(219, 37, 79, 0.06);
+    line-height: 1;
+    pointer-events: none;
+    z-index: 0;
+    transition: color 0.4s ease;
+  }
+
+  /* Top accent gradient line */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(219, 37, 79, 0.55),
+      transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  &:hover {
+    border-color: rgba(219, 37, 79, 0.25);
+    transform: translateY(-8px);
+    box-shadow:
+      0 28px 60px rgba(0, 0, 0, 0.5),
+      0 0 40px rgba(219, 37, 79, 0.08);
+
+    &::before { color: rgba(219, 37, 79, 0.12); }
+    &::after  { transform: scaleX(1); }
+    .icon     { transform: scale(1.08) rotate(-3deg); }
+  }
+}
+
+.icon {
+  position: relative;
+  z-index: 1;
+  width: 58px; height: 58px;
+  background: linear-gradient(135deg, rgba(219, 37, 79, 0.2), rgba(219, 37, 79, 0.08));
+  border: 1px solid rgba(219, 37, 79, 0.3);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  color: #db254f;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 8px 24px rgba(219, 37, 79, 0.15);
+}
+
+.pillarCard h3 {
+  position: relative;
+  z-index: 1;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.pillarCard p {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.75;
+  font-size: 0.98rem;
+  font-weight: 300;
 }

@@ -1,31 +1,209 @@
+/* ════════════════════════════════════════════
+   KEYFRAMES
+════════════════════════════════════════════ */
+@keyframes visionRingRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes visionRingReverse {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+@keyframes quoteFloat {
+  0%, 100% { transform: translateY(0) rotate(-8deg); opacity: 0.04; }
+  50%       { transform: translateY(-24px) rotate(-6deg); opacity: 0.07; }
+}
+
+/* ════════════════════════════════════════════
+   VISION SECTION
+════════════════════════════════════════════ */
 .visionSection {
-  padding: 150px 0;
+  padding: 160px 0;
   text-align: center;
-  
-  .content {
-    max-width: 800px;
-    margin: 0 auto;
-    
-    h2 {
-      font-size: 4rem;
-      font-weight: 800;
-      margin-bottom: 2rem;
-      letter-spacing: -0.02em;
-    }
-    
-    p {
-      font-size: 1.4rem;
-      color: rgba(255, 255, 255, 0.7);
-      line-height: 1.6;
-      font-style: italic;
-    }
-    
-    .signature {
-      margin-top: 3rem;
-      font-weight: 700;
-      color: #e56b85;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-    }
+  position: relative;
+  overflow: hidden;
+  background: #030303;
+
+  /* Top/bottom accent lines */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(219, 37, 79, 0.3) 30%,
+      rgba(219, 37, 79, 0.55) 50%,
+      rgba(219, 37, 79, 0.3) 70%,
+      transparent 100%);
   }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(219, 37, 79, 0.2) 40%,
+      rgba(219, 37, 79, 0.4) 50%,
+      rgba(219, 37, 79, 0.2) 60%,
+      transparent 100%);
+  }
+}
+
+/* Centered radial glow */
+.bgGlow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw; height: 70vw;
+  background: radial-gradient(ellipse at center,
+    rgba(219, 37, 79, 0.12) 0%,
+    rgba(219, 37, 79, 0.04) 35%,
+    transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Inner rotating ring */
+.bgRing {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  border: 1px solid rgba(219, 37, 79, 0.1);
+  animation: visionRingRotate 40s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -4px; left: 50%;
+    transform: translateX(-50%);
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #db254f;
+    box-shadow: 0 0 14px 4px rgba(219, 37, 79, 0.7);
+  }
+
+  @media (max-width: 600px) { width: 300px; height: 300px; }
+}
+
+/* Outer counter-rotating ring */
+.bgRingOuter {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  animation: visionRingReverse 65s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -3px; right: 18%;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(219, 37, 79, 0.4);
+    box-shadow: 0 0 10px 3px rgba(219, 37, 79, 0.25);
+  }
+
+  @media (max-width: 600px) { width: 440px; height: 440px; }
+}
+
+/* Giant decorative quote mark */
+.bgQuote {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -52%) rotate(-8deg);
+  font-size: clamp(18rem, 28vw, 32rem);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(219, 37, 79, 0.045);
+  pointer-events: none;
+  z-index: 0;
+  animation: quoteFloat 10s ease-in-out infinite;
+  user-select: none;
+  font-family: Georgia, serif;
+}
+
+/* ── Content ── */
+.content {
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(219, 37, 79, 0.07);
+  border: 1px solid rgba(219, 37, 79, 0.28);
+  color: #db254f;
+  border-radius: 9999px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+
+  &::before {
+    content: "";
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #db254f;
+    box-shadow: 0 0 6px rgba(219, 37, 79, 0.9);
+  }
+}
+
+.content h2 {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, #fff 30%, #db254f 70%, #e56b85 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.content p {
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.75;
+  font-style: italic;
+  font-weight: 300;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.divider {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #db254f, transparent);
+  margin: 2.5rem auto;
+  border-radius: 9999px;
+}
+
+.signature {
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #db254f, #e56b85);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgRing, .bgRingOuter, .bgQuote { animation: none !important; }
 }

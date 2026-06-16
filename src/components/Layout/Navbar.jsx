@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, User, LogOut } from "lucide-react";
+import { Menu, X, LogOut } from "lucide-react";
 import { motion } from "framer-motion";
+import { useAuth } from "@/context/AuthContext";
 import styles from "./Navbar.module.scss";
 
 const navLinks = [
@@ -21,8 +22,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const router = useRouter();
+  const router   = useRouter();
   const pathname = usePathname();
+  const { openModal } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,13 +122,19 @@ export default function Navbar() {
               </div>
             </div>
           ) : (
-            <Link
-              href="/login"
+            <button
+              onClick={() => openModal("login")}
               className={styles.enrollBtn}
             >
-              Enroll Now
-            </Link>
+              Login / Signup
+            </button>
           )}
+          <button
+            onClick={() => openModal("login")}
+            className={styles.enrollBtn}
+          >
+            Student Portal
+          </button>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -141,10 +149,11 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-t border-white/10 p-6 flex flex-col gap-6 md:hidden shadow-2xl"
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
+          className={styles.mobileOverlay}
         >
           {navLinks.map((link) => {
             const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
@@ -153,7 +162,7 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className={`text-lg font-bold transition-colors ${isActive ? "text-[#e56b85] drop-shadow-[0_0_8px_rgba(182,123,128,0.5)]" : "text-gray-300 hover:text-white"}`}
+                className={`${styles.mobileNavLink} ${isActive ? styles.active : ""}`}
               >
                 {link.name}
               </Link>
@@ -161,14 +170,14 @@ export default function Navbar() {
           })}
 
           {isAuthenticated && user ? (
-            <div className="flex flex-col gap-3 pt-3 border-t border-white/10">
-              <div className="flex items-center gap-3 px-2 py-1">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#9e1030] to-[#e56b85] flex items-center justify-center text-white font-extrabold text-lg uppercase border border-white/20">
-                  {user.name ? user.name.charAt(0) : 'U'}
+            <div className={styles.mobileAuthBlock}>
+              <div className={styles.mobileProfileRow}>
+                <div className={styles.mobileProfileAvatar}>
+                  {user.name ? user.name.charAt(0) : "U"}
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-xs text-gray-500 uppercase tracking-widest font-bold">Hello,</span>
-                  <span className="text-white font-bold text-base">{user.name || 'Student'}</span>
+                <div className={styles.mobileProfileMeta}>
+                  <span className={styles.greet}>Hello,</span>
+                  <span className={styles.name}>{user.name || "Student"}</span>
                 </div>
               </div>
               <button
@@ -176,19 +185,18 @@ export default function Navbar() {
                   setIsOpen(false);
                   handleLogout();
                 }}
-                className="w-full text-center px-6 py-3 rounded-full bg-red-600/10 hover:bg-red-600/20 text-red-400 font-semibold text-lg transition-colors mt-2"
+                className={styles.mobileLogoutBtn}
               >
                 Log Out
               </button>
             </div>
           ) : (
-            <Link
-              href="/login"
-              onClick={() => setIsOpen(false)}
-              className="w-full text-center px-6 py-3 rounded-full bg-white text-black font-semibold text-lg"
+            <button
+              onClick={() => { setIsOpen(false); openModal("login"); }}
+              className={styles.mobileEnrollBtn}
             >
-              Enroll Now
-            </Link>
+              Login / Signup
+            </button>
           )}
         </motion.div>
       )}

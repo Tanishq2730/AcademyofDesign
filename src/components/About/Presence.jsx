@@ -4,7 +4,7 @@ import styles from "./Presence.module.scss";
 export default function Presence() {
   return (
     <section className={styles.presenceSection}>
-      <div className={styles.container}>
+      <div className="container">
         <div className={styles.glassCard}>
           <div className="row g-0 align-items-center">
             <div className="col-lg-6">

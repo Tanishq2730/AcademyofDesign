@@ -9,6 +9,7 @@ import Stats from "@/components/About/Stats";
 import Pillars from "@/components/About/Pillars";
 import Presence from "@/components/About/Presence";
 import Vision from "@/components/About/Vision";
+import Testimonials from "@/components/Testimonials/Testimonials";
 import styles from "./About.module.scss";
 
 export default function AboutPage() {
@@ -74,6 +75,11 @@ export default function AboutPage() {
       <Founder />
       <Presence />
       <Vision />
+      <Testimonials
+        title="Voices From Our Alumni"
+        subtitle="Hear directly from designers who built their careers through our programs."
+        accentColor="#db254f"
+      />
     </div>
   );
 }

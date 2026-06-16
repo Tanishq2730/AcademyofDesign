@@ -1,0 +1,68 @@
+[
+  {
+    "id": "autocad-aec-mastery",
+    "title": "AEC Architectural Drafting & Compliance Masterclass",
+    "subtitle": "Learn professional blueprint creation & municipal zoning compliance",
+    "category": "Architecture & Structures",
+    "date": "June 12, 2026",
+    "time": "10:00 AM - 4:00 PM",
+    "location": "Studio 1, Nuvosid Campus & Live Online",
+    "price": "₹999.00",
+    "originalPrice": "₹2,999.00",
+    "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop",
+    "speaker": {
+      "name": "Siddharth Sharma",
+      "designation": "Senior Structural Engineer & Program Chair",
+      "credentials": "B.Tech Civil, M.Tech Structures, Member FFSC",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop",
+      "bio": "Siddharth Sharma has guided 5,000+ engineers in structural compliance, real-world steel framework layouts, and high-fidelity AutoCAD blueprinting models."
+    },
+    "schedule": [
+      { "time": "10:00 AM", "activity": "Introduction to AEC blueprints & municipal zoning compliance frameworks." },
+      { "time": "11:30 AM", "activity": "AutoCAD LT interface setup, structural scaling ratios, and layer layouts." },
+      { "time": "01:00 PM", "activity": "Lunch break & cohort peer networking circle." },
+      { "time": "01:45 PM", "activity": "Hands-on project drafting: Building a compliant 2BHK structural blueprint." },
+      { "time": "03:30 PM", "activity": "Blueprint audit, Q&A, and certification release." }
+    ],
+    "keynotes": [
+      "Master industry-standard AEC layer management rules.",
+      "Identify and debug structural blueprint drawing errors.",
+      "Draw custom site layouts with live expert walkthrough reviews.",
+      "Get the official Surpass & Nuvosid Academy Certificate of Completion.",
+      "Gain exclusive access to professional AutoCAD blueprint template packages."
+    ]
+  },
+  {
+    "id": "figma-product-sprint",
+    "title": "Advanced Product UX & Design Systems Sprint",
+    "subtitle": "Craft high-performance variables, advanced prototyping, and tokens in Figma",
+    "category": "Digital UI/UX Design",
+    "date": "June 20, 2026",
+    "time": "11:00 AM - 5:00 PM",
+    "location": "Interactive Digital Studio / Zoom Live",
+    "price": "₹1,499.00",
+    "originalPrice": "₹3,999.00",
+    "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=800&auto=format&fit=crop",
+    "speaker": {
+      "name": "Manan Agrawal",
+      "designation": "Business Architect & Technology Consultant",
+      "credentials": "B.Tech CS (IIT Delhi), MBA Wharton (USA)",
+      "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop",
+      "bio": "Manan is a veteran software architect and technology entrepreneur specializing in UX-driven product architectures, design system variables, and design workflows."
+    },
+    "schedule": [
+      { "time": "11:00 AM", "activity": "UX Research methodologies and user flow journey wireframing." },
+      { "time": "12:00 PM", "activity": "Building scalable Figma design systems with custom tokens & auto-layout 5.0." },
+      { "time": "02:00 PM", "activity": "Interactive breakout session: Designing high-fidelity micro-interactions." },
+      { "time": "03:30 PM", "activity": "Figma Variables, advanced conditionals, and interactive logic rules." },
+      { "time": "04:30 PM", "activity": "Handoff blueprints, portfolio audit, and closing feedback circle." }
+    ],
+    "keynotes": [
+      "Implement production-grade responsive auto-layout structures.",
+      "Unravel conditional prototyping logic and state transition triggers.",
+      "Design a production-ready color, typography, and spacing token framework.",
+      "Have your personal portfolio projects audited live by design partners.",
+      "Surpass Academy Certificate of Mastery and Figma design resources kit."
+    ]
+  }
+]

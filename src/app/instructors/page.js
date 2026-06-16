@@ -8,7 +8,7 @@ export default function InstructorsPage() {
     <div className={styles.pageWrapper}>
       <div className={styles.bgGlow1} />
       <div className={styles.bgGlow2} />
-      <div className={styles.container}>
+      <div className="container position-relative flex-grow-1 d-flex flex-column" style={{ zIndex: 10 }}>
         <InstructorsHeader />
         <InstructorsShowcase />
       </div>

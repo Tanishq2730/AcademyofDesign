@@ -1,0 +1,284 @@
+/* ════════════════════════════════════════════
+   COURSE CARD  —  shared component
+   Used on: Home /Courses section + /courses page
+════════════════════════════════════════════ */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  text-decoration: none;
+  background: radial-gradient(ellipse at 50% 0%, #18181f 0%, #0c0c0f 70%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 24px rgba(0, 0, 0, 0.45);
+
+  transition:
+    border-color 0.4s ease,
+    box-shadow   0.4s ease,
+    transform    0.7s cubic-bezier(0.23, 1, 0.32, 1);
+
+  /* Top accent line — sweeps in on hover */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2.5px;
+    background: var(--accent, #db254f);
+    border-radius: 9999px 9999px 0 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.52s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 12;
+  }
+
+  /* Diagonal shimmer sweep */
+  &::after {
+    content: "";
+    position: absolute;
+    top: -50%; left: -80%;
+    width: 50%; height: 200%;
+    background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.04) 50%, transparent 100%);
+    transform: skewX(-18deg);
+    transition: left 0s;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--accent, #db254f) 45%, transparent);
+    box-shadow:
+      0 32px 70px rgba(0, 0, 0, 0.78),
+      0 0 0 1px color-mix(in srgb, var(--accent, #db254f) 18%, transparent),
+      0 0 75px color-mix(in srgb, var(--accent, #db254f) 12%, transparent),
+      inset 0 1px 0 rgba(255, 255, 255, 0.09);
+    transform:
+      perspective(900px)
+      translateY(-14px)
+      rotateX(var(--rx, 0deg))
+      rotateY(var(--ry, 0deg))
+      scale(1.018);
+
+    .preview img { transform: scale(1.1); }
+    .body h4     { color: var(--accent, #db254f); }
+    .cta         { color: var(--accent, #db254f); gap: 0.5rem; }
+    .enrollStrip { transform: translateY(0); }
+
+    &::before { transform: scaleX(1); }
+    &::after  { left: 165%; transition: left 0.78s ease; }
+  }
+}
+
+/* ── Preview image area ── */
+.preview {
+  position: relative;
+  height: 255px;
+  overflow: hidden;
+  background: #080808;
+  flex-shrink: 0;
+
+  img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.35s ease;
+  }
+}
+
+.imgHide { opacity: 0; }
+
+.vid {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  z-index: 1;
+}
+.vidShow { opacity: 1; }
+
+/* Gradient overlay on image */
+.previewGrad {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent, #db254f) 12%, transparent) 0%,
+    transparent 38%,
+    rgba(0, 0, 0, 0.78) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Category chip — top left */
+.catChip {
+  position: absolute;
+  top: 0.85rem; left: 0.9rem;
+  z-index: 6;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+/* Level badge — top right */
+.lvlBadge {
+  position: absolute;
+  top: 0.85rem; right: 0.85rem;
+  z-index: 6;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.28rem 0.68rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  backdrop-filter: blur(8px);
+}
+
+/* Play ring — centred via inset+margin so Framer Motion scale doesn't break position */
+.playRing {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 7;
+  width: 3rem; height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Enroll strip — slides up from bottom on hover */
+.enrollStrip {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3.6rem;
+  background: linear-gradient(
+    0deg,
+    color-mix(in srgb, var(--accent, #db254f) 90%, #000) 0%,
+    color-mix(in srgb, var(--accent, #db254f) 18%, transparent) 100%
+  );
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.4rem;
+  padding-bottom: 0.9rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  transform: translateY(104%);
+  transition: transform 0.42s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 8;
+  pointer-events: none;
+}
+
+/* ════════════════════════════════════════════
+   CARD BODY
+════════════════════════════════════════════ */
+.body {
+  padding: 1.55rem 1.6rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.65rem;
+}
+
+.tagsRow {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+
+  span {
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.24rem 0.62rem;
+    border-radius: 9999px;
+    color: rgba(255, 255, 255, 0.36);
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+}
+
+.body h4 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+  transition: color 0.32s ease;
+}
+
+.desc {
+  font-size: 0.94rem;
+  line-height: 1.68;
+  color: rgba(255, 255, 255, 0.32);
+  margin: 0;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.065);
+  margin-top: auto;
+}
+
+.dur {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+
+  svg { opacity: 0.55; }
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0.42rem 0.95rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+  transition: color 0.32s ease, gap 0.32s ease, background 0.32s ease, border-color 0.32s ease;
+
+  .card:hover & {
+    background: color-mix(in srgb, var(--accent, #db254f) 12%, transparent);
+    border-color: color-mix(in srgb, var(--accent, #db254f) 28%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .enrollStrip { transition: none !important; }
+}

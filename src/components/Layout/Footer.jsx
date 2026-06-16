@@ -1,133 +1,135 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { Mail, Phone, MapPin } from "lucide-react";
+import styles from "./Footer.module.scss";
+
+const exploreLinks = [
+  { name: "Our Courses", href: "/courses" },
+  { name: "About Us", href: "/about" },
+  { name: "Workshops", href: "/workshops" },
+  { name: "Placement", href: "/placement" },
+  { name: "Our Work", href: "/our-work" },
+  { name: "Instructors", href: "/instructors" },
+];
+
+const supportLinks = [
+  { name: "Contact Us", href: "/contact" },
+  { name: "FAQs", href: "/faq" },
+  { name: "Privacy Policy", href: "/privacy-policy" },
+  { name: "Terms of Service", href: "/terms" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-black py-5 border-top border-white-5">
-      <div className="container">
-        <div className="row gy-5">
-          {/* Logo and Description */}
-          <div className="col-lg-3 col-md-6">
-            <Link href="/" className="d-inline-block mb-4">
-              <Image 
-                src="/assets/logo.png" 
-                alt="Nuvosid Logo" 
-                width={150} 
-                height={50} 
-                className="img-fluid"
-                style={{ width: '160px', height: 'auto' }}
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        {/* Top section */}
+        <div className={styles.topSection}>
+          {/* Brand column */}
+          <div className={styles.brandCol}>
+            <Link href="/" className={styles.logo}>
+              <Image
+                src="/assets/logo.png"
+                alt="Nuvosid Logo"
+                width={220}
+                height={50}
                 unoptimized
               />
             </Link>
-            <p className="text-secondary small lh-lg mb-4">
-              A premium design academy shaping the creative leaders of tomorrow. 
-              Elevate your skills with industry-leading mentors.
+            <p className={styles.brandDesc}>
+              A premium design academy shaping the creative leaders of tomorrow.
+              Elevate your skills with industry-leading mentors and real-world projects.
             </p>
-            <div className="d-flex gap-3">
-              {[
-                { path: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z", extra: "M17.5 6.5h.01", rect: true },
-                { path: "M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z", rect: true, circle: "4 4 2" },
-                { path: "M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" },
-                { path: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" }
-              ].map((icon, i) => (
-                <a key={i} href="#" className="d-flex align-items-center justify-content-center rounded-circle bg-white-5 text-secondary transition-all" style={{ width: '40px', height: '40px', backgroundColor: 'rgba(255,255,255,0.05)', transition: '0.3s' }} onMouseOver={e => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)'} onMouseOut={e => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    {icon.rect && <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>}
-                    <path d={icon.path}/>
-                    {icon.extra && <path d={icon.extra}/>}
-                    {icon.circle && <circle cx="4" cy="4" r="2"/>}
-                  </svg>
-                </a>
-              ))}
+            <div className={styles.socials}>
+              <a href="#" className={styles.socialIcon} aria-label="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </a>
+              <a href="#" className={styles.socialIcon} aria-label="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect width="4" height="12" x="2" y="9"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              </a>
+              <a href="#" className={styles.socialIcon} aria-label="Twitter">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
+                </svg>
+              </a>
             </div>
           </div>
 
-          {/* Explore Links */}
-          <div className="col-lg-3 col-md-6 ps-lg-5">
-            <h5 className="text-white fw-bold mb-4">Explore</h5>
-            <ul className="list-unstyled d-flex flex-column gap-3">
-              {[
-                { name: "Our Courses", href: "/courses" },
-                { name: "About Us", href: "/about" },
-                { name: "Workshops", href: "/workshops" },
-                { name: "Placement", href: "/placement" },
-                { name: "Our Work", href: "/our-work" },
-                { name: "Instructors", href: "/instructors" }
-              ].map((link, i) => (
-                <li key={i}>
-                  <Link href={link.href} className="text-secondary text-decoration-none small hover-white transition-all">
-                    {link.name}
-                  </Link>
+          {/* Explore column */}
+          <div className={styles.linksCol}>
+            <h4 className={styles.colTitle}>Explore</h4>
+            <ul className={styles.linksList}>
+              {exploreLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href}>{link.name}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Support Links */}
-          <div className="col-lg-3 col-md-6 ps-lg-4">
-            <h5 className="text-white fw-bold mb-4">Support</h5>
-            <ul className="list-unstyled d-flex flex-column gap-3">
-              {[
-                { name: "Contact Us", href: "/contact" },
-                { name: "FAQs", href: "/faq" },
-                { name: "Privacy Policy", href: "/privacy-policy" },
-                { name: "Terms of Service", href: "/terms" }
-              ].map((link, i) => (
-                <li key={i}>
-                  <Link href={link.href} className="text-secondary text-decoration-none small hover-white transition-all">
-                    {link.name}
-                  </Link>
+          {/* Support column */}
+          <div className={styles.linksCol}>
+            <h4 className={styles.colTitle}>Support</h4>
+            <ul className={styles.linksList}>
+              {supportLinks.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href}>{link.name}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div className="col-lg-3 col-md-6">
-            <h5 className="text-white fw-bold mb-4">Newsletter</h5>
-            <p className="text-secondary small mb-4">Subscribe to get the latest design news and workshop updates.</p>
-            <form className="d-flex flex-column flex-sm-row gap-2">
-              <input 
-                type="email" 
-                placeholder="Email address" 
-                className="form-control bg-dark border-secondary text-white small py-2 px-3"
-                style={{ backgroundColor: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)' }}
-              />
-              <button 
-                type="submit" 
-                className="btn btn-light fw-bold px-4 py-2 small"
-              >
-                Join
-              </button>
-            </form>
+          {/* Contact column */}
+          <div className={styles.contactCol}>
+            <h4 className={styles.colTitle}>Get in Touch</h4>
+            <div className={styles.contactList}>
+              <div className={styles.contactItem}>
+                <Mail size={15} />
+                <span>hello@nuvosid.com</span>
+              </div>
+              <div className={styles.contactItem}>
+                <Phone size={15} />
+                <span>+91 99999 99999</span>
+              </div>
+              <div className={styles.contactItem}>
+                <MapPin size={15} />
+                <span>Indore, Madhya Pradesh, India</span>
+              </div>
+            </div>
+
+            {/* Newsletter */}
+            <div className={styles.newsletter}>
+              <p>Subscribe for updates</p>
+              <form className={styles.newsletterForm}>
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  required
+                />
+                <button type="submit">Join</button>
+              </form>
+            </div>
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="mt-5 pt-4 border-top border-white-5 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-          <p className="text-secondary small mb-0">
-            © {new Date().getFullYear()} Nuvosid Academy of Design. All rights reserved.
-          </p>
-          <div className="d-flex gap-4">
-            <Link href="/privacy" className="text-secondary text-decoration-none small">Privacy</Link>
-            <Link href="/terms" className="text-secondary text-decoration-none small">Terms</Link>
+        {/* Bottom bar */}
+        <div className={styles.bottomBar}>
+          <p>&copy; {new Date().getFullYear()} Nuvosid Academy of Design. All rights reserved.</p>
+          <div className={styles.bottomLinks}>
+            <Link href="/privacy-policy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .text-secondary { color: #888 !important; }
-        .bg-white-5 { background-color: rgba(255,255,255,0.05); }
-        .border-white-5 { border-color: rgba(255,255,255,0.05) !important; }
-        .hover-white:hover { color: #fff !important; }
-        .form-control:focus {
-          background-color: rgba(255,255,255,0.08);
-          border-color: #db254f;
-          box-shadow: none;
-          color: white;
-        }
-      `}</style>
     </footer>
   );
 }

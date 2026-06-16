@@ -3,7 +3,7 @@ import styles from "./Founder.module.scss";
 export default function Founder() {
   return (
     <section className={styles.founderSection}>
-      <div className={styles.container}>
+      <div className="container">
         
         {/* History / Started Section */}
         <div className={styles.historyBlock}>
