@@ -23,7 +23,7 @@ export default function CourseDetail() {
   // After modal closes, navigate to demo if user just logged in
   useEffect(() => {
     if (prevIsOpenRef.current && !isOpen && pendingDemoRef.current) {
-      fetch('/api/auth/check')
+      fetch('/api/auth/check', { cache: 'no-store', credentials: 'include' })
         .then(r => r.json())
         .then(data => {
           if (data.authenticated) {
@@ -38,7 +38,7 @@ export default function CourseDetail() {
 
   const handleDemoClick = async () => {
     try {
-      const res = await fetch('/api/auth/check');
+      const res = await fetch('/api/auth/check', { cache: 'no-store', credentials: 'include' });
       const data = await res.json();
       if (res.ok && data.authenticated) {
         router.push(`/courses/${slug}/demo`);

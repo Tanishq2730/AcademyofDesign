@@ -56,6 +56,7 @@
 }
 
 .statItem {
+  --accent: #db254f;
   position: relative;
   padding: 2rem 1rem;
   z-index: 1;
@@ -79,7 +80,7 @@
   font-weight: 900;
   line-height: 1;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #ffffff 0%, #db254f 80%, #e56b85 100%);
+  background: linear-gradient(135deg, #ffffff 0%, var(--accent) 85%, color-mix(in srgb, var(--accent) 60%, #fff) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -93,7 +94,7 @@
     transform: translate(-50%, -50%) scale(1);
     width: 80px; height: 80px;
     border-radius: 50%;
-    border: 1px solid rgba(219, 37, 79, 0.35);
+    border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
     animation: ringPulse 3s ease-in-out infinite;
     pointer-events: none;
   }
@@ -101,7 +102,7 @@
   &::after {
     content: '+';
     font-size: 0.55em;
-    background: linear-gradient(135deg, #db254f, #e56b85);
+    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, #fff));
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

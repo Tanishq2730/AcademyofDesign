@@ -6,16 +6,19 @@ const PILLARS = [
     icon: <Rocket size={26} />,
     title: "Think New",
     desc: "Innovation is at our core. We constantly push the boundaries of design thinking to solve complex infrastructure needs.",
+    accent: "#e0a6b2", // soft rose
   },
   {
     icon: <ShieldCheck size={26} />,
     title: "Build Precision",
     desc: "Precision-engineered structures with a commitment to safety, quality, and timely execution in every delivery.",
+    accent: "#9ecfc4", // soft sage
   },
   {
     icon: <GraduationCap size={26} />,
     title: "Lead Mastery",
     desc: "Professional project management and specialized education through Surpass Academy to bridge the industry skills gap.",
+    accent: "#bdb0e3", // soft lavender
   },
 ];
 
@@ -31,7 +34,7 @@ export default function Pillars() {
 
         <div className={styles.grid}>
           {PILLARS.map((p) => (
-            <div key={p.title} className={styles.pillarCard}>
+            <div key={p.title} className={styles.pillarCard} style={{ "--accent": p.accent }}>
               <div className={styles.icon}>{p.icon}</div>
               <h3>{p.title}</h3>
               <p>{p.desc}</p>

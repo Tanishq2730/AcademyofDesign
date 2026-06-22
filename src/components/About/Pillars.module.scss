@@ -97,6 +97,7 @@
 
 /* ── Pillar card ── */
 .pillarCard {
+  --accent: #db254f;
   position: relative;
   padding: 3rem 2.8rem;
   border-radius: 28px;
@@ -115,7 +116,7 @@
     font-size: 8rem;
     font-weight: 900;
     letter-spacing: -0.06em;
-    color: rgba(219, 37, 79, 0.06);
+    color: color-mix(in srgb, var(--accent) 7%, transparent);
     line-height: 1;
     pointer-events: none;
     z-index: 0;
@@ -130,7 +131,7 @@
     height: 2px;
     background: linear-gradient(90deg,
       transparent,
-      rgba(219, 37, 79, 0.55),
+      color-mix(in srgb, var(--accent) 60%, transparent),
       transparent);
     transform: scaleX(0);
     transform-origin: left;
@@ -138,13 +139,13 @@
   }
 
   &:hover {
-    border-color: rgba(219, 37, 79, 0.25);
+    border-color: color-mix(in srgb, var(--accent) 32%, transparent);
     transform: translateY(-8px);
     box-shadow:
       0 28px 60px rgba(0, 0, 0, 0.5),
-      0 0 40px rgba(219, 37, 79, 0.08);
+      0 0 40px color-mix(in srgb, var(--accent) 12%, transparent);
 
-    &::before { color: rgba(219, 37, 79, 0.12); }
+    &::before { color: color-mix(in srgb, var(--accent) 16%, transparent); }
     &::after  { transform: scaleX(1); }
     .icon     { transform: scale(1.08) rotate(-3deg); }
   }
@@ -154,16 +155,18 @@
   position: relative;
   z-index: 1;
   width: 58px; height: 58px;
-  background: linear-gradient(135deg, rgba(219, 37, 79, 0.2), rgba(219, 37, 79, 0.08));
-  border: 1px solid rgba(219, 37, 79, 0.3);
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 24%, transparent),
+    color-mix(in srgb, var(--accent) 9%, transparent));
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
   border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 2rem;
-  color: #db254f;
+  color: var(--accent);
   transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0 8px 24px rgba(219, 37, 79, 0.15);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 .pillarCard h3 {

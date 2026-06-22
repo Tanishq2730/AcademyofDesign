@@ -72,30 +72,34 @@ $node-sz:  48px;
   position:       relative;
   z-index:        2;
   width:          100%;
+  max-width:      1320px;
+  margin:         0 auto;
   height:         100%;
-  padding:        0 clamp(2rem, 5vw, 5rem);
+  padding:        0 clamp(2rem, 4vw, 4rem);
   display:        flex;
   flex-direction: column;
   box-sizing:     border-box;
 }
 
-// ── Header ──────────────────────────
+// ── Header (centered) ───────────────
 .header {
   padding-top:    3rem;
   padding-bottom: 1.25rem;
   flex-shrink:    0;
+  text-align:     center;
 }
 
 .eyebrow {
-  display:        flex;
-  align-items:    center;
-  gap:            0.5rem;
-  font-size:      0.6rem;
-  font-weight:    700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color:          $red-soft;
-  margin-bottom:  0.65rem;
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             0.5rem;
+  font-size:       0.75rem;
+  font-weight:     700;
+  letter-spacing:  0.2em;
+  text-transform:  uppercase;
+  color:           $red-soft;
+  margin-bottom:   0.65rem;
 }
 
 .eyebrowDot {
@@ -118,29 +122,29 @@ $node-sz:  48px;
 }
 
 .headerSub {
-  font-size:  0.84rem;
-  color:      $muted;
+  font-size:   1rem;
+  color:       $muted;
   line-height: 1.65;
+  max-width:   46ch;
+  margin:      0 auto;
 }
 
 .divider {
-  height:        1px;
-  background:    $border;
-  flex-shrink:   0;
+  height:           1px;
+  background:       $border;
+  flex-shrink:      0;
   transform-origin: left center;
 }
 
-// ── Body: FLEX (not grid) ─────────
-// Using flex instead of grid avoids 1fr
-// width-computation bugs.
+// ── Body ──────────────────────────
 .body {
-  flex:       1;
-  min-height: 0;
-  display:    flex;
+  flex:        1;
+  min-height:  0;
+  display:     flex;
   align-items: stretch;
-  gap:        clamp(2.5rem, 4vw, 5rem);
-  overflow:   hidden;
-  padding:    1.75rem 0 2.5rem;
+  gap:         3.5rem;
+  overflow:    hidden;
+  padding:     1.75rem 0 2.5rem;
 }
 
 // ═══════════════════════
@@ -250,7 +254,7 @@ $node-sz:  48px;
 }
 
 .nodeNum {
-  font-size:      0.7rem;
+  font-size:      0.82rem;
   font-weight:    800;
   color:          rgba(255,255,255,0.45);
   letter-spacing: 0.02em;
@@ -263,14 +267,14 @@ $node-sz:  48px;
 }
 
 .labelTitle {
-  font-size:   0.8rem;
+  font-size:   0.95rem;
   font-weight: 700;
   line-height: 1.2;
   // color driven by GSAP
 }
 
 .labelWeek {
-  font-size:   0.6rem;
+  font-size:   0.75rem;
   color:       rgba(255,255,255,0.25);
   font-weight: 500;
 }
@@ -379,11 +383,11 @@ $node-sz:  48px;
 }
 
 .panelTag {
-  padding:        0.2rem 0.68rem;
+  padding:        0.25rem 0.85rem;
   background:     rgba(219,37,79,0.12);
   border:         1px solid rgba(219,37,79,0.28);
   border-radius:  9999px;
-  font-size:      0.57rem;
+  font-size:      0.72rem;
   font-weight:    700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -394,13 +398,13 @@ $node-sz:  48px;
   display:     inline-flex;
   align-items: center;
   gap:         0.3rem;
-  font-size:   0.67rem;
+  font-size:   0.82rem;
   color:       $muted;
   font-weight: 500;
 }
 
 .panelPhaseNum {
-  font-size:      0.57rem;
+  font-size:      0.72rem;
   font-weight:    800;
   color:          $red;
   text-transform: uppercase;
@@ -411,7 +415,7 @@ $node-sz:  48px;
 }
 
 .panelTitle {
-  font-size:      clamp(1.6rem, 2.6vw, 2.4rem);
+  font-size:      clamp(1.9rem, 3vw, 2.8rem);
   font-weight:    900;
   letter-spacing: -0.04em;
   color:          #fff;
@@ -422,7 +426,7 @@ $node-sz:  48px;
 }
 
 .panelDesc {
-  font-size:     0.86rem;
+  font-size:     1rem;
   color:         rgba(255,255,255,0.56);
   line-height:   1.78;
   margin-bottom: 1.5rem;
@@ -449,7 +453,7 @@ $node-sz:  48px;
 }
 
 .colLabel {
-  font-size:      0.57rem;
+  font-size:      0.72rem;
   font-weight:    700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
@@ -480,7 +484,7 @@ $node-sz:  48px;
   }
 
   span {
-    font-size:   0.79rem;
+    font-size:   0.92rem;
     color:       rgba(255,255,255,0.72);
     font-weight: 500;
   }
@@ -525,7 +529,7 @@ $node-sz:  48px;
   }
 
   p {
-    font-size:   0.77rem;
+    font-size:   0.92rem;
     color:       rgba(255,255,255,0.65);
     line-height: 1.62;
     margin:      0;
@@ -555,7 +559,7 @@ $node-sz:  48px;
 }
 
 .counterOf {
-  font-size:   0.78rem;
+  font-size:   0.92rem;
   color:       $muted;
   font-weight: 600;
 }
@@ -604,7 +608,7 @@ $node-sz:  48px;
   }
 
   .labelWeek { display: none; }
-  .labelTitle { font-size: 0.62rem; text-align: center; }
+  .labelTitle { font-size: 0.78rem; text-align: center; }
 
   .contentCard { min-height: 480px; }
 
@@ -629,7 +633,8 @@ $node-sz:  48px;
 }
 
 @media (max-width: 520px) {
-  .header h2  { font-size: 1.75rem; }
-  .panelTitle { font-size: 1.45rem; }
+  .header h2  { font-size: 2rem; }
+  .panelTitle { font-size: 1.7rem; }
+  .panelDesc  { font-size: 0.92rem; }
   .panel      { padding: 1.5rem 1.25rem; }
 }
