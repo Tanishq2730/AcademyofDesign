@@ -4,9 +4,9 @@
 $red:      #db254f;
 $red-soft: #e56b85;
 $red-grad: linear-gradient(180deg, #9e1030 0%, #db254f 55%, #e56b85 100%);
-$border:   rgba(255,255,255,0.07);
-$muted:    rgba(255,255,255,0.42);
-$bg:       #0a0a0a;
+$border:   rgba(var(--fg-rgb),0.07);
+$muted:    rgba(var(--fg-rgb),0.42);
+$bg:       var(--bg-elev);
 $node-sz:  48px;
 
 // ═══════════════════════
@@ -59,8 +59,8 @@ $node-sz:  48px;
   position:         absolute;
   inset:            0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    linear-gradient(rgba(var(--fg-rgb),0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--fg-rgb),0.02) 1px, transparent 1px);
   background-size:  72px 72px;
   mask-image:       radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
 }
@@ -114,7 +114,7 @@ $node-sz:  48px;
   font-size:      clamp(2rem, 4vw, 3.2rem);
   font-weight:    900;
   letter-spacing: -0.04em;
-  color:          #fff;
+  color:          var(--fg);
   line-height:    1.05;
   margin-bottom:  0.5rem;
 
@@ -162,7 +162,7 @@ $node-sz:  48px;
   position:   absolute;
   left:       23.5px; // centre of 48px node
   width:      1px;
-  background: rgba(255,255,255,0.08);
+  background: rgba(var(--fg-rgb),0.08);
   z-index:    0;
 }
 
@@ -215,7 +215,7 @@ $node-sz:  48px;
   display:       flex;
   align-items:   center;
   justify-content: center;
-  color:         #fff;
+  color:         var(--fg);
   box-shadow:    0 0 0 5px rgba(219,37,79,0.18), 0 6px 22px rgba(219,37,79,0.45);
   position:      relative;
   z-index:       1;
@@ -242,8 +242,8 @@ $node-sz:  48px;
   width:          $node-sz;
   height:         $node-sz;
   border-radius:  50%;
-  border:         1px solid rgba(255,255,255,0.1);
-  background:     rgba(255,255,255,0.04);
+  border:         1px solid rgba(var(--fg-rgb),0.1);
+  background:     rgba(var(--fg-rgb),0.04);
   display:        flex;
   align-items:    center;
   justify-content: center;
@@ -256,7 +256,7 @@ $node-sz:  48px;
 .nodeNum {
   font-size:      0.82rem;
   font-weight:    800;
-  color:          rgba(255,255,255,0.45);
+  color:          rgba(var(--fg-rgb),0.45);
   letter-spacing: 0.02em;
 }
 
@@ -275,7 +275,7 @@ $node-sz:  48px;
 
 .labelWeek {
   font-size:   0.75rem;
-  color:       rgba(255,255,255,0.25);
+  color:       rgba(var(--fg-rgb),0.25);
   font-weight: 500;
 }
 
@@ -294,7 +294,7 @@ $node-sz:  48px;
 // Red progress bar
 .progressTrack {
   height:        2px;
-  background:    rgba(255,255,255,0.06);
+  background:    rgba(var(--fg-rgb),0.06);
   border-radius: 9999px;
   overflow:      hidden;
   flex-shrink:   0;
@@ -317,7 +317,7 @@ $node-sz:  48px;
   min-width:     0;
   width:         100%;
   position:      relative;
-  background:    rgba(255,255,255,0.025);
+  background:    rgba(var(--fg-rgb),0.025);
   border:        1px solid $border;
   border-radius: 20px;
   overflow:      hidden;
@@ -365,7 +365,7 @@ $node-sz:  48px;
   font-weight:    900;
   line-height:    1;
   letter-spacing: -0.07em;
-  color:          rgba(255,255,255,0.028);
+  color:          rgba(var(--fg-rgb),0.028);
   pointer-events: none;
   user-select:    none;
   z-index:        0;
@@ -418,7 +418,7 @@ $node-sz:  48px;
   font-size:      clamp(1.9rem, 3vw, 2.8rem);
   font-weight:    900;
   letter-spacing: -0.04em;
-  color:          #fff;
+  color:          var(--fg);
   line-height:    1.07;
   margin-bottom:  0.65rem;
   position:       relative;
@@ -427,7 +427,7 @@ $node-sz:  48px;
 
 .panelDesc {
   font-size:     1rem;
-  color:         rgba(255,255,255,0.56);
+  color:         rgba(var(--fg-rgb),0.56);
   line-height:   1.78;
   margin-bottom: 1.5rem;
   position:      relative;
@@ -472,8 +472,8 @@ $node-sz:  48px;
   align-items:   center;
   gap:           0.58rem;
   padding:       0.5rem 0.85rem;
-  background:    rgba(255,255,255,0.025);
-  border:        1px solid rgba(255,255,255,0.065);
+  background:    rgba(var(--fg-rgb),0.025);
+  border:        1px solid rgba(var(--fg-rgb),0.065);
   border-radius: 10px;
   transition:    border-color 0.28s, background 0.28s, transform 0.28s;
 
@@ -485,7 +485,7 @@ $node-sz:  48px;
 
   span {
     font-size:   0.92rem;
-    color:       rgba(255,255,255,0.72);
+    color:       rgba(var(--fg-rgb),0.72);
     font-weight: 500;
   }
 }
@@ -530,7 +530,7 @@ $node-sz:  48px;
 
   p {
     font-size:   0.92rem;
-    color:       rgba(255,255,255,0.65);
+    color:       rgba(var(--fg-rgb),0.65);
     line-height: 1.62;
     margin:      0;
   }
@@ -547,7 +547,7 @@ $node-sz:  48px;
   align-items: baseline;
   gap:         0.2rem;
   padding-top: 0.5rem;
-  border-top:  1px solid rgba(255,255,255,0.06);
+  border-top:  1px solid rgba(var(--fg-rgb),0.06);
 }
 
 .counterNum {

@@ -4,6 +4,10 @@
   overflow: hidden;
   position: relative;
 
+  :global([data-theme="light"]) & {
+    background: linear-gradient(160deg, var(--bg-elev2) 0%, var(--bg-page) 50%, var(--bg-elev2) 100%);
+  }
+
   /* Purple/violet glow blob */
   &::before {
     content: "";
@@ -44,7 +48,7 @@
   z-index: 2;
 
   p {
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(var(--fg-rgb), 0.35);
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;

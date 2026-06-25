@@ -72,7 +72,7 @@
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.65); /* on video — stays light in both themes */
   margin-bottom: 1.25rem;
   padding: 0.4rem 1.1rem;
   border-radius: 9999px;
@@ -86,7 +86,7 @@
   font-weight: 900;
   line-height: 1.08;
   letter-spacing: -0.04em;
-  color: #ffffff;
+  color: #fff; /* on video — stays light in both themes */
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -101,7 +101,7 @@
 }
 
 .lineAccent {
-  background: linear-gradient(135deg, #ffffff 0%, #db254f 50%, #e56b85 100%);
+  background: linear-gradient(135deg, var(--fg) 0%, #db254f 50%, #e56b85 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -114,7 +114,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(var(--fg-rgb), 0.08);
   z-index: 20;
 }
 
@@ -138,11 +138,11 @@
   gap: 0.55rem;
   padding: 0.6rem 1.2rem 0.6rem 0.9rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(var(--fg-rgb), 0.22);
   background: rgba(10, 10, 14, 0.45);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(var(--fg-rgb), 0.85);
   cursor: pointer;
   transition:
     background 0.3s ease,
@@ -151,9 +151,9 @@
     transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.4);
-    color: #ffffff;
+    background: rgba(var(--fg-rgb), 0.12);
+    border-color: rgba(var(--fg-rgb), 0.4);
+    color: var(--fg);
     transform: translateY(-2px);
   }
 
@@ -174,13 +174,13 @@
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(var(--fg-rgb), 0.1);
   flex-shrink: 0;
   transition: background 0.3s ease, color 0.3s ease;
 
   .playBtn:hover & {
     background: rgba(219, 37, 79, 0.25);
-    color: #ffffff;
+    color: var(--fg);
   }
 }
 

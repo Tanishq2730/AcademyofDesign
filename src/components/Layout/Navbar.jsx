@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, LogOut } from "lucide-react";
+import { Menu, X, LogOut, Sun, Moon } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
+import { useTheme } from "@/context/ThemeContext";
 import styles from "./Navbar.module.scss";
 
 const navLinks = [
@@ -25,6 +26,7 @@ export default function Navbar() {
   const router   = useRouter();
   const pathname = usePathname();
   const { openModal } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,11 +80,11 @@ export default function Navbar() {
     >
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          <Image 
-            src="/assets/logo.png" 
-            alt="Nuvosid Logo" 
-            width={160} 
-            height={40} 
+          <Image
+            src={theme === "light" ? "/assets/logo_black.png" : "/assets/logo.png"}
+            alt="Nuvosid Logo"
+            width={160}
+            height={40}
             unoptimized
           />
         </Link>
@@ -102,6 +104,15 @@ export default function Navbar() {
             );
           })}
           
+          <button
+            onClick={toggleTheme}
+            className={styles.themeToggle}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            title={theme === "dark" ? "Light mode" : "Dark mode"}
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           {isAuthenticated && user ? (
             <div className={styles.profileMenuContainer}>
               <div className={styles.profileCircle}>
@@ -137,13 +148,22 @@ export default function Navbar() {
           </button>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className={styles.mobileToggle}
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* Mobile right-side controls */}
+        <div className={styles.mobileControls}>
+          <button
+            onClick={toggleTheme}
+            className={styles.themeToggle}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <button
+            className={styles.mobileToggle}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}

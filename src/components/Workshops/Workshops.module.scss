@@ -1,7 +1,7 @@
 .pageWrapper {
   min-height: 100vh;
-  background-color: #030303;
-  color: #ffffff;
+  background-color: var(--bg-page);
+  color: var(--fg);
   padding: 8rem 2rem 6rem;
   position: relative;
   overflow: hidden;
@@ -50,14 +50,14 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(var(--fg-rgb), 0.04);
+    border: 1px solid rgba(var(--fg-rgb), 0.08);
     padding: 0.4rem 1.1rem;
     border-radius: 9999px;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(var(--fg-rgb), 0.7);
     margin-bottom: 1.25rem;
   }
 
@@ -73,7 +73,7 @@
     }
 
     span {
-      background: linear-gradient(135deg, #ffffff 30%, rgba(255, 255, 255, 0.4) 100%);
+      background: linear-gradient(135deg, var(--fg) 30%, rgba(var(--fg-rgb), 0.4) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -81,7 +81,7 @@
 
   p {
     font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(var(--fg-rgb), 0.45);
     max-width: 34rem;
     margin: 0 auto;
     line-height: 1.6;
@@ -110,8 +110,8 @@
 .selectorItem {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(var(--fg-rgb), 0.02);
+  border: 1px solid rgba(var(--fg-rgb), 0.05);
   border-radius: 24px;
   padding: 1.5rem;
   cursor: pointer;
@@ -121,8 +121,8 @@
   overflow: hidden;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(var(--fg-rgb), 0.04);
+    border-color: rgba(var(--fg-rgb), 0.1);
   }
 
   &.active {
@@ -136,7 +136,7 @@
     }
 
     h3 {
-      color: #ffffff;
+      color: var(--fg);
     }
   }
 }
@@ -147,8 +147,8 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.04);
+  color: rgba(var(--fg-rgb), 0.5);
+  background: rgba(var(--fg-rgb), 0.04);
   padding: 0.25rem 0.65rem;
   border-radius: 8px;
   width: fit-content;
@@ -160,7 +160,7 @@
   font-size: 1.1rem;
   font-weight: 800;
   line-height: 1.3;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(var(--fg-rgb), 0.8);
   margin-bottom: 1rem;
   transition: color 0.3s ease;
 }
@@ -169,10 +169,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(var(--fg-rgb), 0.05);
   padding-top: 0.85rem;
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(var(--fg-rgb), 0.4);
 
   .date {
     display: flex;
@@ -183,14 +183,14 @@
   .price {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--fg);
   }
 }
 
 /* ─── Right Console Card ─── */
 .consoleCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(var(--fg-rgb), 0.02);
+  border: 1px solid rgba(var(--fg-rgb), 0.05);
   border-radius: 36px;
   overflow: hidden;
   backdrop-filter: blur(20px);
@@ -237,7 +237,7 @@
       letter-spacing: -0.02em;
       line-height: 1.2;
       max-width: 70%;
-      color: #ffffff;
+      color: var(--fg);
 
       @media (min-width: 768px) {
         font-size: 2.2rem;
@@ -257,12 +257,12 @@
       .current {
         font-size: 1.4rem;
         font-weight: 800;
-        color: #ffffff;
+        color: var(--fg);
       }
 
       .original {
         font-size: 0.75rem;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(var(--fg-rgb), 0.5);
         text-decoration: line-through;
       }
     }
@@ -282,8 +282,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(var(--fg-rgb), 0.02);
+  border: 1px solid rgba(var(--fg-rgb), 0.04);
   border-radius: 20px;
   padding: 1.25rem 2rem;
   margin-bottom: 2.5rem;
@@ -297,7 +297,7 @@
     align-items: center;
     gap: 0.75rem;
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(var(--fg-rgb), 0.7);
 
     svg {
       color: #e56b85;
@@ -309,7 +309,7 @@
 .introDesc {
   font-size: 1rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(var(--fg-rgb), 0.6);
   margin-bottom: 3rem;
 }
 
@@ -317,7 +317,7 @@
 .tabNav {
   display: flex;
   gap: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(var(--fg-rgb), 0.06);
   padding-bottom: 0.75rem;
   margin-bottom: 2rem;
   overflow-x: auto;
@@ -331,7 +331,7 @@
 .tabBtn {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(var(--fg-rgb), 0.45);
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -343,7 +343,7 @@
   white-space: nowrap;
 
   &.active {
-    color: #ffffff;
+    color: var(--fg);
 
     &::after {
       content: "";
@@ -382,7 +382,7 @@
     left: 21px;
     width: 1px;
     height: calc(100% - 0.5rem);
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(var(--fg-rgb), 0.08);
   }
 
   .nodeTime {
@@ -402,7 +402,7 @@
   .nodeDesc {
     font-size: 0.9rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(var(--fg-rgb), 0.75);
     padding-top: 0.3rem;
   }
 }
@@ -421,8 +421,8 @@
 .keynoteItem {
   display: flex;
   gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: rgba(var(--fg-rgb), 0.01);
+  border: 1px solid rgba(var(--fg-rgb), 0.03);
   padding: 1.2rem;
   border-radius: 16px;
   align-items: flex-start;
@@ -436,7 +436,7 @@
   span {
     font-size: 0.85rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(var(--fg-rgb), 0.7);
   }
 }
 
@@ -445,8 +445,8 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: rgba(var(--fg-rgb), 0.01);
+  border: 1px solid rgba(var(--fg-rgb), 0.03);
   border-radius: 24px;
   padding: 2rem;
   align-items: center;
@@ -480,13 +480,13 @@
     h3 {
       font-size: 1.25rem;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--fg);
       margin-bottom: 0.25rem;
     }
 
     .title {
       font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(var(--fg-rgb), 0.5);
       margin-bottom: 0.5rem;
     }
 
@@ -502,14 +502,14 @@
     .bio {
       font-size: 0.85rem;
       line-height: 1.5;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(var(--fg-rgb), 0.6);
     }
   }
 }
 
 /* ─── Registration Form ─── */
 .registrationBlock {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(var(--fg-rgb), 0.06);
   margin-top: 4rem;
   padding-top: 3rem;
 
@@ -522,7 +522,7 @@
 
   p {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(var(--fg-rgb), 0.45);
     margin-bottom: 2rem;
   }
 }
@@ -551,29 +551,29 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(var(--fg-rgb), 0.5);
   }
 
   input, select {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(var(--fg-rgb), 0.02);
+    border: 1px solid rgba(var(--fg-rgb), 0.06);
     border-radius: 12px;
     padding: 0.85rem 1rem;
-    color: #ffffff;
+    color: var(--fg);
     font-size: 0.9rem;
     transition: all 0.3s ease;
     outline: none;
 
     &:focus {
       border-color: rgba(182, 123, 128, 0.5);
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(var(--fg-rgb), 0.04);
       box-shadow: 0 0 12px rgba(182, 123, 128, 0.15);
     }
   }
 
   select option {
-    background: #0d0d0d;
-    color: #ffffff;
+    background: var(--bg-elev2);
+    color: var(--fg);
   }
 }
 
@@ -581,7 +581,7 @@
   margin-top: 1rem;
   background: linear-gradient(135deg, #9e1030, #db254f, #e56b85);
   border: none;
-  color: #ffffff;
+  color: var(--fg);
   font-weight: 700;
   font-size: 0.95rem;
   letter-spacing: 0.02em;
@@ -623,8 +623,8 @@
 .paymentModal {
   width: 100%;
   max-width: 440px;
-  background: #121212;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-elev);
+  border: 1px solid rgba(var(--fg-rgb), 0.08);
   border-radius: 28px;
   overflow: hidden;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
@@ -633,12 +633,12 @@
 }
 
 .rzpHeader {
-  background: #171d2b;
+  background: var(--bg-elev2);
   padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(var(--fg-rgb), 0.05);
 
   .rzpLogo {
     display: flex;
@@ -646,7 +646,7 @@
     gap: 0.5rem;
     font-weight: 800;
     font-size: 1.1rem;
-    color: #ffffff;
+    color: var(--fg);
 
     span {
       color: #3399ff;
@@ -668,19 +668,19 @@
 .rzpAmountBlock {
   padding: 2rem 1.5rem;
   text-align: center;
-  background: rgba(255, 255, 255, 0.01);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(var(--fg-rgb), 0.01);
+  border-bottom: 1px solid rgba(var(--fg-rgb), 0.04);
 
   .rzpFor {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(var(--fg-rgb), 0.55);
     margin-bottom: 0.4rem;
   }
 
   .rzpTitle {
     font-size: 1.1rem;
     font-weight: 750;
-    color: #ffffff;
+    color: var(--fg);
     margin-bottom: 1rem;
     line-height: 1.4;
   }
@@ -688,7 +688,7 @@
   .rzpPrice {
     font-size: 2.2rem;
     font-weight: 800;
-    color: #ffffff;
+    color: var(--fg);
     letter-spacing: -0.01em;
   }
 }
@@ -704,7 +704,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(var(--fg-rgb), 0.4);
     margin-bottom: 0.25rem;
   }
 }
@@ -712,7 +712,7 @@
 .rzpPayBtn {
   background: #3399ff;
   border: none;
-  color: #ffffff;
+  color: var(--fg);
   font-weight: 700;
   font-size: 1rem;
   padding: 0.95rem;
@@ -739,7 +739,7 @@
 .rzpCancelBtn {
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(var(--fg-rgb), 0.4);
   font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
@@ -777,21 +777,21 @@
   h3 {
     font-size: 1.5rem;
     font-weight: 850;
-    color: #ffffff;
+    color: var(--fg);
     margin-bottom: 0.5rem;
   }
 
   .successMessage {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(var(--fg-rgb), 0.5);
     margin-bottom: 2rem;
     line-height: 1.5;
   }
 
   .receiptCard {
     width: 100%;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px dashed rgba(255, 255, 255, 0.08);
+    background: rgba(var(--fg-rgb), 0.02);
+    border: 1px dashed rgba(var(--fg-rgb), 0.08);
     border-radius: 18px;
     padding: 1.5rem;
     display: flex;
@@ -805,7 +805,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 0.8rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(var(--fg-rgb), 0.03);
     padding-bottom: 0.65rem;
 
     &:last-child {
@@ -814,11 +814,11 @@
     }
 
     .label {
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(var(--fg-rgb), 0.4);
     }
 
     .value {
-      color: #ffffff;
+      color: var(--fg);
       font-weight: 600;
       text-align: right;
       max-width: 60%;
@@ -832,9 +832,9 @@
 
   .closeBtn {
     width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #ffffff;
+    background: rgba(var(--fg-rgb), 0.05);
+    border: 1px solid rgba(var(--fg-rgb), 0.1);
+    color: var(--fg);
     font-weight: 700;
     font-size: 0.9rem;
     padding: 0.9rem;
@@ -843,7 +843,7 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(var(--fg-rgb), 0.1);
     }
   }
 }

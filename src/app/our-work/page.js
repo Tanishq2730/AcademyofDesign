@@ -30,7 +30,7 @@ export default function OurWorkPage() {
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black text-white py-5">
+    <div ref={containerRef} className="min-h-screen py-5" style={{ background: "var(--bg-page)", color: "var(--fg)" }}>
       <div className="container py-5">
         <WorkHeader />
         <div className="row g-4 mt-4">

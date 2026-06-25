@@ -1,8 +1,12 @@
 .instructorsSection {
   padding: 10rem 0 3rem;
-  background: linear-gradient(165deg, #020c14 0%, #030f18 40%, #020a10 70%, #030303 100%);
+  background: linear-gradient(165deg, #020c14 0%, #030f18 40%, #020a10 70%, var(--bg-page) 100%);
   position: relative;
   overflow: hidden;
+
+  :global([data-theme="light"]) & {
+    background: linear-gradient(165deg, #eef4fb 0%, #f1f5fb 40%, var(--bg-page) 80%);
+  }
 
   /* Blue/teal glow — top-centre */
   &::before {
@@ -46,7 +50,7 @@
   h2 {
     font-size: 3rem;
     font-weight: 900;
-    color: white;
+    color: var(--fg);
     letter-spacing: -0.04em;
     
     @media (min-width: 768px) {
@@ -57,7 +61,7 @@
       color: #db254f;
     }
   }
-  
+
   p {
     color: #9ca3af;
     font-size: 1.125rem;
@@ -116,15 +120,15 @@
   backface-visibility: hidden;
   border-radius: 2.5rem;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(var(--fg-rgb), 0.05);
 }
 
 .front {
-  background-color: #111;
+  background-color: var(--bg-elev);
 }
 
 .back {
-  background-color: #0a0a0a;
+  background-color: var(--bg-elev);
   transform: rotateY(180deg);
   display: flex;
   flex-direction: column;
@@ -133,7 +137,7 @@
   text-align: center;
   padding: 3rem 2rem;
   border-color: rgba(145, 72, 100, 0.4);
-  background: radial-gradient(circle at center, rgba(145, 72, 100, 0.1) 0%, #030303 100%);
+  background: radial-gradient(circle at center, rgba(145, 72, 100, 0.1) 0%, var(--bg-page) 100%);
 }
 
 .backContent {
@@ -143,7 +147,7 @@
   gap: 0.5rem;
   
   h3 {
-    color: white;
+    color: var(--fg);
     font-size: 2rem;
     font-weight: 800;
     margin: 0;
@@ -160,7 +164,7 @@
   .divider {
     width: 3rem;
     height: 2px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(var(--fg-rgb), 0.1);
     margin: 1.5rem 0;
   }
   
@@ -174,7 +178,7 @@
   
   .education {
     font-size: 1.125rem;
-    color: white;
+    color: var(--fg);
     font-weight: 300;
     line-height: 1.4;
   }
@@ -199,9 +203,9 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: 2.5rem;
-  
+
   h3 {
-    color: white;
+    color: #fff; /* name over photo — stays light in both themes */
     font-size: 1.75rem;
     font-weight: 800;
     margin-bottom: 0.25rem;

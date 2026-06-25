@@ -50,7 +50,7 @@
   position: relative;
   text-align: center;
   overflow: hidden;
-  background: #030303;
+  background: var(--bg-page);
   /* Cancel the global pt-16 (4rem) on <main> so the hero truly starts from top */
   margin-top: -4rem;
 }
@@ -90,7 +90,7 @@
 .bgGrid {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(var(--fg-rgb), 0.055) 1px, transparent 1px);
   background-size: 38px 38px;
   z-index: 2;
   pointer-events: none;
@@ -207,7 +207,7 @@
   width: 820px;
   height: 820px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(var(--fg-rgb), 0.035);
   animation: ringRotateReverse 55s linear infinite;
   z-index: 5;
   pointer-events: none;
@@ -252,7 +252,7 @@
     line-height: 1;
     letter-spacing: -0.04em;
     margin-bottom: 2rem;
-    color: #fff;
+    color: var(--fg);
 
     span {
       background: linear-gradient(to right, #9e1030, #db254f, #e56b85);
@@ -264,7 +264,7 @@
 
   p {
     font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(var(--fg-rgb), 0.6);
     line-height: 1.6;
     max-width: 600px;
     margin: 0 auto;

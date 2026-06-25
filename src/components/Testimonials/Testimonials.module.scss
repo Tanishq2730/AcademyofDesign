@@ -5,8 +5,8 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(rgba(255,255,255,0.013) 1px, transparent 1px) 0 0 / 38px 38px,
-    #050505;
+    radial-gradient(rgba(var(--fg-rgb),0.013) 1px, transparent 1px) 0 0 / 38px 38px,
+    var(--bg-page);
   padding: clamp(5rem, 10vw, 8rem) 0;
 }
 
@@ -56,14 +56,14 @@
 .title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 900;
-  color: #fff;
+  color: var(--fg);
   letter-spacing: -0.04em;
   line-height: 1.08;
   margin: 0 0 1rem;
 }
 
 .subtitle {
-  color: rgba(255,255,255,0.36);
+  color: rgba(var(--fg-rgb),0.36);
   font-size: clamp(0.88rem, 1.3vw, 1rem);
   line-height: 1.8;
   max-width: 30rem;
@@ -100,11 +100,15 @@
 .card {
   width: 100%;
   background: radial-gradient(ellipse at 50% 0%, #17171e 0%, #0c0c10 68%);
-  border: 1px solid rgba(255,255,255,0.09);
+  border: 1px solid rgba(var(--fg-rgb),0.09);
+
+  :global([data-theme="light"]) & {
+    background: radial-gradient(ellipse at 50% 0%, var(--bg-elev) 0%, var(--bg-elev2) 80%);
+  }
   border-radius: 1.6rem;
   padding: clamp(1.8rem, 4vw, 2.6rem);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.06),
+    inset 0 1px 0 rgba(var(--fg-rgb),0.06),
     0 8px 40px rgba(0,0,0,0.55);
   cursor: grab;
   user-select: none;
@@ -141,7 +145,7 @@
 .quote {
   font-size: clamp(1rem, 1.7vw, 1.22rem);
   line-height: 1.72;
-  color: rgba(255,255,255,0.82);
+  color: rgba(var(--fg-rgb),0.82);
   font-weight: 400;
   font-style: normal;
   margin: 0 0 2rem;
@@ -191,14 +195,14 @@
 .authorName {
   font-size: 0.98rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--fg);
   letter-spacing: -0.02em;
   line-height: 1;
 }
 
 .authorMeta {
   font-size: 0.72rem;
-  color: rgba(255,255,255,0.3);
+  color: rgba(var(--fg-rgb),0.3);
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
@@ -229,9 +233,9 @@
   flex-shrink: 0;
   width: 2.85rem; height: 2.85rem;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(var(--fg-rgb),0.1);
+  background: rgba(var(--fg-rgb),0.04);
+  color: rgba(var(--fg-rgb),0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,9 +245,9 @@
   transition: all 0.25s cubic-bezier(0.23,1,0.32,1);
 
   &:hover {
-    background: rgba(255,255,255,0.1);
-    border-color: rgba(255,255,255,0.2);
-    color: #fff;
+    background: rgba(var(--fg-rgb),0.1);
+    border-color: rgba(var(--fg-rgb),0.2);
+    color: var(--fg);
     transform: scale(1.08);
   }
   &:active { transform: scale(0.95); }
@@ -267,12 +271,12 @@
   width: 7px; height: 7px;
   border-radius: 9999px;
   border: none;
-  background: rgba(255,255,255,0.14);
+  background: rgba(var(--fg-rgb),0.14);
   cursor: pointer;
   padding: 0;
   transition: background 0.4s ease, transform 0.3s ease, width 0.3s ease, box-shadow 0.4s ease;
 
-  &:hover { background: rgba(255,255,255,0.32); transform: scale(1.3); }
+  &:hover { background: rgba(var(--fg-rgb),0.32); transform: scale(1.3); }
 }
 
 .dotActive {
@@ -286,7 +290,7 @@
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.18);
+  color: rgba(var(--fg-rgb),0.18);
   font-variant-numeric: tabular-nums;
 }
 

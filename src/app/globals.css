@@ -1,8 +1,54 @@
 @import "tailwindcss";
 
+/* ════════════════════════════════════════════
+   THEME TOKENS
+   --fg-rgb / --bg-rgb are raw channels so existing
+   rgba(var(--fg-rgb), A) calls keep their alpha and
+   flip automatically between themes.
+   Brand colors (red) stay constant in both themes.
+════════════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* surfaces */
+  --bg-page:   #030303;
+  --bg-elev:   #0a0a0a;
+  --bg-elev2:  #0d0d0d;
+
+  /* foreground */
+  --fg:        #ffffff;
+  --fg-rgb:    255, 255, 255;
+  --bg-rgb:    0, 0, 0;
+
+  /* aliases used by older code */
+  --background: var(--bg-page);
+  --foreground: var(--fg);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* surfaces */
+  --bg-page:   #f5f6f8;
+  --bg-elev:   #ffffff;
+  --bg-elev2:  #eceef2;
+
+  /* foreground */
+  --fg:        #14161a;
+  --fg-rgb:    20, 22, 26;
+  --bg-rgb:    255, 255, 255;
+
+  --background: var(--bg-page);
+  --foreground: var(--fg);
+}
+
+/* Brand palette — identical in both themes */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #db254f;
+  --secondary: #e56b85;
+  --accent: #9e1030;
+  --bg-dark: var(--bg-page);
 }
 
 @theme inline {
@@ -12,33 +58,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 html {
   overflow-x: clip;
   height: -webkit-fill-available;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-page);
+  color: var(--fg);
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   overflow-x: clip;
   width: 100%;
   position: relative;
   scroll-behavior: auto !important;
-}
-
-:root {
-  --primary: #db254f;
-  --secondary: #e56b85;
-  --accent: #9e1030;
-  --bg-dark: #030303;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 a {
@@ -71,5 +104,5 @@ h1, h2, h3, h4, h5, h6, .display-font {
 
 /* Global high-readability body & description text color */
 p, .desc, .description, .subtitle, [class*="desc"], [class*="description"], [class*="subtitle"], [class*="duration"] {
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: rgba(var(--fg-rgb), 0.85) !important;
 }

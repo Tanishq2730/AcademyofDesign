@@ -1,7 +1,7 @@
 .pageWrapper {
   min-height: 100vh;
-  background-color: #030303;
-  color: #ffffff;
+  background-color: var(--bg-page);
+  color: var(--fg);
   padding: 8rem 2rem 6rem;
   position: relative;
   overflow: hidden;
@@ -48,7 +48,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.25em;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(var(--fg-rgb), 0.6);
     margin-bottom: 0.5rem;
     display: block;
   }
@@ -58,7 +58,7 @@
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.5) 100%);
+    background: linear-gradient(135deg, var(--fg) 40%, rgba(var(--fg-rgb), 0.5) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0;
@@ -72,8 +72,8 @@
 
 /* ─── Console Body Layout ─── */
 .contactCardWrapper {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(var(--fg-rgb), 0.02);
+  border: 1px solid rgba(var(--fg-rgb), 0.05);
   border-radius: 36px;
   overflow: hidden;
   backdrop-filter: blur(20px);
@@ -105,7 +105,7 @@
     right: -10%;
     width: 250px;
     height: 250px;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--fg-rgb), 0.08) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -114,14 +114,14 @@
     h2 {
       font-size: 2.2rem;
       font-weight: 850;
-      color: #ffffff;
+      color: var(--fg);
       margin-bottom: 0.5rem;
       letter-spacing: -0.02em;
     }
 
     p {
       font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(var(--fg-rgb), 0.8);
       margin-bottom: 3.5rem;
     }
   }
@@ -137,12 +137,12 @@
     display: flex;
     align-items: flex-start;
     gap: 1.25rem;
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(var(--fg-rgb), 0.95);
     text-decoration: none;
     transition: all 0.3s ease;
 
     svg {
-      color: #ffffff;
+      color: var(--fg);
       flex-shrink: 0;
       margin-top: 0.2rem;
       opacity: 0.9;
@@ -154,7 +154,7 @@
     }
 
     &:hover {
-      color: #ffffff;
+      color: var(--fg);
       transform: translateX(3px);
     }
   }
@@ -173,14 +173,14 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #ffffff;
+    background: rgba(var(--fg-rgb), 0.08);
+    border: 1px solid rgba(var(--fg-rgb), 0.15);
+    color: var(--fg);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     text-decoration: none;
 
     &:hover {
-      background: #ffffff;
+      background: var(--fg);
       color: #9e1030;
       transform: translateY(-4px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -208,27 +208,27 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(var(--fg-rgb), 0.5);
     padding-left: 0.25rem;
   }
 
   input, textarea {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(var(--fg-rgb), 0.02);
+    border: 1px solid rgba(var(--fg-rgb), 0.06);
     border-radius: 14px;
     padding: 0.9rem 1.15rem;
-    color: #ffffff;
+    color: var(--fg);
     font-size: 0.95rem;
     transition: all 0.3s ease;
     outline: none;
 
     &::placeholder {
-      color: rgba(255, 255, 255, 0.3);
+      color: rgba(var(--fg-rgb), 0.3);
     }
 
     &:focus {
       border-color: rgba(182, 123, 128, 0.5);
-      background: rgba(255, 255, 255, 0.04);
+      background: rgba(var(--fg-rgb), 0.04);
       box-shadow: 0 0 12px rgba(182, 123, 128, 0.15);
     }
   }
@@ -241,7 +241,7 @@
 .submitBtn {
   background: linear-gradient(135deg, #9e1030, #db254f, #e56b85);
   border: none;
-  color: #ffffff;
+  color: var(--fg);
   font-weight: 750;
   font-size: 1rem;
   letter-spacing: 0.05em;
@@ -294,13 +294,13 @@
   h3 {
     font-size: 1.25rem;
     font-weight: 800;
-    color: #ffffff;
+    color: var(--fg);
     margin-bottom: 0.5rem;
   }
 
   p {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(var(--fg-rgb), 0.6);
     line-height: 1.5;
     margin: 0;
   }

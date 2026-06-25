@@ -1,6 +1,6 @@
 .founderSection {
   padding: 0rem 0;
-  background-color: #030303;
+  background-color: var(--bg-page);
   position: relative;
   overflow: hidden;
 }
@@ -15,7 +15,7 @@
 .historyBlock {
   margin-bottom: 5rem;
   padding: 6rem;
-  background: rgba(255, 255, 255, 0.018);
+  background: rgba(var(--fg-rgb), 0.018);
   border-radius: 5rem;
   position: relative;
   overflow: hidden;
@@ -29,11 +29,11 @@
     padding: 1px;
     background: linear-gradient(135deg,
       rgba(219, 37, 79, 0.4) 0%,
-      rgba(255, 255, 255, 0.06) 50%,
+      rgba(var(--fg-rgb), 0.06) 50%,
       transparent 100%);
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(var(--fg) 0 0) content-box, linear-gradient(var(--fg) 0 0);
     mask-composite: exclude;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(var(--fg) 0 0) content-box, linear-gradient(var(--fg) 0 0);
     -webkit-mask-composite: destination-out;
     pointer-events: none;
     z-index: 2;
@@ -62,7 +62,7 @@
 .historyTitle {
   font-size: 4rem;
   font-weight: 800;
-  color: white;
+  color: var(--fg);
   margin-bottom: 4rem;
   letter-spacing: -0.04em;
   line-height: 1.1;
@@ -88,7 +88,7 @@
     display: block;
     font-size: 3.5rem;
     font-weight: 900;
-    color: white;
+    color: var(--fg);
     line-height: 1;
     margin-bottom: 0.5rem;
     
@@ -104,7 +104,7 @@
   
   .label {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(var(--fg-rgb), 0.4);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     font-weight: 600;
@@ -160,21 +160,21 @@
   transform: translate(-50%, -50%);
   width: 90px;
   height: 90px;
-  background: white;
+  background: var(--fg);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 40px rgba(var(--fg-rgb), 0.2);
   
   &:hover {
     transform: translate(-50%, -50%) scale(1.1);
     background: #db254f;
     
     .playIcon {
-      border-left-color: white;
+      border-left-color: var(--fg);
     }
   }
 }
@@ -203,7 +203,7 @@
     border-radius: 4rem;
     overflow: hidden;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(var(--fg-rgb), 0.05);
     
     .founderImg {
       width: 100%;
@@ -223,7 +223,7 @@
   position: absolute;
   bottom: 3rem;
   right: -2rem;
-  background: white;
+  background: var(--fg);
   padding: 2rem;
   border-radius: 2.5rem;
   display: flex;
@@ -237,7 +237,7 @@
   .years {
     font-size: 2.5rem;
     font-weight: 900;
-    color: black;
+    color: var(--bg-page);
     line-height: 1;
   }
   
@@ -262,7 +262,7 @@
 .messageTitle {
   font-size: 3.5rem;
   font-weight: 800;
-  color: white;
+  color: var(--fg);
   margin-bottom: 3rem;
   letter-spacing: -0.03em;
   line-height: 1.1;
@@ -275,7 +275,7 @@
 .messageText {
   p {
     font-size: 1.15rem;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(var(--fg-rgb), 0.6);
     line-height: 1.8;
     margin-bottom: 2rem;
     font-weight: 300;
@@ -285,12 +285,12 @@
 .founderInfo {
   margin-top: 4rem;
   padding-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(var(--fg-rgb), 0.05);
   
   .founderName {
     font-size: 2rem;
     font-weight: 700;
-    color: white;
+    color: var(--fg);
     margin-bottom: 1.5rem;
   }
   
@@ -300,7 +300,7 @@
     
     li {
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(var(--fg-rgb), 0.4);
       margin-bottom: 0.5rem;
       display: flex;
       align-items: center;

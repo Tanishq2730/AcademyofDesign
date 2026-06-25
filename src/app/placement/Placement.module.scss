@@ -4,10 +4,10 @@
 $red:        #db254f;
 $red-soft:   #e56b85;
 $red-grad:   linear-gradient(135deg, #9e1030 0%, #db254f 50%, #e56b85 100%);
-$border:     rgba(255, 255, 255, 0.06);
+$border:     rgba(var(--fg-rgb), 0.06);
 $border-red: rgba(219, 37, 79, 0.28);
-$muted:      rgba(255, 255, 255, 0.42);
-$card-bg:    rgba(255, 255, 255, 0.025);
+$muted:      rgba(var(--fg-rgb), 0.42);
+$card-bg:    rgba(var(--fg-rgb), 0.025);
 
 // ════════════════════════════════════════════
 // KEYFRAMES
@@ -21,8 +21,8 @@ $card-bg:    rgba(255, 255, 255, 0.025);
 // PAGE SHELL
 // ════════════════════════════════════════════
 .pageWrapper {
-  background: #030303;
-  color: #fff;
+  background: var(--bg-page);
+  color: var(--fg);
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
@@ -82,7 +82,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   font-weight: 800;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(var(--fg-rgb),0.45);
   margin-bottom: 1rem;
 }
 
@@ -136,8 +136,8 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    linear-gradient(rgba(var(--fg-rgb),0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--fg-rgb),0.025) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 10%, transparent 75%);
   pointer-events: none;
@@ -184,7 +184,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
 
 .subtitle {
   font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: rgba(255,255,255,0.78);
+  color: rgba(var(--fg-rgb),0.78);
   max-width: 620px;
   margin: 0 auto 2.8rem;
   line-height: 1.78;
@@ -206,7 +206,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   padding: 0.9rem 2.2rem;
   border-radius: 9999px;
   background: $red-grad;
-  color: #fff;
+  color: var(--fg);
   font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -225,9 +225,9 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   align-items: center;
   padding: 0.9rem 2rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(255,255,255,0.04);
-  color: rgba(255,255,255,0.72);
+  border: 1px solid rgba(var(--fg-rgb),0.14);
+  background: rgba(var(--fg-rgb),0.04);
+  color: rgba(var(--fg-rgb),0.72);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -236,7 +236,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   backdrop-filter: blur(10px);
   transition: all 0.35s cubic-bezier(0.23,1,0.32,1);
 
-  &:hover { background: rgba(219,37,79,0.12); border-color: $border-red; color: #fff; transform: translateY(-3px); }
+  &:hover { background: rgba(219,37,79,0.12); border-color: $border-red; color: var(--fg); transform: translateY(-3px); }
 }
 
 // ════════════════════════════════════════════
@@ -296,7 +296,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1;
-  background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 55%, #fff) 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 55%, var(--fg)) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -332,7 +332,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.03);
+  background: rgba(var(--fg-rgb),0.03);
   border: 1px solid $border;
   border-radius: 16px;
   transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
@@ -341,7 +341,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
     font-size: 1.05rem;
     font-weight: 800;
     letter-spacing: -0.01em;
-    color: rgba(255,255,255,0.32);
+    color: rgba(var(--fg-rgb),0.32);
     transition: color 0.4s;
   }
 
@@ -351,7 +351,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
     transform: translateY(-4px);
     box-shadow: 0 14px 34px rgba(0,0,0,0.4);
 
-    span { color: #fff; }
+    span { color: var(--fg); }
   }
 }
 
@@ -415,7 +415,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.05em;
-  color: rgba(255,255,255,0.03);
+  color: rgba(var(--fg-rgb),0.03);
   pointer-events: none;
   transition: color 0.4s;
 }
@@ -481,7 +481,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
 .storyQuote {
   font-size: 1rem;
   line-height: 1.75;
-  color: rgba(255,255,255,0.78);
+  color: rgba(var(--fg-rgb),0.78);
   font-style: italic;
   margin: 0 0 2rem;
   flex: 1;
@@ -524,7 +524,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
 
   em {
     font-style: normal;
-    color: color-mix(in srgb, var(--accent) 70%, #fff);
+    color: color-mix(in srgb, var(--accent) 70%, var(--fg));
     font-weight: 700;
   }
 }
@@ -563,8 +563,8 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    linear-gradient(rgba(var(--fg-rgb),0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--fg-rgb),0.02) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 70%);
 }
@@ -592,7 +592,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
 
   p {
     font-size: clamp(1rem, 1.5vw, 1.1rem);
-    color: rgba(255,255,255,0.6);
+    color: rgba(var(--fg-rgb),0.6);
     line-height: 1.75;
     margin: 0 auto 2.5rem;
     max-width: 540px;
@@ -606,7 +606,7 @@ $card-bg:    rgba(255, 255, 255, 0.025);
   padding: 1rem 2.5rem;
   border-radius: 9999px;
   background: $red-grad;
-  color: #fff;
+  color: var(--fg);
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.1em;

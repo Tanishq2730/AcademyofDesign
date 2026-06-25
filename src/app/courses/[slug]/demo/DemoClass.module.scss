@@ -4,18 +4,18 @@
 $red:        #db254f;
 $red-soft:   #e56b85;
 $red-grad:   linear-gradient(135deg, #9e1030 0%, #db254f 50%, #e56b85 100%);
-$bg:         #030303;
-$card-bg:    rgba(255,255,255,0.025);
-$border:     rgba(255,255,255,0.06);
+$bg:         var(--bg-page);
+$card-bg:    rgba(var(--fg-rgb),0.025);
+$border:     rgba(var(--fg-rgb),0.06);
 $border-red: rgba(219,37,79,0.25);
-$muted:      rgba(255,255,255,0.48);
+$muted:      rgba(var(--fg-rgb),0.48);
 
 // ═══════════════════════════════════
 // PAGE WRAPPER
 // ═══════════════════════════════════
 .pageWrapper {
   background: $bg;
-  color: #fff;
+  color: var(--fg);
   min-height: 100vh;
   margin-top: -4rem;
   position: relative;
@@ -104,7 +104,7 @@ $muted:      rgba(255,255,255,0.48);
 
 .heroSubtitle {
   font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: rgba(255,255,255,0.85);
+  color: rgba(var(--fg-rgb),0.85);
   max-width: 580px;
   margin: 0 auto;
   line-height: 1.78;
@@ -321,7 +321,7 @@ $bl: 22px;
       font-size: 0.88rem;
       font-weight: 500;
       margin: 0;
-      color: rgba(255,255,255,0.88);
+      color: rgba(var(--fg-rgb),0.88);
       line-height: 1.45;
       position: relative;
       z-index: 1;
@@ -344,7 +344,7 @@ $bl: 22px;
   width: 100%;
   padding: 1.25rem;
   background: $red-grad;
-  color: #fff;
+  color: var(--fg);
   border: none;
   border-radius: 14px;
   font-weight: 800;
@@ -386,13 +386,13 @@ $bl: 22px;
 
   .old {
     font-size: 1rem;
-    color: rgba(255,255,255,0.3);
+    color: rgba(var(--fg-rgb),0.3);
     text-decoration: line-through;
   }
 
   .current {
     font-size: 1.4rem;
-    color: #fff;
+    color: var(--fg);
     font-weight: 800;
   }
 
@@ -486,7 +486,7 @@ $bl: 22px;
     .name {
       font-size: 0.78rem;
       font-weight: 700;
-      color: rgba(255,255,255,0.9);
+      color: rgba(var(--fg-rgb),0.9);
       margin-bottom: 0.2rem;
     }
 
@@ -527,7 +527,7 @@ $bl: 22px;
   .accordion { display: flex; flex-direction: column; gap: 0.6rem; }
 
   .accordionItem {
-    background: rgba(255,255,255,0.015);
+    background: rgba(var(--fg-rgb),0.015);
     border: 1px solid $border;
     border-radius: 14px;
     overflow: hidden;
@@ -537,7 +537,7 @@ $bl: 22px;
       border-color: $border-red;
       background: rgba(219,37,79,0.04);
 
-      .numBox { background: $red; color: #fff; }
+      .numBox { background: $red; color: var(--fg); }
     }
   }
 
@@ -552,7 +552,7 @@ $bl: 22px;
     .numBox {
       width: 30px;
       height: 30px;
-      background: rgba(255,255,255,0.05);
+      background: rgba(var(--fg-rgb),0.05);
       border-radius: 8px;
       display: flex;
       align-items: center;
@@ -625,14 +625,14 @@ $bl: 22px;
 .certBtn {
   background: transparent;
   border: 1px solid $border;
-  color: #fff;
+  color: var(--fg);
 
-  &:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.14); transform: translateY(-2px); }
+  &:hover { background: rgba(var(--fg-rgb),0.05); border-color: rgba(var(--fg-rgb),0.14); transform: translateY(-2px); }
 }
 
 .syllabusBtn {
   background: $red-grad;
-  color: #fff;
+  color: var(--fg);
   box-shadow: 0 8px 24px rgba(219,37,79,0.2);
 
   &:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(219,37,79,0.35); filter: brightness(1.08); }
@@ -651,7 +651,7 @@ $bl: 22px;
 
 .enrollCard {
   position: relative;
-  background: rgba(255,255,255,0.018);
+  background: rgba(var(--fg-rgb),0.018);
   border: 1px solid $border-red;
   border-radius: 32px;
   padding: clamp(3rem, 6vw, 5rem) clamp(2rem, 5vw, 4.5rem);
@@ -722,7 +722,7 @@ $bl: 22px;
     z-index: 1;
 
     .originalPrice { font-size: 1.4rem; color: $muted; text-decoration: line-through; font-weight: 300; }
-    .currentPrice  { font-size: 3rem; font-weight: 900; color: #fff; }
+    .currentPrice  { font-size: 3rem; font-weight: 900; color: var(--fg); }
     .discount {
       padding: 0.35rem 1rem;
       background: rgba(219,37,79,0.14);
@@ -740,7 +740,7 @@ $bl: 22px;
     gap: 0.75rem;
     padding: 1.2rem 3.5rem;
     background: $red-grad;
-    color: #fff;
+    color: var(--fg);
     border: none;
     border-radius: 9999px;
     font-weight: 800;
@@ -775,7 +775,7 @@ $bl: 22px;
     text-decoration: none;
     transition: color 0.3s ease;
 
-    &:hover { color: #fff; }
+    &:hover { color: var(--fg); }
   }
 }
 
@@ -795,7 +795,7 @@ $bl: 22px;
 }
 
 .modalContent {
-  background: #0a0a0a;
+  background: var(--bg-elev);
   border: 1px solid $border;
   border-radius: 28px;
   max-width: 700px;
@@ -817,16 +817,16 @@ $bl: 22px;
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.04);
+    background: rgba(var(--fg-rgb),0.04);
     border: 1px solid $border;
-    color: #fff;
+    color: var(--fg);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
 
-    &:hover { background: rgba(255,255,255,0.09); transform: rotate(90deg); }
+    &:hover { background: rgba(var(--fg-rgb),0.09); transform: rotate(90deg); }
   }
 }
 
@@ -841,7 +841,7 @@ $bl: 22px;
   .certPlaceholder {
     width: 100%;
     aspect-ratio: 1.414;
-    background: linear-gradient(135deg, #111, #0a0a0a);
+    background: linear-gradient(135deg, var(--bg-elev), var(--bg-elev));
     border-radius: 14px;
     border: 1px solid $border;
     display: flex;
@@ -911,7 +911,7 @@ $bl: 22px;
     gap: 0.65rem;
     padding: 1.1rem 2.75rem;
     background: $red-grad;
-    color: #fff;
+    color: var(--fg);
     border: none;
     border-radius: 9999px;
     font-weight: 700;
@@ -934,7 +934,7 @@ $bl: 22px;
     text-decoration: none;
     transition: color 0.25s ease;
 
-    &:hover { color: #fff; }
+    &:hover { color: var(--fg); }
   }
 }
 

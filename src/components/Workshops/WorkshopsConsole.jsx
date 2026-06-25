@@ -461,7 +461,7 @@ export default function WorkshopsConsole() {
             {paymentStep === "processing" && (
               <div className="flex flex-col items-center justify-center py-20 px-8 text-center min-h-[400px]">
                 <Loader2 className="animate-spin text-blue-500 mb-6" size={48} />
-                <h3 className="text-xl font-bold text-white mb-2">Processing Transaction</h3>
+                <h3 className="text-xl font-bold mb-2" style={{ color: "var(--fg)" }}>Processing Transaction</h3>
                 <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
                   Please do not close this window or click back. We are validating your payment details with Razorpay servers...
                 </p>

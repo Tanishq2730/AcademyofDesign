@@ -9,9 +9,13 @@
   border-radius: 1.5rem;
   text-decoration: none;
   background: radial-gradient(ellipse at 50% 0%, #18181f 0%, #0c0c0f 70%);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(var(--fg-rgb), 0.09);
   overflow: hidden;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 4px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: inset 0 1px 0 rgba(var(--fg-rgb), 0.06), 0 4px 24px rgba(0, 0, 0, 0.45);
+
+  :global([data-theme="light"]) & {
+    background: radial-gradient(ellipse at 50% 0%, var(--bg-elev) 0%, var(--bg-elev2) 80%);
+  }
 
   transition:
     border-color 0.4s ease,
@@ -38,7 +42,7 @@
     position: absolute;
     top: -50%; left: -80%;
     width: 50%; height: 200%;
-    background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.04) 50%, transparent 100%);
+    background: linear-gradient(105deg, transparent 0%, rgba(var(--fg-rgb), 0.04) 50%, transparent 100%);
     transform: skewX(-18deg);
     transition: left 0s;
     pointer-events: none;
@@ -51,7 +55,7 @@
       0 32px 70px rgba(0, 0, 0, 0.78),
       0 0 0 1px color-mix(in srgb, var(--accent, #db254f) 18%, transparent),
       0 0 75px color-mix(in srgb, var(--accent, #db254f) 12%, transparent),
-      inset 0 1px 0 rgba(255, 255, 255, 0.09);
+      inset 0 1px 0 rgba(var(--fg-rgb), 0.09);
     transform:
       perspective(900px)
       translateY(-14px)
@@ -74,7 +78,7 @@
   position: relative;
   height: 255px;
   overflow: hidden;
-  background: #080808;
+  background: var(--bg-page);
   flex-shrink: 0;
 
   img {
@@ -151,8 +155,8 @@
   z-index: 7;
   width: 3rem; height: 3rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  background: rgba(var(--fg-rgb), 0.14);
+  border: 1.5px solid rgba(var(--fg-rgb), 0.22);
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
@@ -178,7 +182,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--fg);
   transform: translateY(104%);
   transition: transform 0.42s cubic-bezier(0.23, 1, 0.32, 1);
   z-index: 8;
@@ -208,16 +212,16 @@
     letter-spacing: 0.08em;
     padding: 0.24rem 0.62rem;
     border-radius: 9999px;
-    color: rgba(255, 255, 255, 0.36);
-    background: rgba(255, 255, 255, 0.055);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: rgba(var(--fg-rgb), 0.36);
+    background: rgba(var(--fg-rgb), 0.055);
+    border: 1px solid rgba(var(--fg-rgb), 0.09);
   }
 }
 
 .body h4 {
   font-size: 1.35rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--fg);
   margin: 0;
   line-height: 1.28;
   letter-spacing: -0.03em;
@@ -227,7 +231,7 @@
 .desc {
   font-size: 0.94rem;
   line-height: 1.68;
-  color: rgba(255, 255, 255, 0.32);
+  color: rgba(var(--fg-rgb), 0.32);
   margin: 0;
   flex: 1;
   display: -webkit-box;
@@ -241,7 +245,7 @@
   align-items: center;
   justify-content: space-between;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.065);
+  border-top: 1px solid rgba(var(--fg-rgb), 0.065);
   margin-top: auto;
 }
 
@@ -253,7 +257,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(var(--fg-rgb), 0.3);
 
   svg { opacity: 0.55; }
 }
@@ -266,11 +270,11 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(var(--fg-rgb), 0.3);
   padding: 0.42rem 0.95rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(var(--fg-rgb), 0.09);
+  background: rgba(var(--fg-rgb), 0.03);
   transition: color 0.32s ease, gap 0.32s ease, background 0.32s ease, border-color 0.32s ease;
 
   .card:hover & {

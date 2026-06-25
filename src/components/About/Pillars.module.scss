@@ -5,14 +5,14 @@
   padding: 120px 0;
   position: relative;
   overflow: hidden;
-  background: #030303;
+  background: var(--bg-page);
 
   /* Dot grid background */
   &::before {
     content: "";
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(var(--fg-rgb), 0.05) 1px, transparent 1px);
     background-size: 36px 36px;
     mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 80%);
     -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 80%);
@@ -45,14 +45,14 @@
   h2 {
     font-size: clamp(2.4rem, 5vw, 4rem);
     font-weight: 900;
-    color: #fff;
+    color: var(--fg);
     letter-spacing: -0.04em;
     line-height: 1.05;
     margin: 0;
   }
 
   p {
-    color: rgba(255, 255, 255, 0.38);
+    color: rgba(var(--fg-rgb), 0.38);
     font-size: 1.05rem;
     margin-top: 1rem;
     font-weight: 300;
@@ -103,8 +103,8 @@
   border-radius: 28px;
   overflow: hidden;
   counter-increment: pillar-counter;
-  background: rgba(255, 255, 255, 0.022);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(var(--fg-rgb), 0.022);
+  border: 1px solid rgba(var(--fg-rgb), 0.06);
   transition: border-color 0.4s ease, transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
               box-shadow 0.4s ease;
 
@@ -174,7 +174,7 @@
   z-index: 1;
   font-size: 1.6rem;
   font-weight: 800;
-  color: #fff;
+  color: var(--fg);
   margin-bottom: 1rem;
   letter-spacing: -0.03em;
 }
@@ -182,7 +182,7 @@
 .pillarCard p {
   position: relative;
   z-index: 1;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(var(--fg-rgb), 0.45);
   line-height: 1.75;
   font-size: 0.98rem;
   font-weight: 300;

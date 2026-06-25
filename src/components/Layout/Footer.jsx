@@ -2,6 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useTheme } from "@/context/ThemeContext";
 import styles from "./Footer.module.scss";
 
 const exploreLinks = [
@@ -21,6 +22,7 @@ const supportLinks = [
 ];
 
 export default function Footer() {
+  const { theme } = useTheme();
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -30,7 +32,7 @@ export default function Footer() {
           <div className={styles.brandCol}>
             <Link href="/" className={styles.logo}>
               <Image
-                src="/assets/logo.png"
+                src={theme === "light" ? "/assets/logo_black.png" : "/assets/logo.png"}
                 alt="Nuvosid Logo"
                 width={220}
                 height={50}

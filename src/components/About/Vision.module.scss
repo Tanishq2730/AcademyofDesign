@@ -22,7 +22,7 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  background: #030303;
+  background: var(--bg-page);
 
   /* Top/bottom accent lines */
   &::before {
@@ -99,7 +99,7 @@
   transform: translate(-50%, -50%);
   width: 700px; height: 700px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(var(--fg-rgb), 0.03);
   animation: visionRingReverse 65s linear infinite;
   pointer-events: none;
   z-index: 1;
@@ -169,7 +169,7 @@
   letter-spacing: -0.05em;
   line-height: 1.02;
   margin-bottom: 2.5rem;
-  background: linear-gradient(135deg, #fff 30%, #db254f 70%, #e56b85 100%);
+  background: linear-gradient(135deg, var(--fg) 30%, #db254f 70%, #e56b85 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -177,7 +177,7 @@
 
 .content p {
   font-size: clamp(1.1rem, 2vw, 1.45rem);
-  color: rgba(255, 255, 255, 0.58);
+  color: rgba(var(--fg-rgb), 0.58);
   line-height: 1.75;
   font-style: italic;
   font-weight: 300;
