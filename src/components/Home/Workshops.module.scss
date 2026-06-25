@@ -1,3 +1,5 @@
+@use "../../styles/glass" as glass;
+
 .workshopsSection {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: linear-gradient(170deg, #0e0805 0%, #0a0608 45%, #0c0709 70%, var(--bg-page) 100%);
@@ -98,7 +100,7 @@
   }
 
   p {
-    color: rgba(var(--fg-rgb), 0.45);
+    color: rgba(var(--fg-rgb), 0.56);
     font-size: 1rem;
     line-height: 1.7;
     margin: 0;
@@ -153,6 +155,8 @@
     border-color 0.4s ease,
     box-shadow 0.4s ease,
     transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+  @include glass.light;
 
   &:hover {
     border-color: rgba(219, 37, 79, 0.25);
@@ -225,7 +229,7 @@
 
   .subtitle {
     font-size: 0.95rem !important;
-    color: rgba(var(--fg-rgb), 0.4) !important;
+    color: rgba(var(--fg-rgb), 0.54) !important;
     line-height: 1.6 !important;
     margin: 0 0 1.25rem;
   }
@@ -242,7 +246,7 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  color: rgba(var(--fg-rgb), 0.5);
+  color: rgba(var(--fg-rgb), 0.6);
   font-size: 0.88rem;
   font-weight: 500;
 
@@ -275,7 +279,7 @@
 
 .originalPrice {
   font-size: 0.88rem;
-  color: rgba(var(--fg-rgb), 0.3);
+  color: rgba(var(--fg-rgb), 0.46);
   text-decoration: line-through;
 }
 
@@ -287,6 +291,6 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(var(--fg-rgb), 0.5);
+  color: rgba(var(--fg-rgb), 0.6);
   transition: all 0.3s ease;
 }

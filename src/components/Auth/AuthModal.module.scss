@@ -62,7 +62,7 @@
   border-radius: 50%;
   border: 1px solid rgba(var(--fg-rgb), 0.1);
   background: rgba(var(--fg-rgb), 0.04);
-  color: rgba(var(--fg-rgb), 0.45);
+  color: rgba(var(--fg-rgb), 0.56);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -94,7 +94,7 @@
     padding: 0.52rem 1.35rem;
     border: none;
     background: transparent;
-    color: rgba(var(--fg-rgb), 0.38);
+    color: rgba(var(--fg-rgb), 0.52);
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -126,7 +126,7 @@
 
 .subtitle {
   font-size: 0.88rem;
-  color: rgba(var(--fg-rgb), 0.38);
+  color: rgba(var(--fg-rgb), 0.52);
   margin: 0 0 2rem;
   line-height: 1.6;
   font-weight: 400;
@@ -170,7 +170,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(var(--fg-rgb), 0.35);
+  color: rgba(var(--fg-rgb), 0.5);
   margin-bottom: 0.6rem;
 }
 
@@ -260,7 +260,7 @@
 .switchText {
   margin: 1.6rem 0 0;
   font-size: 0.82rem;
-  color: rgba(var(--fg-rgb), 0.3);
+  color: rgba(var(--fg-rgb), 0.46);
   text-align: center;
 }
 

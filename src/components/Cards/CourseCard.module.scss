@@ -1,3 +1,5 @@
+@use "../../styles/glass" as glass;
+
 /* ════════════════════════════════════════════
    COURSE CARD  —  shared component
    Used on: Home /Courses section + /courses page
@@ -13,9 +15,7 @@
   overflow: hidden;
   box-shadow: inset 0 1px 0 rgba(var(--fg-rgb), 0.06), 0 4px 24px rgba(0, 0, 0, 0.45);
 
-  :global([data-theme="light"]) & {
-    background: radial-gradient(ellipse at 50% 0%, var(--bg-elev) 0%, var(--bg-elev2) 80%);
-  }
+  @include glass.light;
 
   transition:
     border-color 0.4s ease,
@@ -212,7 +212,7 @@
     letter-spacing: 0.08em;
     padding: 0.24rem 0.62rem;
     border-radius: 9999px;
-    color: rgba(var(--fg-rgb), 0.36);
+    color: rgba(var(--fg-rgb), 0.5);
     background: rgba(var(--fg-rgb), 0.055);
     border: 1px solid rgba(var(--fg-rgb), 0.09);
   }
@@ -231,7 +231,7 @@
 .desc {
   font-size: 0.94rem;
   line-height: 1.68;
-  color: rgba(var(--fg-rgb), 0.32);
+  color: rgba(var(--fg-rgb), 0.48);
   margin: 0;
   flex: 1;
   display: -webkit-box;
@@ -257,7 +257,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(var(--fg-rgb), 0.3);
+  color: rgba(var(--fg-rgb), 0.46);
 
   svg { opacity: 0.55; }
 }
@@ -270,7 +270,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(var(--fg-rgb), 0.3);
+  color: rgba(var(--fg-rgb), 0.46);
   padding: 0.42rem 0.95rem;
   border-radius: 9999px;
   border: 1px solid rgba(var(--fg-rgb), 0.09);

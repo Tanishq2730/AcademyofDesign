@@ -82,7 +82,7 @@ $card-bg:    rgba(var(--fg-rgb), 0.025);
   font-weight: 800;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(var(--fg-rgb),0.45);
+  color: rgba(var(--fg-rgb),0.56);
   margin-bottom: 1rem;
 }
 
@@ -188,7 +188,7 @@ $card-bg:    rgba(var(--fg-rgb), 0.025);
   max-width: 620px;
   margin: 0 auto 2.8rem;
   line-height: 1.78;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .heroActions {
@@ -341,7 +341,7 @@ $card-bg:    rgba(var(--fg-rgb), 0.025);
     font-size: 1.05rem;
     font-weight: 800;
     letter-spacing: -0.01em;
-    color: rgba(var(--fg-rgb),0.32);
+    color: rgba(var(--fg-rgb),0.48);
     transition: color 0.4s;
   }
 

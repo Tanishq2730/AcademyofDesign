@@ -65,7 +65,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: rgba(var(--fg-rgb), 0.3);
+  color: rgba(var(--fg-rgb), 0.46);
 }
 
 /* ── Divider ────────────────────────────── */
@@ -106,10 +106,10 @@
 
 .subText {
   font-size: 1.1rem;
-  color: rgba(var(--fg-rgb), 0.4);
+  color: rgba(var(--fg-rgb), 0.54);
   line-height: 1.8;
   margin-bottom: 3rem;
-  font-weight: 300;
+  font-weight: 500;
   max-width: 480px;
 }
 
@@ -153,7 +153,7 @@
 .secondaryBtn {
   font-size: 0.9rem;
   font-weight: 600;
-  color: rgba(var(--fg-rgb), 0.5);
+  color: rgba(var(--fg-rgb), 0.6);
   text-decoration: none;
   letter-spacing: 0.05em;
   transition: color 0.3s ease;
@@ -162,6 +162,6 @@
   
   &:hover {
     color: var(--fg);
-    border-color: rgba(var(--fg-rgb), 0.4);
+    border-color: rgba(var(--fg-rgb), 0.54);
   }
 }

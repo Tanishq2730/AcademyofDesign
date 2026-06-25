@@ -1,3 +1,5 @@
+@use "../../styles/glass" as glass;
+
 .instructorsSection {
   padding: 10rem 0 3rem;
   background: linear-gradient(165deg, #020c14 0%, #030f18 40%, #020a10 70%, var(--bg-page) 100%);
@@ -63,7 +65,7 @@
   }
 
   p {
-    color: #9ca3af;
+    color: rgba(var(--fg-rgb), 0.6);
     font-size: 1.125rem;
     max-width: 34rem;
     margin: 1.5rem auto 0;
@@ -121,6 +123,8 @@
   border-radius: 2.5rem;
   overflow: hidden;
   border: 1px solid rgba(var(--fg-rgb), 0.05);
+
+  @include glass.light;
 }
 
 .front {
@@ -170,7 +174,7 @@
   
   .educationTitle {
     font-size: 0.75rem;
-    color: #6b7280;
+    color: rgba(var(--fg-rgb), 0.58);
     text-transform: uppercase;
     letter-spacing: 0.15em;
     font-weight: 700;
@@ -179,7 +183,7 @@
   .education {
     font-size: 1.125rem;
     color: var(--fg);
-    font-weight: 300;
+    font-weight: 500;
     line-height: 1.4;
   }
 }

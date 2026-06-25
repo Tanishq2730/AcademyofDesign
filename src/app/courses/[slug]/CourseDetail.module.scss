@@ -82,7 +82,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   font-weight: 800;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(var(--fg-rgb),0.45);
+  color: rgba(var(--fg-rgb),0.56);
   margin-bottom: 1rem;
 }
 
@@ -205,7 +205,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   max-width: 600px;
   margin: 0 auto 2.8rem;
   line-height: 1.78;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .heroActions {
@@ -349,7 +349,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(var(--fg-rgb),0.3);
+    color: rgba(var(--fg-rgb),0.46);
     margin: 0;
     position: relative;
     z-index: 1;
@@ -553,7 +553,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
       align-items: center;
       justify-content: center;
       background: rgba(var(--fg-rgb),0.04);
-      color: rgba(var(--fg-rgb),0.5);
+      color: rgba(var(--fg-rgb),0.6);
       flex-shrink: 0;
       transition: all 0.3s ease;
     }
@@ -694,7 +694,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    color: rgba(var(--fg-rgb),0.5);
+    color: rgba(var(--fg-rgb),0.6);
     font-size: 0.88rem;
     font-weight: 500;
 
@@ -906,7 +906,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   max-width: 600px;
   margin: 0 auto 3rem;
   line-height: 1.75;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .ctaActions {

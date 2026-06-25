@@ -1,3 +1,5 @@
+@use "../../styles/glass" as glass;
+
 /* ════════════════════════════════════════════
    SECTION
 ════════════════════════════════════════════ */
@@ -63,12 +65,12 @@
 }
 
 .subtitle {
-  color: rgba(var(--fg-rgb),0.36);
+  color: rgba(var(--fg-rgb),0.5);
   font-size: clamp(0.88rem, 1.3vw, 1rem);
   line-height: 1.8;
   max-width: 30rem;
   margin: 0 auto;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 /* ════════════════════════════════════════════
@@ -102,9 +104,8 @@
   background: radial-gradient(ellipse at 50% 0%, #17171e 0%, #0c0c10 68%);
   border: 1px solid rgba(var(--fg-rgb),0.09);
 
-  :global([data-theme="light"]) & {
-    background: radial-gradient(ellipse at 50% 0%, var(--bg-elev) 0%, var(--bg-elev2) 80%);
-  }
+  @include glass.light;
+
   border-radius: 1.6rem;
   padding: clamp(1.8rem, 4vw, 2.6rem);
   box-shadow:
@@ -202,7 +203,7 @@
 
 .authorMeta {
   font-size: 0.72rem;
-  color: rgba(var(--fg-rgb),0.3);
+  color: rgba(var(--fg-rgb),0.46);
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
@@ -235,7 +236,7 @@
   border-radius: 50%;
   border: 1px solid rgba(var(--fg-rgb),0.1);
   background: rgba(var(--fg-rgb),0.04);
-  color: rgba(var(--fg-rgb),0.5);
+  color: rgba(var(--fg-rgb),0.6);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -73,11 +73,11 @@
 
 .desc {
   font-size: 1.2rem;
-  color: rgba(var(--fg-rgb), 0.4);
+  color: rgba(var(--fg-rgb), 0.54);
   line-height: 1.8;
   margin-bottom: 5rem;
   max-width: 540px;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .officeInfo {
@@ -182,7 +182,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.2em;
-    color: rgba(var(--fg-rgb), 0.5);
+    color: rgba(var(--fg-rgb), 0.6);
   }
 }
 
@@ -229,7 +229,7 @@
     font-size: 0.65rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(var(--fg-rgb), 0.4);
+    color: rgba(var(--fg-rgb), 0.54);
   }
 }
 

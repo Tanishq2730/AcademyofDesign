@@ -133,7 +133,7 @@
 ════════════════════════════════════════════ */
 .left {
   position: relative;
-  width: 56%;
+  width: 50%;
   flex-shrink: 0;
   overflow: hidden;
 
@@ -141,21 +141,30 @@
   @media (max-width: 768px) { width: 100%; }
 }
 
+/* Watermark number now lives in the RIGHT (image) section,
+   sitting behind the blob and peeking around it. */
 .watermark {
   position: absolute;
-  bottom: 2rem;
-  right: 0;
+  top: 65%;
+  left: 22%;
+  transform: translate(-50%, -50%);
   font-family: var(--font-bebas), 'Impact', sans-serif;
-  font-size: clamp(12rem, 20vw, 22rem);
+  font-size: clamp(16rem, 30vw, 24rem);
   font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -0.06em;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(var(--fg-rgb),0.04);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: rgba(var(--fg-rgb), 0.05);
+  -webkit-text-stroke: 1.5px rgba(219, 37, 79, 0.22);
   pointer-events: none;
   user-select: none;
   will-change: opacity, transform;
-  z-index: 0;
+  z-index: 999999 !important; /* behind the image panel (z-index 1+) */
+
+  /* a touch stronger in light mode so it reads on white */
+  :global([data-theme="light"]) & {
+    color: rgba(219, 37, 79, 0.04);
+    -webkit-text-stroke: 1.5px rgba(219, 37, 79, 0.26);
+  }
 }
 
 .content {
@@ -181,9 +190,11 @@
   font-weight: 800;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(var(--fg-rgb), 0.45);
+  color: rgba(var(--fg-rgb), 0.56);
   margin-bottom: 1.8rem;
   will-change: opacity, transform;
+
+  :global([data-theme="light"]) & { color: rgba(var(--fg-rgb), 0.6); }
 }
 
 .eyebrowDot {
@@ -203,6 +214,28 @@
   gap: 0;
   margin: 0 0 2rem;
   line-height: 0.9;
+}
+
+/* Stack that holds the swapping top lines — reserves 2 lines of height */
+.titleStack {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em; /* breathing room for descenders */
+}
+
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+
+  /* first variant stays in flow to define the height;
+     the rest overlay it so layout never shifts */
+  &:not(:first-child) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .hLine {
@@ -226,12 +259,14 @@
 /* ── Description ── */
 .desc {
   font-size: clamp(0.88rem, 1.2vw, 1rem);
-  color: rgba(var(--fg-rgb), 0.38) !important;
+  color: rgba(var(--fg-rgb), 0.52) !important;
   max-width: 34rem;
   line-height: 1.82;
-  font-weight: 300;
+  font-weight: 500;
   margin: 0 0 2.2rem;
   will-change: opacity, transform;
+
+  :global([data-theme="light"]) & { color: rgba(var(--fg-rgb), 0.66) !important; }
 }
 
 /* ── Stats ── */
@@ -271,6 +306,8 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(var(--fg-rgb), 0.25) !important;
+
+  :global([data-theme="light"]) & { color: rgba(var(--fg-rgb), 0.6) !important; }
 }
 
 /* ── CTA buttons ── */
@@ -427,7 +464,7 @@
   height: 3rem;
   border-radius: 50%;
   border: 1px solid rgba(var(--fg-rgb), 0.18);
-  background: rgba(10, 10, 14, 0.72);
+  background: rgba(var(--bg-rgb), 0.72);   /* flips: dark glass ↔ white glass */
   color: rgba(var(--fg-rgb), 0.75);
   display: flex;
   align-items: center;
@@ -437,10 +474,17 @@
   -webkit-backdrop-filter: blur(16px);
   transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
+  /* light mode: stronger border + soft shadow so the white glass reads */
+  :global([data-theme="light"]) & {
+    border-color: rgba(var(--fg-rgb), 0.14);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
   &:hover {
     background: #db254f;
     border-color: #db254f;
-    color: var(--fg);
+    color: #fff;            /* always white icon on the red hover */
     transform: scale(1.08);
     box-shadow: 0 6px 24px rgba(219, 37, 79, 0.45);
   }
@@ -460,6 +504,33 @@
   overflow: hidden;
 
   @media (max-width: 768px) { display: none; }
+
+  /* Soft glow behind the blob — works in both themes */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32rem;
+    height: 32rem;
+    max-width: 85%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(219, 37, 79, 0.16) 0%, rgba(219, 37, 79, 0.05) 48%, transparent 72%);
+    filter: blur(12px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  :global([data-theme="light"]) &::before {
+    background: radial-gradient(circle, rgba(219, 37, 79, 0.12) 0%, rgba(229, 107, 133, 0.07) 48%, transparent 72%);
+  }
+}
+
+@keyframes blobMorph {
+  0%, 100% { border-radius: 62% 38% 55% 45% / 58% 48% 52% 42%; }
+  33%      { border-radius: 45% 55% 42% 58% / 52% 42% 58% 48%; }
+  66%      { border-radius: 55% 45% 58% 42% / 45% 58% 42% 55%; }
 }
 
 .imagePanel {
@@ -467,35 +538,42 @@
   inset: 0;
   overflow: hidden;
   will-change: clip-path;
+  z-index: 1;
+  display: flex;
+  align-items: center;     /* centre the blob vertically */
+  justify-content: end;
 }
 
 .image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: right bottom; /* show full standing figure, aligned to right-bottom */
+  width: min(80%, 27rem);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
   display: block;
   user-select: none;
   -webkit-user-drag: none;
+  /* organic wave / blob shape with a gentle living morph */
+  border-radius: 62% 38% 55% 45% / 58% 48% 52% 42%;
+  animation: blobMorph 16s ease-in-out infinite;
+
+  /* soft, subtle lift — no harsh black shadow */
+  :global([data-theme="dark"]) & {
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  }
+  :global([data-theme="light"]) & {
+    box-shadow: 0 18px 48px rgba(219, 37, 79, 0.12);
+  }
 }
 
-.imageFade {
-  position: absolute;
-  inset: 0;
-  background:
-    /* left edge blends into dark bg */
-    linear-gradient(90deg, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.6) 16%, rgba(0,0,0,0.15) 35%, transparent 55%),
-    /* bottom vignette so feet blend in */
-    linear-gradient(0deg, rgba(0,0,0,0.55) 0%, transparent 30%),
-    /* top vignette so top space blends */
-    linear-gradient(180deg, rgba(0,0,0,0.45) 0%, transparent 25%);
-  pointer-events: none;
-}
+/* Dark edge-blend no longer needed with the blob shape */
+.imageFade { display: none; }
 
 .imageMeta {
   position: absolute;
-  bottom: 5rem;
-  left: 2.2rem;
+  bottom: 21%;
+  left: 80%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
   gap: 0.85rem;
@@ -503,8 +581,10 @@
   background: rgba(3, 3, 3, 0.68);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid rgba(var(--fg-rgb), 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
+  z-index: 2;
+  white-space: nowrap;
 }
 
 .metaDot {
@@ -556,6 +636,13 @@
   border-top: 1px solid rgba(var(--fg-rgb), 0.05);
 
   @media (max-width: 900px) { display: none; }
+
+  /* Light mode: white frosted strip instead of dark */
+  :global([data-theme="light"]) & {
+    background: rgba(255, 255, 255, 0.82);
+    border-top-color: rgba(var(--fg-rgb), 0.08);
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.05);
+  }
 }
 
 .barInner {
@@ -602,7 +689,7 @@
   gap: 0.45rem;
   font-size: 0.65rem;
   font-weight: 600;
-  color: rgba(var(--fg-rgb), 0.35);
+  color: rgba(var(--fg-rgb), 0.5);
   padding: 0.45rem 1rem;
   border-radius: 8px;
   letter-spacing: 0.06em;
@@ -611,6 +698,8 @@
   transition: all 0.28s ease;
   cursor: default;
   white-space: nowrap;
+
+  :global([data-theme="light"]) & { color: rgba(var(--fg-rgb), 0.55); }
 
   &:hover {
     background: rgba(var(--fg-rgb), 0.035);

@@ -81,7 +81,7 @@
 
   p {
     font-size: 1rem;
-    color: rgba(var(--fg-rgb), 0.45);
+    color: rgba(var(--fg-rgb), 0.56);
     max-width: 32rem;
     margin: 0 auto;
     line-height: 1.5;
@@ -201,7 +201,7 @@
   .title {
     font-size: 0.75rem;
     font-weight: 500;
-    color: rgba(var(--fg-rgb), 0.4);
+    color: rgba(var(--fg-rgb), 0.54);
     transition: color 0.3s ease;
     white-space: nowrap;
     overflow: hidden;
@@ -284,7 +284,7 @@
     letter-spacing: 0.05em;
     background: rgba(var(--fg-rgb), 0.03);
     border: 1px solid rgba(var(--fg-rgb), 0.06);
-    color: rgba(var(--fg-rgb), 0.5);
+    color: rgba(var(--fg-rgb), 0.6);
     padding: 0.3rem 0.75rem;
     border-radius: 9999px;
   }
@@ -308,7 +308,7 @@
   .designation {
     font-size: 0.9rem;
     font-weight: 500;
-    color: rgba(var(--fg-rgb), 0.5);
+    color: rgba(var(--fg-rgb), 0.6);
   }
 }
 
@@ -327,7 +327,7 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: rgba(var(--fg-rgb), 0.35);
+    color: rgba(var(--fg-rgb), 0.5);
     margin-bottom: 0.75rem;
     font-weight: 700;
   }
@@ -355,7 +355,7 @@
 
   svg {
     transition: transform 0.3s ease;
-    color: rgba(var(--fg-rgb), 0.3);
+    color: rgba(var(--fg-rgb), 0.46);
   }
 
   &:hover {

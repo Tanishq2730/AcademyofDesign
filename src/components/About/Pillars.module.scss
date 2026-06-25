@@ -52,10 +52,10 @@
   }
 
   p {
-    color: rgba(var(--fg-rgb), 0.38);
+    color: rgba(var(--fg-rgb), 0.52);
     font-size: 1.05rem;
     margin-top: 1rem;
-    font-weight: 300;
+    font-weight: 500;
   }
 }
 
@@ -182,8 +182,8 @@
 .pillarCard p {
   position: relative;
   z-index: 1;
-  color: rgba(var(--fg-rgb), 0.45);
+  color: rgba(var(--fg-rgb), 0.56);
   line-height: 1.75;
   font-size: 0.98rem;
-  font-weight: 300;
+  font-weight: 500;
 }

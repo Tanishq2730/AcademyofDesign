@@ -81,7 +81,7 @@
 
   p {
     font-size: 1.05rem;
-    color: rgba(var(--fg-rgb), 0.45);
+    color: rgba(var(--fg-rgb), 0.56);
     max-width: 34rem;
     margin: 0 auto;
     line-height: 1.6;
@@ -147,7 +147,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(var(--fg-rgb), 0.5);
+  color: rgba(var(--fg-rgb), 0.6);
   background: rgba(var(--fg-rgb), 0.04);
   padding: 0.25rem 0.65rem;
   border-radius: 8px;
@@ -172,7 +172,7 @@
   border-top: 1px solid rgba(var(--fg-rgb), 0.05);
   padding-top: 0.85rem;
   font-size: 0.75rem;
-  color: rgba(var(--fg-rgb), 0.4);
+  color: rgba(var(--fg-rgb), 0.54);
 
   .date {
     display: flex;
@@ -262,7 +262,7 @@
 
       .original {
         font-size: 0.75rem;
-        color: rgba(var(--fg-rgb), 0.5);
+        color: rgba(var(--fg-rgb), 0.6);
         text-decoration: line-through;
       }
     }
@@ -331,7 +331,7 @@
 .tabBtn {
   background: none;
   border: none;
-  color: rgba(var(--fg-rgb), 0.45);
+  color: rgba(var(--fg-rgb), 0.56);
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -486,7 +486,7 @@
 
     .title {
       font-size: 0.8rem;
-      color: rgba(var(--fg-rgb), 0.5);
+      color: rgba(var(--fg-rgb), 0.6);
       margin-bottom: 0.5rem;
     }
 
@@ -522,7 +522,7 @@
 
   p {
     font-size: 0.9rem;
-    color: rgba(var(--fg-rgb), 0.45);
+    color: rgba(var(--fg-rgb), 0.56);
     margin-bottom: 2rem;
   }
 }
@@ -551,7 +551,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(var(--fg-rgb), 0.5);
+    color: rgba(var(--fg-rgb), 0.6);
   }
 
   input, select {
@@ -704,7 +704,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(var(--fg-rgb), 0.4);
+    color: rgba(var(--fg-rgb), 0.54);
     margin-bottom: 0.25rem;
   }
 }
@@ -739,7 +739,7 @@
 .rzpCancelBtn {
   background: none;
   border: none;
-  color: rgba(var(--fg-rgb), 0.4);
+  color: rgba(var(--fg-rgb), 0.54);
   font-size: 0.75rem;
   font-weight: 700;
   cursor: pointer;
@@ -783,7 +783,7 @@
 
   .successMessage {
     font-size: 0.85rem;
-    color: rgba(var(--fg-rgb), 0.5);
+    color: rgba(var(--fg-rgb), 0.6);
     margin-bottom: 2rem;
     line-height: 1.5;
   }
@@ -814,7 +814,7 @@
     }
 
     .label {
-      color: rgba(var(--fg-rgb), 0.4);
+      color: rgba(var(--fg-rgb), 0.54);
     }
 
     .value {

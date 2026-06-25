@@ -1,3 +1,5 @@
+@use "../../styles/glass" as glass;
+
 // ═══════════════════════
 // TOKENS
 // ═══════════════════════
@@ -143,9 +145,26 @@ $bg:       var(--bg-elev);
 }
 
 // ═══════════════════════
+// PER-CARD VIBRANT ACCENTS — multicolor in both themes
+// (drives stat number, ghost watermark, hover glow)
+// Compound selectors so they beat .card's default --accent.
+// ═══════════════════════
+.card.cardB        { --accent: #f97316; } // orange
+.card.cardC        { --accent: #10b981; } // emerald
+.card.cardD        { --accent: #3b82f6; } // blue
+.card.cardE        { --accent: #8b5cf6; } // violet
+.card.cardPartners { --accent: #06b6d4; } // cyan
+.card.cardRatings  { --accent: #f59e0b; } // amber
+.card.cardI        { --accent: #ec4899; } // pink
+.card.cardJ        { --accent: #a855f7; } // purple
+.card.cardK        { --accent: #22c55e; } // green
+.card.cardL        { --accent: #14b8a6; } // teal
+
+// ═══════════════════════
 // BASE CARD
 // ═══════════════════════
 .card {
+  --accent: #db254f;
   position: relative;
   background: $card;
   border: 1px solid $border;
@@ -158,17 +177,19 @@ $bg:       var(--bg-elev);
     box-shadow 0.4s ease,
     background 0.4s ease;
 
+  @include glass.light;
+
   &:hover {
-    border-color: rgba(219,37,79,0.38);
+    border-color: color-mix(in srgb, var(--accent) 42%, transparent);
     transform: translateY(-7px);
     box-shadow:
       0 24px 56px rgba(0,0,0,0.4),
-      0 0 0 1px rgba(219,37,79,0.18),
-      0 8px 24px rgba(219,37,79,0.1);
-    background: rgba(var(--fg-rgb),0.05);
+      0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent),
+      0 8px 24px color-mix(in srgb, var(--accent) 16%, transparent);
+    background: color-mix(in srgb, var(--accent) 6%, rgba(var(--fg-rgb),0.04));
 
     .ghostNum {
-      color: rgba(219,37,79,0.14);
+      color: color-mix(in srgb, var(--accent) 18%, transparent);
       transform: scale(1.06) translateY(4px);
     }
   }
@@ -182,7 +203,7 @@ $bg:       var(--bg-elev);
   font-family: var(--font-bebas, sans-serif);
   font-size: 4.5rem;
   line-height: 1;
-  color: rgba(var(--fg-rgb),0.04);
+  color: color-mix(in srgb, var(--accent) 9%, transparent);
   pointer-events: none;
   user-select: none;
   letter-spacing: -0.02em;
@@ -272,7 +293,7 @@ $bg:       var(--bg-elev);
   font-size: clamp(1.8rem, 2.8vw, 2.6rem);
   font-weight: 900;
   letter-spacing: -0.04em;
-  color: var(--fg);
+  color: var(--accent);
   line-height: 1;
   margin-bottom: 0.3rem;
   position: relative;
@@ -280,7 +301,7 @@ $bg:       var(--bg-elev);
   transition: color 0.35s ease;
 
   .card:hover & {
-    color: $red;
+    color: color-mix(in srgb, var(--accent) 80%, var(--fg));
   }
 }
 

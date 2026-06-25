@@ -141,7 +141,7 @@ export default function WhyNuvosid() {
           {/* ── K: Hike ── */}
           <motion.div className={`${styles.card} ${styles.cardK}`} {...fade(0.19)}>
             <div className={styles.ghostNum}>124%</div>
-            <p className={styles.statValue} style={{ color: "#db254f" }}>124%</p>
+            <p className={styles.statValue}>124%</p>
             <p className={styles.statLabel}>Avg. Salary Hike</p>
             <p className={styles.statSub}>For top 10% cohort graduates</p>
           </motion.div>
@@ -149,7 +149,7 @@ export default function WhyNuvosid() {
           {/* ── L: Retention ── */}
           <motion.div className={`${styles.card} ${styles.cardL}`} {...fade(0.22)}>
             <div className={styles.ghostNum}>257%</div>
-            <p className={styles.statValue} style={{ color: "#db254f" }}>257%</p>
+            <p className={styles.statValue}>257%</p>
             <p className={styles.statLabel}>Avg. Hike Post 24 Months</p>
             <p className={styles.statSub}>After graduating the program</p>
           </motion.div>
