@@ -223,7 +223,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   padding: 0.9rem 2.2rem;
   border-radius: 9999px;
   background: $red-grad;
-  color: var(--fg);
+  color: #fff;
   font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -503,7 +503,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
 
       .numBox {
         background: $red-grad;
-        color: var(--fg);
+        color: #fff;
         box-shadow: 0 6px 18px rgba(219,37,79,0.35);
       }
       .toggleIcon { color: $red; }
@@ -659,7 +659,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   width: 100%;
   padding: 1.1rem 1.5rem;
   background: $red-grad;
-  color: var(--fg);
+  color: #fff;
   text-decoration: none !important;
   border-radius: 14px;
   font-weight: 800;
@@ -920,7 +920,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   padding: 1rem 2.8rem;
   border-radius: 9999px;
   background: $red-grad;
-  color: var(--fg);
+  color: #fff;
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.1em;
