@@ -59,6 +59,9 @@
   background-size: cover;
   background-position: center;
   opacity: 0.18;
+
+  /* Light mode: the dark photo muddies the banner — hide it */
+  :global([data-theme="light"]) & { opacity: 0; }
 }
 
 /* Dark gradient overlay over image */
@@ -71,6 +74,9 @@
       rgba(3, 3, 3, 0.15) 45%,
       rgba(3, 3, 3, 0.75) 100%),
     radial-gradient(ellipse at center, transparent 30%, rgba(3, 3, 3, 0.55) 100%);
+
+  /* Light mode: no dark overlay */
+  :global([data-theme="light"]) & { display: none; }
 }
 
 .bgGrad1 {

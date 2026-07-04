@@ -2,8 +2,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { X, Sparkles, ArrowRight } from "lucide-react";
+import { X, Sparkles, ArrowRight, CalendarCheck } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import { apiFetch, onAuthChange } from "@/lib/api";
 import styles from "./FixedCTA.module.scss";
 
 const SCROLL_THRESHOLD = 0.30; // 30% of page
@@ -17,12 +18,16 @@ export default function FixedCTA() {
   const [exiting,  setExiting]  = useState(false);
   const scrollListenerRef       = useRef(null);
 
-  /* ── Check auth once on mount ── */
+  /* ── Check auth on mount and whenever auth state changes ── */
   useEffect(() => {
-    fetch("/api/auth/check")
-      .then(r => r.json())
-      .then(data => setIsAuthenticated(!!data.authenticated))
-      .catch(() => setIsAuthenticated(false));
+    const check = () => {
+      apiFetch("/api/auth/check")
+        .then(r => r.json())
+        .then(data => setIsAuthenticated(!!data.authenticated))
+        .catch(() => setIsAuthenticated(false));
+    };
+    check();
+    return onAuthChange(check);
   }, []);
 
   /* ── Reset + re-attach scroll listener on every page change ── */
@@ -81,8 +86,17 @@ export default function FixedCTA() {
     return () => window.removeEventListener("keydown", onKey);
   }, [visible, dismiss]);
 
-  if (isAuthenticated === null || isAuthenticated) return null;
+  // On a workshop detail page (/workshops/<slug>) the bar becomes a
+  // "Reserve Your Spot" prompt and shows regardless of auth state.
+  const isWorkshopDetail = /^\/workshops\/[^/]+/.test(pathname);
+
+  if (!isWorkshopDetail && (isAuthenticated === null || isAuthenticated)) return null;
   if (!visible) return null;
+
+  const reserveSpot = () => {
+    document.getElementById("register")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    dismiss();
+  };
 
   const cls = [
     styles.cta,
@@ -91,7 +105,11 @@ export default function FixedCTA() {
   ].filter(Boolean).join(" ");
 
   return (
-    <div className={cls} role="complementary" aria-label="Create an account">
+    <div
+      className={cls}
+      role="complementary"
+      aria-label={isWorkshopDetail ? "Reserve your spot" : "Create an account"}
+    >
       <div className={styles.accentLine} aria-hidden="true" />
 
       <div className={styles.inner}>
@@ -99,30 +117,52 @@ export default function FixedCTA() {
         {/* Left: icon + copy */}
         <div className={styles.left}>
           <div className={styles.iconWrap} aria-hidden="true">
-            <Sparkles size={18} />
+            {isWorkshopDetail ? <CalendarCheck size={18} /> : <Sparkles size={18} />}
           </div>
           <div className={styles.copy}>
-            <p className={styles.headline}>
-              Transform Your Creative Career
-            </p>
-            <p className={styles.sub}>
-              Join 5,000+ designers. Build real skills. Get placed faster.
-            </p>
+            {isWorkshopDetail ? (
+              <>
+                <p className={styles.headline}>
+                  Secure Your Workshop Seat
+                </p>
+                <p className={styles.sub}>
+                  Limited seats available — reserve your spot before this masterclass fills up.
+                </p>
+              </>
+            ) : (
+              <>
+                <p className={styles.headline}>
+                  Transform Your Creative Career
+                </p>
+                <p className={styles.sub}>
+                  Join 5,000+ designers. Build real skills. Get placed faster.
+                </p>
+              </>
+            )}
           </div>
         </div>
 
         {/* Right: actions */}
         <div className={styles.actions}>
-          <button
-            className={styles.primaryBtn}
-            onClick={() => { dismiss(); openModal("signup"); }}
-          >
-            <span>Create Account</span>
-            <ArrowRight size={15} strokeWidth={2.5} />
-          </button>
-          <Link href="/courses" className={styles.secondaryBtn} onClick={dismiss}>
-            Learn More
-          </Link>
+          {isWorkshopDetail ? (
+            <button className={styles.primaryBtn} onClick={reserveSpot}>
+              <span>Reserve Your Spot</span>
+              <ArrowRight size={15} strokeWidth={2.5} />
+            </button>
+          ) : (
+            <>
+              <button
+                className={styles.primaryBtn}
+                onClick={() => { dismiss(); openModal("signup"); }}
+              >
+                <span>Create Account</span>
+                <ArrowRight size={15} strokeWidth={2.5} />
+              </button>
+              <Link href="/courses" className={styles.secondaryBtn} onClick={dismiss}>
+                Learn More
+              </Link>
+            </>
+          )}
           <button
             className={styles.closeBtn}
             onClick={dismiss}

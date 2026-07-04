@@ -9,7 +9,9 @@
     "location": "Studio 1, Nuvosid Campus & Live Online",
     "price": "₹999.00",
     "originalPrice": "₹2,999.00",
-    "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop",
+    "image": "/assets/workshop/workshop1.png",
+    "videoUrl": "https://www.youtube.com/embed/79vZT-2rMLg",
+    "videoCaption": "A quick look at what you'll build inside this masterclass.",
     "speaker": {
       "name": "Siddharth Sharma",
       "designation": "Senior Structural Engineer & Program Chair",
@@ -43,6 +45,8 @@
     "price": "₹1,499.00",
     "originalPrice": "₹3,999.00",
     "image": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=800&auto=format&fit=crop",
+    "videoUrl": "https://www.youtube.com/embed/JcOF8Dge7Xk",
+    "videoCaption": "Preview the design-system workflow we cover in this sprint.",
     "speaker": {
       "name": "Manan Agrawal",
       "designation": "Business Architect & Technology Consultant",

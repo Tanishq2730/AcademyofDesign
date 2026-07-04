@@ -25,6 +25,10 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# backend service
+/server/node_modules
+/server/.env
+
 # vercel
 .vercel
 

@@ -1,123 +1,53 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Award } from "lucide-react";
+import { ArrowRight, GraduationCap } from "lucide-react";
 import styles from "./Instructors.module.scss";
 
 import instructorsList from "../../data/instructors.json";
 
 export default function InstructorsShowcase() {
-  const [activeIdx, setActiveIdx] = useState(0);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const nameParam = params.get("name");
-      if (nameParam) {
-        const decodedName = decodeURIComponent(nameParam).toLowerCase();
-        const foundIndex = instructorsList.findIndex(
-          (ins) => ins.name.toLowerCase() === decodedName
-        );
-        if (foundIndex !== -1) {
-          setTimeout(() => {
-            setActiveIdx(foundIndex);
-          }, 0);
-        }
-      }
-    }
-  }, []);
-
-  const selectedInstructor = instructorsList[activeIdx];
-
   return (
-    <div className="row g-4 g-lg-5 mt-2">
-      {/* Left Selector Sidebar */}
-      <div className="col-12 col-lg-4">
-        <div className={styles.sidebarList}>
-          {instructorsList.map((ins, idx) => (
-            <div
-              key={idx}
-              onClick={() => setActiveIdx(idx)}
-              className={`${styles.instructorItem} ${activeIdx === idx ? styles.active : ""}`}
-            >
-              <div className={styles.avatarWrap}>
-                <img src={ins.image} alt={ins.name} />
-              </div>
-              <div className={styles.infoBlock}>
-                <span className={styles.name}>{ins.name}</span>
-                <span className={styles.title}>{ins.designation.split("&")[0]}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Right Showcase Card */}
-      <div className="col-12 col-lg-8">
-        <AnimatePresence mode="wait">
+    <div className="row g-4 g-lg-4 mt-2">
+      {instructorsList.map((ins, idx) => (
+        <div key={ins.slug} className="col-12 col-sm-6 col-lg-4">
           <motion.div
-            key={activeIdx}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className={styles.showcaseCard}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ delay: idx * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="h-100"
           >
-            <div className="row g-0 h-100">
-              {/* Column 1: Portrait */}
-              <div className={`${styles.showcaseImage} col-12 col-md-5`}>
-                <img src={selectedInstructor.image} alt={selectedInstructor.name} />
-                <div className={styles.imageOverlay} />
+            <Link href={`/instructors/${ins.slug}`} className={styles.mentorCard}>
+              <div className={styles.mentorImage}>
+                <img src={ins.image} alt={ins.name} />
+                <div className={styles.mentorImageOverlay} />
+                {ins.experience && (
+                  <span className={styles.expBadge}>{ins.experience}</span>
+                )}
               </div>
 
-              {/* Column 2: Profile Content */}
-              <div className={`${styles.showcaseContent} col-12 col-md-7`}>
-                {/* Pills Row */}
-                <div className={styles.pillRow}>
-                  {selectedInstructor.credentials.map((cred, i) => (
+              <div className={styles.mentorBody}>
+                <span className={styles.mentorRole}>{ins.role}</span>
+                <h3>{ins.name}</h3>
+                <p className={styles.mentorDesignation}>{ins.designation}</p>
+
+                <div className={styles.mentorCreds}>
+                  {ins.credentials.slice(0, 2).map((cred, i) => (
                     <span key={i} className={styles.credPill}>
-                      {cred}
-                    </span>
-                  ))}
-                  {selectedInstructor.memberships.map((mem, i) => (
-                    <span key={i} className={styles.membershipPill}>
-                      {mem}
+                      <GraduationCap size={11} /> {cred}
                     </span>
                   ))}
                 </div>
 
-                {/* Name Header */}
-                <div className={styles.showcaseName}>
-                  <h2>{selectedInstructor.name}</h2>
-                  <div className={styles.designation}>{selectedInstructor.designation}</div>
-                </div>
-
-                {/* Biography */}
-                <p className={styles.showcaseBio}>{selectedInstructor.bio}</p>
-
-                {/* Courses */}
-                <div className={styles.showcaseCourses}>
-                  <h4>Courses Taught</h4>
-                  <div className={styles.showcaseLinks}>
-                    {selectedInstructor.courses.map((course) => (
-                      <Link
-                        key={course.id}
-                        href={`/courses/${course.id}`}
-                        className={styles.courseBtn}
-                      >
-                        <Award size={14} />
-                        <span>{course.title}</span>
-                        <ArrowRight size={12} />
-                      </Link>
-                    ))}
-                  </div>
-                </div>
+                <span className={styles.mentorCta}>
+                  View Profile <ArrowRight size={15} />
+                </span>
               </div>
-            </div>
+            </Link>
           </motion.div>
-        </AnimatePresence>
-      </div>
+        </div>
+      ))}
     </div>
   );
 }

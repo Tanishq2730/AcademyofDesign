@@ -7,6 +7,7 @@ import { Menu, X, LogOut, Sun, Moon } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/context/AuthContext";
 import { useTheme } from "@/context/ThemeContext";
+import { apiFetch, clearToken, onAuthChange } from "@/lib/api";
 import styles from "./Navbar.module.scss";
 
 const navLinks = [
@@ -40,38 +41,36 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fetch authentication status and user details on load
+  // Fetch authentication status and user details on load,
+  // and re-check whenever auth state changes (login/logout elsewhere).
   useEffect(() => {
     async function checkUser() {
       try {
-        const res = await fetch("/api/auth/check");
+        const res = await apiFetch("/api/auth/check");
         if (res.ok) {
           const data = await res.json();
           if (data.authenticated) {
             setIsAuthenticated(true);
             setUser(data.user);
+            return;
           }
         }
+        setIsAuthenticated(false);
+        setUser(null);
       } catch (err) {
         console.error("Auth check failed in Navbar:", err);
       }
     }
     checkUser();
+    return onAuthChange(checkUser);
   }, []);
 
-  // Logout handler
+  // Logout handler — clear the local token and reset state.
   const handleLogout = async () => {
-    try {
-      const res = await fetch("/api/logout");
-      if (res.ok) {
-        setIsAuthenticated(false);
-        setUser(null);
-        router.push("/");
-        router.refresh();
-      }
-    } catch (err) {
-      console.error("Logout failed:", err);
-    }
+    clearToken();
+    setIsAuthenticated(false);
+    setUser(null);
+    router.push("/");
   };
 
   return (

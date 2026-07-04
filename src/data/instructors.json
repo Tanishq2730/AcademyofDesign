@@ -1,5 +1,6 @@
 [
   {
+    "slug": "siddharth-sharma",
     "name": "Siddharth Sharma",
     "role": "Structural Engineer",
     "designation": "Structural Engineer & Interior Expert",
@@ -9,12 +10,44 @@
     "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
     "img": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
     "education": "B.Tech Civil, M.Tech Structures",
+    "experience": "12+ Years",
+    "videoUrl": "https://www.youtube.com/embed/ScMzIvxBSi4",
+    "videoCaption": "A quick introduction from Siddharth on his approach to structural design mentorship.",
+    "expertise": ["Structural Modeling", "AutoCAD Standards", "Interior Form"],
+    "details": [
+      {
+        "title": "Industry Experience",
+        "variant": "paragraph",
+        "content": "Siddharth Sharma has 12+ years of industry experience in Structural Design. He has worked with construction companies like L&T, Tata Nest In, BHEL, Louis Berger Inc and provided structural design consultancy with EPTISA for smart city projects at Udaipur (Rajasthan) and Patna (Bihar). He has handled industrial projects with AVS for prestigious companies Hindustan Zinc Ltd., Adani Group, TATA Group, PI Industries, Shree Cement Ltd, BPCL, Wolkem Industries Ltd, JK Paper, Jubilant Industries, etc."
+      },
+      {
+        "title": "Field Of Expertise",
+        "variant": "tags",
+        "items": ["Structural Design", "AutoCAD & STAAD Pro", "Structural Modeling", "Interior Design", "Construction Documentation"]
+      },
+      {
+        "title": "Projects Executed",
+        "variant": "bullets",
+        "items": [
+          "Udaipur Smart City structural consultancy (EPTISA) — Rajasthan",
+          "Patna Smart City structural consultancy (EPTISA) — Bihar",
+          "Industrial structural projects via AVS for PSU & private majors",
+          "Residential & commercial interior fit-outs"
+        ]
+      },
+      {
+        "title": "Companies Worked With",
+        "variant": "tags",
+        "items": ["L&T", "Tata Nest In", "BHEL", "Louis Berger Inc", "EPTISA", "AVS", "Hindustan Zinc Ltd.", "Adani Group", "TATA Group", "PI Industries", "Shree Cement Ltd", "BPCL", "Wolkem Industries Ltd", "JK Paper", "Jubilant Industries"]
+      }
+    ],
     "courses": [
       { "id": "autocad-lt-2023", "title": "Master AutoCAD LT 2023" },
       { "id": "residential-spaces", "title": "Residential Spaces" }
     ]
   },
   {
+    "slug": "shantanu-sharma",
     "name": "Shantanu Sharma",
     "role": "Senior Architect",
     "designation": "Senior Architect & Urban Planner",
@@ -24,12 +57,39 @@
     "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
     "img": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
     "education": "B.Arch, M.Arch (Urban Planning)",
+    "experience": "15+ Years",
+    "videoUrl": "https://www.youtube.com/embed/ScMzIvxBSi4",
+    "videoCaption": "Shantanu shares his philosophy on context-driven architecture and urban form.",
+    "expertise": ["Urban Planning", "Architectural Drafting", "Space Layout"],
+    "details": [
+      {
+        "title": "Industry Experience",
+        "variant": "paragraph",
+        "content": "Shantanu Sharma brings 15+ years of architectural practice, registered under the Council of Architecture (C.O.A). He has led context-driven urban design, architectural drafting compliance, and large-scale space planning across residential, commercial, and civic projects, while mentoring students on drafting protocols and site drawing standards."
+      },
+      {
+        "title": "Field Of Expertise",
+        "variant": "tags",
+        "items": ["Architectural Design", "Urban Planning", "Drafting Compliance", "Space Layout Optimization", "Site Drawing"]
+      },
+      {
+        "title": "Projects Executed",
+        "variant": "bullets",
+        "items": [
+          "Township & urban master planning",
+          "Commercial complex architecture",
+          "Residential layout design & drafting supervision",
+          "Civic and institutional buildings"
+        ]
+      }
+    ],
     "courses": [
       { "id": "autocad-lt-2023", "title": "Master AutoCAD LT 2023" },
       { "id": "commercial-interiors", "title": "Commercial Interiors" }
     ]
   },
   {
+    "slug": "manan-agrawal",
     "name": "Manan Agrawal",
     "role": "Business Architect & Consultant",
     "designation": "Business Architect & Tech Consultant",
@@ -39,12 +99,43 @@
     "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop",
     "img": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&auto=format&fit=crop",
     "education": "B.Tech CS (IIT Delhi), MBA Wharton",
+    "experience": "10+ Years",
+    "videoUrl": "https://www.youtube.com/embed/ScMzIvxBSi4",
+    "videoCaption": "Manan on bridging design-thinking with product and business strategy.",
+    "expertise": ["Design Thinking", "Product Strategy", "UI Foundations"],
+    "details": [
+      {
+        "title": "Industry Experience",
+        "variant": "paragraph",
+        "content": "Manan Agrawal has 10+ years across product strategy, software architecture, and design-thinking. A graduate of IIT Delhi and the Wharton School (USA), he brings corporate insights from top US management firms and high-scale technical systems, and leads UI foundations, design sprints, and product deployment strategy for Nuvosid cohorts."
+      },
+      {
+        "title": "Field Of Expertise",
+        "variant": "tags",
+        "items": ["Design Thinking", "Product Strategy", "Software Architecture", "UI Foundations", "Design Sprints"]
+      },
+      {
+        "title": "Projects Executed",
+        "variant": "bullets",
+        "items": [
+          "Product scaling & go-to-market strategy",
+          "Design sprint facilitation for design teams",
+          "UI foundation curriculum design"
+        ]
+      },
+      {
+        "title": "Companies Worked With",
+        "variant": "tags",
+        "items": ["ML AGRO FOODS (Founder & Director)", "US Management Consulting Firms"]
+      }
+    ],
     "courses": [
       { "id": "advanced-product-design", "title": "Advanced Product Design" },
       { "id": "ui-foundations", "title": "UI Foundations" }
     ]
   },
   {
+    "slug": "kritik-kothari",
     "name": "Kritik Kothari",
     "role": "Product Growth Lead",
     "designation": "Growth Partner & Product Management Lead",
@@ -54,11 +145,42 @@
     "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
     "img": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop",
     "education": "MBA, S.P. Jain School of Management",
+    "experience": "8+ Years",
+    "videoUrl": "https://www.youtube.com/embed/ScMzIvxBSi4",
+    "videoCaption": "Kritik on turning design deliverables into business outcomes.",
+    "expertise": ["Growth Hacking", "Product Positioning", "Portfolio Pitching"],
+    "details": [
+      {
+        "title": "Industry Experience",
+        "variant": "paragraph",
+        "content": "Kritik Kothari has 8+ years leading growth-hacking and product positioning for digital design cohorts. An S.P. Jain MBA and growth specialist, he bridges creative design and business outcomes, mentoring students on pitching design deliverables and portfolio cases to corporate stakeholders."
+      },
+      {
+        "title": "Field Of Expertise",
+        "variant": "tags",
+        "items": ["Growth Hacking", "Product Positioning", "Go-to-Market Strategy", "Portfolio Pitching", "Product Management"]
+      },
+      {
+        "title": "Projects Executed",
+        "variant": "bullets",
+        "items": [
+          "Growth strategy for digital design cohorts",
+          "Product positioning & pitch workshops",
+          "Corporate portfolio mentoring"
+        ]
+      },
+      {
+        "title": "Companies Worked With",
+        "variant": "tags",
+        "items": ["The Chemical Center (Promoter)"]
+      }
+    ],
     "courses": [
       { "id": "interaction-design", "title": "Interaction Design" }
     ]
   },
   {
+    "slug": "ak-sharma",
     "name": "A.K. Sharma",
     "role": "Senior Civil Consultant",
     "designation": "Senior Civil Consultant & Chartered Engineer",
@@ -68,6 +190,31 @@
     "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop",
     "img": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&auto=format&fit=crop",
     "education": "B.Tech Civil (IIT Delhi), Chartered Eng.",
+    "experience": "30+ Years",
+    "videoUrl": "https://www.youtube.com/embed/ScMzIvxBSi4",
+    "videoCaption": "A.K. Sharma on building legally sound, compliant structures.",
+    "expertise": ["Construction Drawings", "Regulatory Compliance", "Bid Tenders"],
+    "details": [
+      {
+        "title": "Industry Experience",
+        "variant": "paragraph",
+        "content": "A.K. Sharma is a veteran engineer with 30+ years in structural supervision, government project consultancy, and regulatory bylaws validation. He advises students and clients on construction drawings, bid tenders, drafting guidelines, and construction-law compliance to help build legally sound structures."
+      },
+      {
+        "title": "Field Of Expertise",
+        "variant": "tags",
+        "items": ["Structural Supervision", "Construction Drawings", "Bid Tenders", "Regulatory Compliance", "Construction Law"]
+      },
+      {
+        "title": "Projects Executed",
+        "variant": "bullets",
+        "items": [
+          "Government infrastructure project consultancy",
+          "Regulatory bylaws & compliance validation",
+          "Construction tender & drawing review"
+        ]
+      }
+    ],
     "courses": [
       { "id": "autocad-lt-2023", "title": "Master AutoCAD LT 2023" }
     ]

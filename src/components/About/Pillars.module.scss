@@ -149,6 +149,28 @@
     &::after  { transform: scaleX(1); }
     .icon     { transform: scale(1.08) rotate(-3deg); }
   }
+
+  /* Light mode: crisp, defined cards (not the washed-out 2% tint) */
+  :global([data-theme="light"]) & {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: color-mix(in srgb, var(--accent) 20%, rgba(0, 0, 0, 0.05));
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    box-shadow:
+      0 12px 34px rgba(31, 38, 135, 0.07),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    &::before { color: color-mix(in srgb, var(--accent) 24%, transparent); } /* visible ghost number */
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+      box-shadow:
+        0 26px 54px color-mix(in srgb, var(--accent) 20%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+
+      &::before { color: color-mix(in srgb, var(--accent) 34%, transparent); }
+    }
+  }
 }
 
 .icon {

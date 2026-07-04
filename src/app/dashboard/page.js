@@ -1,26 +1,45 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '@/styles/auth.module.scss';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
+import { apiFetch, clearToken } from '@/lib/api';
 
 export default function Dashboard() {
   const router = useRouter();
+  const { openModal } = useAuth();
+  const [checked, setChecked] = useState(false);
 
-  const handleLogout = async () => {
-    try {
-      const res = await fetch('/api/logout', {
-        method: 'GET',
+  // Client-side route guard (middleware no longer exists in the static build).
+  useEffect(() => {
+    let cancelled = false;
+    apiFetch('/api/auth/check')
+      .then((r) => r.json())
+      .then((data) => {
+        if (cancelled) return;
+        if (data.authenticated) {
+          setChecked(true);
+        } else {
+          router.replace('/');
+          openModal('login');
+        }
+      })
+      .catch(() => {
+        if (cancelled) return;
+        router.replace('/');
+        openModal('login');
       });
+    return () => { cancelled = true; };
+  }, [router, openModal]);
 
-      if (res.ok) {
-        router.push('/login');
-        router.refresh();
-      }
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
+  const handleLogout = () => {
+    clearToken();
+    router.push('/');
   };
+
+  if (!checked) return <div className={styles.dashboardContainer} />;
 
   return (
     <div className={styles.dashboardContainer}>

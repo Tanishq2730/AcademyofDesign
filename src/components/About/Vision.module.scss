@@ -24,6 +24,10 @@
   overflow: hidden;
   background: var(--bg-page);
 
+  :global([data-theme="light"]) & {
+    background: linear-gradient(180deg, #fdf4e8 0%, #fdf8f0 100%); /* soft amber */
+  }
+
   /* Top/bottom accent lines */
   &::before {
     content: "";

@@ -56,6 +56,18 @@ $muted:      rgba(var(--fg-rgb),0.48);
     rgba(0,0,0,1)    100%
   );
   z-index: 1;
+
+  /* Light mode: white scrim so dark text + navbar logo read on the photo */
+  :global([data-theme="light"]) & {
+    background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.78) 0%,
+      rgba(255,255,255,0.62) 38%,
+      rgba(255,255,255,0.72) 72%,
+      rgba(255,255,255,0.88) 90%,
+      var(--bg-page)         100%
+    );
+  }
 }
 
 .heroContent {
@@ -92,7 +104,10 @@ $muted:      rgba(var(--fg-rgb),0.48);
   line-height: 1.04;
   letter-spacing: -0.04em;
   margin: 0 auto 1.75rem;
+  color: var(--fg); /* white on the dark photo → dark on the light scrim */
   text-shadow: 0 2px 32px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.7);
+
+  :global([data-theme="light"]) & { text-shadow: none; }
 
   span {
     display: block;
@@ -110,6 +125,8 @@ $muted:      rgba(var(--fg-rgb),0.48);
   line-height: 1.78;
   font-weight: 500;
   text-shadow: 0 1px 12px rgba(0,0,0,0.8);
+
+  :global([data-theme="light"]) & { text-shadow: none; }
 }
 
 // animated scroll cue

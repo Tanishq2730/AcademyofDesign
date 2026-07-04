@@ -12,109 +12,129 @@
   overflow: hidden;
   background: var(--bg-page);
 
-  /* Top gradient border line */
+  /* Thin top divider line */
   &::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
+    pointer-events: none;
     background: linear-gradient(90deg,
       transparent 0%,
-      rgba(219, 37, 79, 0.35) 30%,
-      rgba(219, 37, 79, 0.6) 50%,
-      rgba(219, 37, 79, 0.35) 70%,
+      rgba(var(--fg-rgb), 0.06) 30%,
+      rgba(var(--fg-rgb), 0.12) 50%,
+      rgba(var(--fg-rgb), 0.06) 70%,
       transparent 100%);
   }
 
-  /* Bottom gradient border line */
+  /* Thin bottom divider line */
   &::after {
     content: "";
     position: absolute;
     bottom: 0; left: 0; right: 0;
     height: 1px;
+    pointer-events: none;
     background: linear-gradient(90deg,
       transparent 0%,
-      rgba(219, 37, 79, 0.35) 30%,
-      rgba(219, 37, 79, 0.6) 50%,
-      rgba(219, 37, 79, 0.35) 70%,
+      rgba(var(--fg-rgb), 0.06) 30%,
+      rgba(var(--fg-rgb), 0.12) 50%,
+      rgba(var(--fg-rgb), 0.06) 70%,
       transparent 100%);
   }
-}
-
-/* Centered radial glow behind the whole bar */
-.statsBar::before {
-  background:
-    radial-gradient(ellipse 80% 100% at 50% 50%,
-      rgba(219, 37, 79, 0.07) 0%, transparent 65%),
-    linear-gradient(90deg,
-      transparent 0%, rgba(219, 37, 79, 0.3) 30%,
-      rgba(219, 37, 79, 0.55) 50%,
-      rgba(219, 37, 79, 0.3) 70%, transparent 100%);
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .statItem {
   --accent: #db254f;
   position: relative;
-  padding: 2rem 1rem;
   z-index: 1;
+  padding: 2.6rem 1.5rem;
+  border-radius: 22px;
+  background: rgba(var(--fg-rgb), 0.025);
+  border: 1px solid rgba(var(--fg-rgb), 0.07);
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
 
-  /* Vertical divider — right edge, hidden on last child */
-  &:not(:last-child)::after {
+  /* subtle accent corner wash */
+  &::after {
     content: "";
     position: absolute;
-    top: 20%; right: 0;
-    width: 1px;
-    height: 60%;
-    background: linear-gradient(180deg,
-      transparent, rgba(var(--fg-rgb), 0.08), transparent);
+    top: 0; right: 0;
+    width: 60%; height: 60%;
+    background: radial-gradient(circle at top right,
+      color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--accent) 34%, transparent);
+    box-shadow: 0 20px 42px color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+
+  /* Light mode: frosted glass card */
+  :global([data-theme="light"]) & {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(var(--fg-rgb), 0.07);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    box-shadow:
+      0 10px 30px rgba(31, 38, 135, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+    &:hover {
+      box-shadow:
+        0 22px 46px color-mix(in srgb, var(--accent) 16%, transparent),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
   }
 }
 
 .number {
-  display: block;
+  display: inline-block;
   position: relative;
   font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 900;
   line-height: 1;
-  margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 85%, color-mix(in srgb, var(--accent) 60%, var(--fg)) 100%);
+  margin-bottom: 1.1rem;
+  /* Vibrant accent gradient — pops in both themes */
+  background: linear-gradient(140deg,
+    var(--accent) 0%,
+    color-mix(in srgb, var(--accent) 78%, #fff) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.04em;
 
-  /* Animated pulse ring behind the number */
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
-    animation: ringPulse 3s ease-in-out infinite;
-    pointer-events: none;
-  }
-
   &::after {
     content: '+';
     font-size: 0.55em;
-    background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--fg)));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: var(--accent);
     vertical-align: super;
+  }
+}
+
+/* Accent underline bar under each number */
+.statItem .number + .label {
+  position: relative;
+  padding-top: 0.9rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: 3px;
+    border-radius: 9999px;
+    background: var(--accent);
   }
 }
 
 .label {
   display: block;
-  color: rgba(var(--fg-rgb), 0.52);
+  color: rgba(var(--fg-rgb), 0.62);
   text-transform: uppercase;
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.18em;
 }

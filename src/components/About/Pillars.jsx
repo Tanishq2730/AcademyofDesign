@@ -6,19 +6,19 @@ const PILLARS = [
     icon: <Rocket size={26} />,
     title: "Think New",
     desc: "Innovation is at our core. We constantly push the boundaries of design thinking to solve complex infrastructure needs.",
-    accent: "#e0a6b2", // soft rose
+    accent: "#f43f5e", // rose
   },
   {
     icon: <ShieldCheck size={26} />,
     title: "Build Precision",
     desc: "Precision-engineered structures with a commitment to safety, quality, and timely execution in every delivery.",
-    accent: "#9ecfc4", // soft sage
+    accent: "#14b8a6", // teal
   },
   {
     icon: <GraduationCap size={26} />,
     title: "Lead Mastery",
     desc: "Professional project management and specialized education through Surpass Academy to bridge the industry skills gap.",
-    accent: "#bdb0e3", // soft lavender
+    accent: "#8b5cf6", // violet
   },
 ];
 

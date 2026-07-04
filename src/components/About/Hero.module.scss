@@ -51,6 +51,10 @@
   text-align: center;
   overflow: hidden;
   background: var(--bg-page);
+
+  :global([data-theme="light"]) & {
+    background: linear-gradient(180deg, #fdecf0 0%, #fbf5f7 100%); /* soft rose */
+  }
   /* Cancel the global pt-16 (4rem) on <main> so the hero truly starts from top */
   margin-top: -4rem;
 }
@@ -69,6 +73,9 @@
   opacity: 0.22;
   z-index: 0;
   pointer-events: none;
+
+  /* Light mode: the dark photo muddies the hero — hide it */
+  :global([data-theme="light"]) & { opacity: 0; }
 }
 
 /* 0b — Dark gradient overlay over the image */
@@ -84,6 +91,9 @@
     radial-gradient(ellipse at center, transparent 25%, rgba(3, 3, 3, 0.55) 100%);
   z-index: 1;
   pointer-events: none;
+
+  /* Light mode: no dark overlay */
+  :global([data-theme="light"]) & { display: none; }
 }
 
 /* 1 — Dot grid */
@@ -111,6 +121,10 @@
   animation: orbFloat1 14s ease-in-out infinite;
   z-index: 3;
   pointer-events: none;
+
+  :global([data-theme="light"]) & {
+    background: radial-gradient(circle at center, rgba(219, 37, 79, 0.16) 0%, transparent 68%);
+  }
 }
 
 /* 3 — Medium orb, bottom-right */
@@ -126,6 +140,10 @@
   animation: orbFloat2 18s ease-in-out infinite;
   z-index: 3;
   pointer-events: none;
+
+  :global([data-theme="light"]) & {
+    background: radial-gradient(circle at center, rgba(229, 107, 133, 0.16) 0%, transparent 68%);
+  }
 }
 
 /* 4 — Small orb, center-right */
@@ -141,6 +159,11 @@
   animation: orbFloat3 22s ease-in-out infinite;
   z-index: 3;
   pointer-events: none;
+
+  /* Light mode: the near-black maroon orb made a dark patch — soften to a light rose glow */
+  :global([data-theme="light"]) & {
+    background: radial-gradient(circle at center, rgba(244, 114, 182, 0.14) 0%, transparent 65%);
+  }
 }
 
 /* 5 — Aurora top sweep */

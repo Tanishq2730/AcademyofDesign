@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import { apiFetch, setToken } from "@/lib/api";
 import styles from "./AuthModal.module.scss";
 
 export default function AuthModal() {
@@ -53,7 +54,7 @@ export default function AuthModal() {
     setSuccess("");
 
     try {
-      const res  = await fetch(isLogin ? "/api/login" : "/api/signup", {
+      const res  = await apiFetch(isLogin ? "/api/login" : "/api/signup", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
         body:    JSON.stringify(formData),
@@ -62,6 +63,8 @@ export default function AuthModal() {
       if (!res.ok) throw new Error(data.error || "Something went wrong");
 
       if (isLogin) {
+        // Persist the JWT so subsequent requests (and other components) see it.
+        if (data.token) setToken(data.token);
         setSuccess("Welcome back! Redirecting…");
         setTimeout(() => {
           closeModal();

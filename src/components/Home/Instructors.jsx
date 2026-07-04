@@ -79,7 +79,7 @@ export default function Instructors() {
         {tripleInstructors.map((person, index) => (
           <Link 
             key={index} 
-            href={`/instructors?name=${encodeURIComponent(person.name)}`}
+            href={`/instructors/${person.slug}`}
             className={`${styles.instructorCard} ${index % 2 === 0 ? styles.up : styles.down}`}
           >
             <div className={styles.flipper}>

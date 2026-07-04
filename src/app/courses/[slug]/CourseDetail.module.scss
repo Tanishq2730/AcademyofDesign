@@ -152,6 +152,19 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
       rgba(0,0,0,1)    100%
     );
   z-index: 1;
+
+  /* Light mode: a white scrim over the photo so dark text + the dark
+     navbar logo read cleanly (consistent with the rest of light mode) */
+  :global([data-theme="light"]) & {
+    background:
+      linear-gradient(180deg,
+        rgba(255,255,255,0.78) 0%,
+        rgba(255,255,255,0.62) 38%,
+        rgba(255,255,255,0.72) 72%,
+        rgba(255,255,255,0.88) 90%,
+        var(--bg-page)         100%
+      );
+  }
 }
 
 // Content wrapper — sits above image + overlay
@@ -189,7 +202,12 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   line-height: 1.04;
   letter-spacing: -0.04em;
   margin: 0 auto 1.75rem;
+  color: var(--fg); /* white on the dark photo (dark mode) → dark on the light scrim (light mode) */
   text-shadow: 0 2px 32px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.7);
+
+  :global([data-theme="light"]) & {
+    text-shadow: none;
+  }
 
   span {
     display: block;
@@ -200,12 +218,15 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
 
 .subtitle {
   font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: rgba(var(--fg-rgb),0.92);
+  /* theme-aware via the global rule: white on the dark photo, dark on the light scrim */
+  color: rgba(var(--fg-rgb), 0.9);
   text-shadow: 0 1px 12px rgba(0,0,0,0.8);
   max-width: 600px;
   margin: 0 auto 2.8rem;
   line-height: 1.78;
   font-weight: 500;
+
+  :global([data-theme="light"]) & { text-shadow: none; }
 }
 
 .heroActions {
@@ -242,9 +263,9 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   align-items: center;
   padding: 0.9rem 2rem;
   border-radius: 9999px;
-  border: 1px solid rgba(var(--fg-rgb),0.14);
-  background: rgba(var(--fg-rgb),0.04);
-  color: rgba(var(--fg-rgb),0.72);
+  border: 1px solid rgba(var(--fg-rgb),0.2);
+  background: rgba(var(--fg-rgb),0.06);
+  color: rgba(var(--fg-rgb),0.82); /* white on dark photo → dark on light scrim */
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -253,7 +274,7 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
   backdrop-filter: blur(10px);
   transition: all 0.35s cubic-bezier(0.23,1,0.32,1);
 
-  &:hover { background: rgba(219,37,79,0.12); border-color: $border-red; color: var(--fg); transform: translateY(-3px); }
+  &:hover { background: rgba(219,37,79,0.15); border-color: $border-red; color: var(--fg); transform: translateY(-3px); }
 }
 
 // ════════════════════════════════════════════
@@ -597,6 +618,17 @@ $card-bg:      rgba(var(--fg-rgb), 0.025);
     rgba(219,37,79,0.03) 50%,
     rgba(10,2,6,0.4) 100%
   );
+
+  // Light mode: rose-tinted frosted card instead of the dark maroon gradient
+  :global([data-theme="light"]) & {
+    background: linear-gradient(
+      145deg,
+      rgba(219,37,79,0.08) 0%,
+      rgba(255,255,255,0.75) 60%,
+      rgba(255,255,255,0.9) 100%
+    );
+    box-shadow: 0 14px 36px rgba(31,38,135,0.07);
+  }
 
   // top glow line
   &::before {

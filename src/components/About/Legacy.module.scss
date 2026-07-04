@@ -1,3 +1,5 @@
+@use "../../styles/glass" as glass;
+
 /* ════════════════════════════════════════════
    LEGACY SECTION
 ════════════════════════════════════════════ */
@@ -6,6 +8,10 @@
   position: relative;
   overflow: hidden;
   background: var(--bg-page);
+
+  :global([data-theme="light"]) & {
+    background: linear-gradient(180deg, #eaf2ff 0%, #f3f7ff 100%); /* soft blue */
+  }
 
   /* Top-right red glow orb */
   &::before {
@@ -58,6 +64,8 @@
   border-radius: 40px;
   padding: 5rem;
   overflow: hidden;
+
+  @include glass.light;
 
   /* Gradient border */
   &::before {

@@ -2,11 +2,227 @@
   min-height: 100vh;
   background-color: var(--bg-page);
   color: var(--fg);
-  padding: 8rem 2rem 6rem;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+/* ─────────────────────────────────────────────
+   Hero Banner
+   ───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-page);
+  margin-top: -4rem; /* bleed behind transparent navbar */
+  padding: 9rem 1rem 4.5rem;
+}
+
+.heroImage {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+
+  :global([data-theme="light"]) & { opacity: 0; }
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(3, 3, 3, 0.55) 0%,
+    rgba(3, 3, 3, 0.1) 45%,
+    var(--bg-page) 100%);
+
+  :global([data-theme="light"]) & {
+    background: linear-gradient(180deg, transparent 55%, var(--bg-page) 100%);
+  }
+}
+
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(var(--fg-rgb), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--fg-rgb), 0.03) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 75% 65% at 50% 45%, black 30%, transparent 80%);
+}
+
+.heroGlowA {
+  position: absolute;
+  top: 2%;
+  right: -5%;
+  width: 55%;
+  height: 70%;
+  background: radial-gradient(ellipse, rgba(219, 37, 79, 0.13) 0%, transparent 65%);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.heroGlowB {
+  position: absolute;
+  bottom: 0;
+  left: -8%;
+  width: 50%;
+  height: 55%;
+  background: radial-gradient(ellipse, rgba(111, 154, 196, 0.08) 0%, transparent 65%);
+  filter: blur(110px);
+  pointer-events: none;
+}
+
+.heroBeam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(219, 37, 79, 0.6), transparent);
+  animation: ctBeam 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.heroRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(219, 37, 79, 0.08);
+  animation: ctRing 45s linear infinite;
+  pointer-events: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #db254f;
+    box-shadow: 0 0 16px 5px rgba(219, 37, 79, 0.7);
+  }
+
+  @media (max-width: 768px) { width: 360px; height: 360px; }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.2rem;
+  border: 1px solid rgba(219, 37, 79, 0.2);
+  background: rgba(219, 37, 79, 0.05);
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(var(--fg-rgb), 0.66);
+  margin-bottom: 1.75rem;
+
+  svg { color: #e56b85; }
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #db254f;
+  box-shadow: 0 0 12px #db254f;
+  flex-shrink: 0;
+}
+
+.heroTitle {
+  font-size: clamp(2.6rem, 6.5vw, 5rem);
+  font-weight: 900;
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+  color: var(--fg);
+  margin-bottom: 1.5rem;
+
+  em {
+    font-style: normal;
+    display: block;
+    background: linear-gradient(135deg, #db254f 0%, #e56b85 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(var(--fg-rgb), 0.56);
+  max-width: 38rem;
+  margin: 0 auto 2.5rem;
+}
+
+.heroChips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.heroChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(var(--fg-rgb), 0.78);
+  background: rgba(var(--fg-rgb), 0.03);
+  border: 1px solid rgba(var(--fg-rgb), 0.08);
+  padding: 0.55rem 1.1rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(10px);
+
+  svg { color: #e56b85; }
+}
+
+@keyframes ctBeam {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes ctRing {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroBeam, .heroRing { animation: none !important; }
+}
+
+/* ─── Console section ─── */
+.consoleSection {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 1.25rem 5rem;
 }
 
 .bgGlow1 {
@@ -87,6 +303,10 @@
 
 /* ─── Left Panel: Contact Information ─── */
 .infoPanel {
+  /* Panel background is always dark, so keep its text white in both themes */
+  --fg: #ffffff;
+  --fg-rgb: 255, 255, 255;
+
   background: linear-gradient(135deg, #9e1030 0%, #db254f 40%, #173863 100%);
   border-radius: 28px;
   padding: 2.5rem;
@@ -241,7 +461,7 @@
 .submitBtn {
   background: linear-gradient(135deg, #9e1030, #db254f, #e56b85);
   border: none;
-  color: var(--fg);
+  color: #ffffff;
   font-weight: 750;
   font-size: 1rem;
   letter-spacing: 0.05em;

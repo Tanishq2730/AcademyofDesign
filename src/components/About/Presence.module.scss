@@ -1,3 +1,5 @@
+@use "../../styles/glass" as glass;
+
 .presenceSection {
   padding: 2rem 0;
   background-color: var(--bg-page);
@@ -18,6 +20,8 @@
   overflow: hidden;
   backdrop-filter: blur(30px);
   position: relative;
+
+  @include glass.light;
   
   &::before {
     content: "";
@@ -32,20 +36,24 @@
 }
 
 .contentSide {
-  padding: 8rem;
+  padding: clamp(2.5rem, 5vw, 5rem);
   position: relative;
   z-index: 1;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
   @media (max-width: 992px) {
-    padding: 4rem 3rem;
+    padding: 3rem 2.5rem;
   }
 }
 
 .title {
-  font-size: 5rem;
+  font-size: clamp(3rem, 5vw, 4.5rem);
   font-weight: 900;
   color: var(--fg);
-  margin-bottom: 3rem;
+  margin-bottom: 1.75rem;
   letter-spacing: -0.05em;
   line-height: 1;
   
@@ -53,7 +61,7 @@
     color: #db254f;
     position: relative;
     display: inline-block;
-    
+
     &::after {
       content: "";
       position: absolute;
@@ -72,31 +80,34 @@
 }
 
 .desc {
-  font-size: 1.2rem;
-  color: rgba(var(--fg-rgb), 0.54);
-  line-height: 1.8;
-  margin-bottom: 5rem;
-  max-width: 540px;
+  font-size: 1.1rem;
+  color: rgba(var(--fg-rgb), 0.6);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
   font-weight: 500;
 }
 
 .officeInfo {
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(var(--fg-rgb), 0.08);
+
   h3 {
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.25em;
     color: var(--fg);
-    margin-bottom: 2.5rem;
-    opacity: 0.4;
+    margin-bottom: 1.4rem;
+    opacity: 0.45;
   }
 }
 
 .infoItem {
   display: flex;
   align-items: flex-start;
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1.1rem;
+  margin-bottom: 1.1rem;
   color: var(--fg);
   transition: transform 0.3s ease;
   
@@ -125,25 +136,27 @@
 .visualSide {
   position: relative;
   height: 100%;
-  min-height: 600px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem;
+  padding: clamp(2rem, 4vw, 3.5rem);
   z-index: 1;
 }
 
 .creativeCard {
   background: linear-gradient(135deg, rgba(var(--fg-rgb), 0.05) 0%, rgba(var(--fg-rgb), 0.01) 100%);
   border: 1px solid rgba(var(--fg-rgb), 0.1);
-  border-radius: 3rem;
-  padding: 4rem;
+  border-radius: 2.5rem;
+  padding: 3rem;
   width: 100%;
-  max-width: 450px;
+  max-width: 430px;
   position: relative;
   z-index: 2;
   box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
   animation: float 6s ease-in-out infinite;
+
+  @include glass.light;
   
   &::before {
     content: "";
@@ -167,8 +180,8 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 3rem;
-  
+  margin-bottom: 2rem;
+
   .dot {
     width: 8px;
     height: 8px;
@@ -187,31 +200,31 @@
 }
 
 .cityText {
-  font-size: 4rem;
+  font-size: clamp(2.6rem, 4vw, 3.4rem);
   font-weight: 900;
   color: var(--fg);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   letter-spacing: -0.02em;
 }
 
 .stateText {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #db254f;
   font-weight: 600;
-  margin-bottom: 3rem;
+  margin-bottom: 1.75rem;
 }
 
 .architecturalLine {
-  width: 60px;
+  width: 56px;
   height: 2px;
-  background: rgba(var(--fg-rgb), 0.1);
-  margin-bottom: 3rem;
+  background: rgba(var(--fg-rgb), 0.12);
+  margin-bottom: 1.75rem;
 }
 
 .statsRow {
   display: flex;
-  gap: 3rem;
-  margin-bottom: 4rem;
+  gap: 2.5rem;
+  margin-bottom: 2.25rem;
 }
 
 .stat {

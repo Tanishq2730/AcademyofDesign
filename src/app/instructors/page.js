@@ -6,12 +6,27 @@ import styles from "@/components/Instructors/Instructors.module.scss";
 export default function InstructorsPage() {
   return (
     <div className={styles.pageWrapper}>
-      <div className={styles.bgGlow1} />
-      <div className={styles.bgGlow2} />
-      <div className="container position-relative flex-grow-1 d-flex flex-column" style={{ zIndex: 10 }}>
-        <InstructorsHeader />
-        <InstructorsShowcase />
-      </div>
+      <InstructorsHeader />
+
+      <section className={styles.gridSection}>
+        <div className={styles.bgGlow1} />
+        <div className={styles.bgGlow2} />
+
+        <div className="container position-relative" style={{ zIndex: 10 }}>
+          <div className={styles.gridHead}>
+            <span className={styles.gridEyebrow}>
+              <span className={styles.dot} /> Our Mentors
+            </span>
+            <h2>The People Behind Your Growth</h2>
+            <p>
+              Every program at Nuvosid is led by a hand-picked expert. Pick a
+              mentor to view their full background, credentials, and courses.
+            </p>
+          </div>
+
+          <InstructorsShowcase />
+        </div>
+      </section>
     </div>
   );
 }
